@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Disease" representedClassName="Disease" syncable="YES">
+        <attribute name="dateOfDiagnosis" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="descriptionOfDisease" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="doctor" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Doctor"/>
+    </entity>
+    <entity name="Doctor" representedClassName=".Doctor" syncable="YES">
+        <attribute name="clinic" optional="YES" attributeType="String"/>
+        <attribute name="firstName" optional="YES" attributeType="String"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
+        <attribute name="profession" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Entity" representedClassName="Entity" syncable="YES" codeGenerationType="class">
+        <attribute name="attribute" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="MedicalCard" representedClassName="MedicalCard" syncable="YES">
+        <relationship name="disease" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Disease"/>
+        <relationship name="doctor" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Doctor"/>
+        <relationship name="visitDoctor" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VIsitDoctor"/>
+    </entity>
+    <entity name="Medicament" representedClassName=".Medicament" syncable="YES">
+        <attribute name="dosage" optional="YES" attributeType="String"/>
+        <attribute name="frequency" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="VIsitDoctor" representedClassName="VIsitDoctor" syncable="YES">
+        <attribute name="dateOfVisit" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="disease" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Disease"/>
+        <relationship name="doctor" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Doctor"/>
+        <relationship name="medicament" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Medicament"/>
+    </entity>
+    <elements>
+        <element name="Doctor" positionX="-18" positionY="36" width="128" height="104"/>
+        <element name="Disease" positionX="-45" positionY="0" width="128" height="103"/>
+        <element name="Medicament" positionX="9" positionY="90" width="128" height="89"/>
+        <element name="MedicalCard" positionX="-18" positionY="72" width="128" height="88"/>
+        <element name="VIsitDoctor" positionX="-9" positionY="81" width="128" height="103"/>
+        <element name="Entity" positionX="0" positionY="99" width="128" height="44"/>
+    </elements>
+</model>

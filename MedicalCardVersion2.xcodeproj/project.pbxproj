@@ -9,21 +9,65 @@
 /* Begin PBXBuildFile section */
 		3E1E06BD2822D24100B5A9D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E06BC2822D24100B5A9D3 /* AppDelegate.swift */; };
 		3E1E06BF2822D24100B5A9D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E06BE2822D24100B5A9D3 /* SceneDelegate.swift */; };
-		3E1E06C12822D24100B5A9D3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E06C02822D24100B5A9D3 /* ViewController.swift */; };
 		3E1E06C42822D24100B5A9D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E1E06C22822D24100B5A9D3 /* Main.storyboard */; };
 		3E1E06C62822D24200B5A9D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E1E06C52822D24200B5A9D3 /* Assets.xcassets */; };
 		3E1E06C92822D24200B5A9D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E1E06C72822D24200B5A9D3 /* LaunchScreen.storyboard */; };
+		3E1E06D12822D4BE00B5A9D3 /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E06D02822D4BE00B5A9D3 /* TabbarController.swift */; };
+		3E1E06DB2822D75800B5A9D3 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E06DA2822D75800B5A9D3 /* SettingsTableViewController.swift */; };
+		3E1E06DD2822D76A00B5A9D3 /* DoctorsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E06DC2822D76A00B5A9D3 /* DoctorsTableViewController.swift */; };
+		3E1E06DF2822D77900B5A9D3 /* PillsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E06DE2822D77900B5A9D3 /* PillsTableViewController.swift */; };
+		3E1E06E12822D78800B5A9D3 /* CardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E06E02822D78800B5A9D3 /* CardTableViewController.swift */; };
+		3E1E06E92822D9C300B5A9D3 /* PillsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E06E82822D9C300B5A9D3 /* PillsTableViewCell.swift */; };
+		3E1EA662282894FB00818056 /* DoctorsProfessionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1EA661282894FB00818056 /* DoctorsProfessionsController.swift */; };
+		3E2C50FF282844DD00855FB9 /* DoctorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2C50FE282844DD00855FB9 /* DoctorCell.swift */; };
+		3E2C5101282854BF00855FB9 /* NewDoctorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2C5100282854BF00855FB9 /* NewDoctorController.swift */; };
+		3E2D3F9D28231998000D0944 /* FraquencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D3F9C28231998000D0944 /* FraquencyCell.swift */; };
+		3E3123BB2831498900C58A00 /* PillsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3123BA2831498900C58A00 /* PillsHelper.swift */; };
+		3E31240028317B1E00C58A00 /* MedicalCardVersion2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3E3123FE28317B1E00C58A00 /* MedicalCardVersion2.xcdatamodeld */; };
+		3E31241128317F4600C58A00 /* Medicament+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E31240D28317F4600C58A00 /* Medicament+CoreDataClass.swift */; };
+		3E31241228317F4600C58A00 /* Medicament+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E31240E28317F4600C58A00 /* Medicament+CoreDataProperties.swift */; };
+		3E31241328317F4600C58A00 /* Doctor+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E31240F28317F4600C58A00 /* Doctor+CoreDataClass.swift */; };
+		3E31241428317F4600C58A00 /* Doctor+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E31241028317F4600C58A00 /* Doctor+CoreDataProperties.swift */; };
+		3E34F50B283053A900FD99C5 /* DoctorsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E34F50A283053A900FD99C5 /* DoctorsHelper.swift */; };
+		3E3B41042822FC9800531423 /* NewPillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B41032822FC9800531423 /* NewPillController.swift */; };
+		3E3B41062823029000531423 /* PillsTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B41052823029000531423 /* PillsTypeTableViewController.swift */; };
+		3E3B41082823031600531423 /* PillsFrequencyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B41072823031600531423 /* PillsFrequencyController.swift */; };
+		3EA0080D2829C74700B15612 /* ProfessionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0080C2829C74700B15612 /* ProfessionsCell.swift */; };
+		3EA008102829CD1F00B15612 /* TypicallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0080E2829CD1F00B15612 /* TypicallCell.swift */; };
+		3EA008112829CD1F00B15612 /* TypicallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0080F2829CD1F00B15612 /* TypicallCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3E1E06B92822D24100B5A9D3 /* MedicalCardVersion2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedicalCardVersion2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E1E06BC2822D24100B5A9D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E1E06BE2822D24100B5A9D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3E1E06C02822D24100B5A9D3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3E1E06C32822D24100B5A9D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3E1E06C52822D24200B5A9D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E1E06C82822D24200B5A9D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E1E06CA2822D24200B5A9D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E1E06D02822D4BE00B5A9D3 /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
+		3E1E06DA2822D75800B5A9D3 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		3E1E06DC2822D76A00B5A9D3 /* DoctorsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsTableViewController.swift; sourceTree = "<group>"; };
+		3E1E06DE2822D77900B5A9D3 /* PillsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsTableViewController.swift; sourceTree = "<group>"; };
+		3E1E06E02822D78800B5A9D3 /* CardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewController.swift; sourceTree = "<group>"; };
+		3E1E06E82822D9C300B5A9D3 /* PillsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsTableViewCell.swift; sourceTree = "<group>"; };
+		3E1EA661282894FB00818056 /* DoctorsProfessionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsProfessionsController.swift; sourceTree = "<group>"; };
+		3E2C50FE282844DD00855FB9 /* DoctorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorCell.swift; sourceTree = "<group>"; };
+		3E2C5100282854BF00855FB9 /* NewDoctorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDoctorController.swift; sourceTree = "<group>"; };
+		3E2D3F9C28231998000D0944 /* FraquencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FraquencyCell.swift; sourceTree = "<group>"; };
+		3E3123BA2831498900C58A00 /* PillsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsHelper.swift; sourceTree = "<group>"; };
+		3E3123FF28317B1E00C58A00 /* MedicalCardVersion2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MedicalCardVersion2.xcdatamodel; sourceTree = "<group>"; };
+		3E31240D28317F4600C58A00 /* Medicament+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Medicament+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3E31240E28317F4600C58A00 /* Medicament+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Medicament+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3E31240F28317F4600C58A00 /* Doctor+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Doctor+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3E31241028317F4600C58A00 /* Doctor+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Doctor+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3E34F50A283053A900FD99C5 /* DoctorsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsHelper.swift; sourceTree = "<group>"; };
+		3E3B41032822FC9800531423 /* NewPillController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPillController.swift; sourceTree = "<group>"; };
+		3E3B41052823029000531423 /* PillsTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsTypeTableViewController.swift; sourceTree = "<group>"; };
+		3E3B41072823031600531423 /* PillsFrequencyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsFrequencyController.swift; sourceTree = "<group>"; };
+		3EA0080C2829C74700B15612 /* ProfessionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionsCell.swift; sourceTree = "<group>"; };
+		3EA0080E2829CD1F00B15612 /* TypicallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypicallCell.swift; sourceTree = "<group>"; };
+		3EA0080F2829CD1F00B15612 /* TypicallCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypicallCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +84,10 @@
 		3E1E06B02822D24100B5A9D3 = {
 			isa = PBXGroup;
 			children = (
+				3E31240D28317F4600C58A00 /* Medicament+CoreDataClass.swift */,
+				3E31240E28317F4600C58A00 /* Medicament+CoreDataProperties.swift */,
+				3E31240F28317F4600C58A00 /* Doctor+CoreDataClass.swift */,
+				3E31241028317F4600C58A00 /* Doctor+CoreDataProperties.swift */,
 				3E1E06BB2822D24100B5A9D3 /* MedicalCardVersion2 */,
 				3E1E06BA2822D24100B5A9D3 /* Products */,
 			);
@@ -56,15 +104,105 @@
 		3E1E06BB2822D24100B5A9D3 /* MedicalCardVersion2 */ = {
 			isa = PBXGroup;
 			children = (
-				3E1E06BC2822D24100B5A9D3 /* AppDelegate.swift */,
-				3E1E06BE2822D24100B5A9D3 /* SceneDelegate.swift */,
-				3E1E06C02822D24100B5A9D3 /* ViewController.swift */,
-				3E1E06C22822D24100B5A9D3 /* Main.storyboard */,
+				3E34F5092830539600FD99C5 /* Helpers */,
+				3E1EA66328289B1900818056 /* Views */,
+				3E1E06E22822D8C800B5A9D3 /* Controllers */,
+				3E1E06D42822D6C900B5A9D3 /* Main */,
+				3E1E06D32822D69B00B5A9D3 /* Application */,
 				3E1E06C52822D24200B5A9D3 /* Assets.xcassets */,
-				3E1E06C72822D24200B5A9D3 /* LaunchScreen.storyboard */,
 				3E1E06CA2822D24200B5A9D3 /* Info.plist */,
+				3E3123FE28317B1E00C58A00 /* MedicalCardVersion2.xcdatamodeld */,
 			);
 			path = MedicalCardVersion2;
+			sourceTree = "<group>";
+		};
+		3E1E06D32822D69B00B5A9D3 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				3E1E06BE2822D24100B5A9D3 /* SceneDelegate.swift */,
+				3E1E06BC2822D24100B5A9D3 /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		3E1E06D42822D6C900B5A9D3 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				3E1E06C22822D24100B5A9D3 /* Main.storyboard */,
+				3E1E06C72822D24200B5A9D3 /* LaunchScreen.storyboard */,
+				3E1E06D02822D4BE00B5A9D3 /* TabbarController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		3E1E06D52822D70200B5A9D3 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				3E1E06E02822D78800B5A9D3 /* CardTableViewController.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		3E1E06D72822D71A00B5A9D3 /* Pills */ = {
+			isa = PBXGroup;
+			children = (
+				3E1E06DE2822D77900B5A9D3 /* PillsTableViewController.swift */,
+				3E1E06E82822D9C300B5A9D3 /* PillsTableViewCell.swift */,
+				3E3B41032822FC9800531423 /* NewPillController.swift */,
+				3E3B41052823029000531423 /* PillsTypeTableViewController.swift */,
+				3E3B41072823031600531423 /* PillsFrequencyController.swift */,
+				3E2D3F9C28231998000D0944 /* FraquencyCell.swift */,
+			);
+			path = Pills;
+			sourceTree = "<group>";
+		};
+		3E1E06D82822D72800B5A9D3 /* Doctors */ = {
+			isa = PBXGroup;
+			children = (
+				3E1E06DC2822D76A00B5A9D3 /* DoctorsTableViewController.swift */,
+				3E2C50FE282844DD00855FB9 /* DoctorCell.swift */,
+				3E2C5100282854BF00855FB9 /* NewDoctorController.swift */,
+				3E1EA661282894FB00818056 /* DoctorsProfessionsController.swift */,
+				3EA0080C2829C74700B15612 /* ProfessionsCell.swift */,
+			);
+			path = Doctors;
+			sourceTree = "<group>";
+		};
+		3E1E06D92822D73100B5A9D3 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				3E1E06DA2822D75800B5A9D3 /* SettingsTableViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		3E1E06E22822D8C800B5A9D3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3E1E06D52822D70200B5A9D3 /* Card */,
+				3E1E06D72822D71A00B5A9D3 /* Pills */,
+				3E1E06D82822D72800B5A9D3 /* Doctors */,
+				3E1E06D92822D73100B5A9D3 /* Settings */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3E1EA66328289B1900818056 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3EA0080E2829CD1F00B15612 /* TypicallCell.swift */,
+				3EA0080F2829CD1F00B15612 /* TypicallCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3E34F5092830539600FD99C5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3E34F50A283053A900FD99C5 /* DoctorsHelper.swift */,
+				3E3123BA2831498900C58A00 /* PillsHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +266,7 @@
 				3E1E06C92822D24200B5A9D3 /* LaunchScreen.storyboard in Resources */,
 				3E1E06C62822D24200B5A9D3 /* Assets.xcassets in Resources */,
 				3E1E06C42822D24100B5A9D3 /* Main.storyboard in Resources */,
+				3EA008112829CD1F00B15612 /* TypicallCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,9 +277,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E1E06C12822D24100B5A9D3 /* ViewController.swift in Sources */,
+				3E3B41082823031600531423 /* PillsFrequencyController.swift in Sources */,
+				3E2D3F9D28231998000D0944 /* FraquencyCell.swift in Sources */,
+				3E2C50FF282844DD00855FB9 /* DoctorCell.swift in Sources */,
+				3E3123BB2831498900C58A00 /* PillsHelper.swift in Sources */,
+				3E1E06DF2822D77900B5A9D3 /* PillsTableViewController.swift in Sources */,
+				3E3B41062823029000531423 /* PillsTypeTableViewController.swift in Sources */,
+				3E1E06DB2822D75800B5A9D3 /* SettingsTableViewController.swift in Sources */,
+				3E1E06E12822D78800B5A9D3 /* CardTableViewController.swift in Sources */,
+				3E1E06D12822D4BE00B5A9D3 /* TabbarController.swift in Sources */,
+				3E31241428317F4600C58A00 /* Doctor+CoreDataProperties.swift in Sources */,
 				3E1E06BD2822D24100B5A9D3 /* AppDelegate.swift in Sources */,
+				3E31241128317F4600C58A00 /* Medicament+CoreDataClass.swift in Sources */,
+				3E34F50B283053A900FD99C5 /* DoctorsHelper.swift in Sources */,
+				3E31241328317F4600C58A00 /* Doctor+CoreDataClass.swift in Sources */,
+				3E1EA662282894FB00818056 /* DoctorsProfessionsController.swift in Sources */,
+				3EA008102829CD1F00B15612 /* TypicallCell.swift in Sources */,
+				3E1E06DD2822D76A00B5A9D3 /* DoctorsTableViewController.swift in Sources */,
+				3E1E06E92822D9C300B5A9D3 /* PillsTableViewCell.swift in Sources */,
+				3EA0080D2829C74700B15612 /* ProfessionsCell.swift in Sources */,
 				3E1E06BF2822D24100B5A9D3 /* SceneDelegate.swift in Sources */,
+				3E31241228317F4600C58A00 /* Medicament+CoreDataProperties.swift in Sources */,
+				3E2C5101282854BF00855FB9 /* NewDoctorController.swift in Sources */,
+				3E3B41042822FC9800531423 /* NewPillController.swift in Sources */,
+				3E31240028317B1E00C58A00 /* MedicalCardVersion2.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +453,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -321,6 +482,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -358,6 +520,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3E3123FE28317B1E00C58A00 /* MedicalCardVersion2.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3E3123FF28317B1E00C58A00 /* MedicalCardVersion2.xcdatamodel */,
+			);
+			currentVersion = 3E3123FF28317B1E00C58A00 /* MedicalCardVersion2.xcdatamodel */;
+			path = MedicalCardVersion2.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3E1E06B12822D24100B5A9D3 /* Project object */;
 }
