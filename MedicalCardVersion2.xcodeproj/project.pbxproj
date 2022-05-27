@@ -35,6 +35,12 @@
 		3E43DA6228414F3C00B73761 /* MyDiseaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43DA6128414F3C00B73761 /* MyDiseaseController.swift */; };
 		3E43DA6428414F6500B73761 /* MyVisitsToDoctorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43DA6328414F6500B73761 /* MyVisitsToDoctorController.swift */; };
 		3E43DA6628414F7C00B73761 /* MyAnalisysController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43DA6528414F7C00B73761 /* MyAnalisysController.swift */; };
+		3E43DA6D2841520E00B73761 /* Disease+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43DA672841520E00B73761 /* Disease+CoreDataClass.swift */; };
+		3E43DA6E2841520E00B73761 /* Disease+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43DA682841520E00B73761 /* Disease+CoreDataProperties.swift */; };
+		3E43DA6F2841520E00B73761 /* VIsitDoctor+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43DA692841520E00B73761 /* VIsitDoctor+CoreDataClass.swift */; };
+		3E43DA702841520E00B73761 /* VIsitDoctor+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43DA6A2841520E00B73761 /* VIsitDoctor+CoreDataProperties.swift */; };
+		3E43DA712841520E00B73761 /* Analisys+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43DA6B2841520E00B73761 /* Analisys+CoreDataClass.swift */; };
+		3E43DA722841520E00B73761 /* Analisys+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43DA6C2841520E00B73761 /* Analisys+CoreDataProperties.swift */; };
 		3EA0080D2829C74700B15612 /* ProfessionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0080C2829C74700B15612 /* ProfessionsCell.swift */; };
 		3EA008102829CD1F00B15612 /* TypicallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0080E2829CD1F00B15612 /* TypicallCell.swift */; };
 		3EA008112829CD1F00B15612 /* TypicallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0080F2829CD1F00B15612 /* TypicallCell.xib */; };
@@ -71,6 +77,12 @@
 		3E43DA6128414F3C00B73761 /* MyDiseaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiseaseController.swift; sourceTree = "<group>"; };
 		3E43DA6328414F6500B73761 /* MyVisitsToDoctorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitsToDoctorController.swift; sourceTree = "<group>"; };
 		3E43DA6528414F7C00B73761 /* MyAnalisysController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnalisysController.swift; sourceTree = "<group>"; };
+		3E43DA672841520E00B73761 /* Disease+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Disease+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3E43DA682841520E00B73761 /* Disease+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Disease+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3E43DA692841520E00B73761 /* VIsitDoctor+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VIsitDoctor+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3E43DA6A2841520E00B73761 /* VIsitDoctor+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VIsitDoctor+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3E43DA6B2841520E00B73761 /* Analisys+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analisys+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3E43DA6C2841520E00B73761 /* Analisys+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analisys+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3EA0080C2829C74700B15612 /* ProfessionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionsCell.swift; sourceTree = "<group>"; };
 		3EA0080E2829CD1F00B15612 /* TypicallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypicallCell.swift; sourceTree = "<group>"; };
 		3EA0080F2829CD1F00B15612 /* TypicallCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypicallCell.xib; sourceTree = "<group>"; };
@@ -90,6 +102,12 @@
 		3E1E06B02822D24100B5A9D3 = {
 			isa = PBXGroup;
 			children = (
+				3E43DA672841520E00B73761 /* Disease+CoreDataClass.swift */,
+				3E43DA682841520E00B73761 /* Disease+CoreDataProperties.swift */,
+				3E43DA692841520E00B73761 /* VIsitDoctor+CoreDataClass.swift */,
+				3E43DA6A2841520E00B73761 /* VIsitDoctor+CoreDataProperties.swift */,
+				3E43DA6B2841520E00B73761 /* Analisys+CoreDataClass.swift */,
+				3E43DA6C2841520E00B73761 /* Analisys+CoreDataProperties.swift */,
 				3E31240D28317F4600C58A00 /* Medicament+CoreDataClass.swift */,
 				3E31240E28317F4600C58A00 /* Medicament+CoreDataProperties.swift */,
 				3E31240F28317F4600C58A00 /* Doctor+CoreDataClass.swift */,
@@ -300,8 +318,11 @@
 				3E1E06BD2822D24100B5A9D3 /* AppDelegate.swift in Sources */,
 				3E31241128317F4600C58A00 /* Medicament+CoreDataClass.swift in Sources */,
 				3E34F50B283053A900FD99C5 /* DoctorsHelper.swift in Sources */,
+				3E43DA722841520E00B73761 /* Analisys+CoreDataProperties.swift in Sources */,
 				3E31241328317F4600C58A00 /* Doctor+CoreDataClass.swift in Sources */,
+				3E43DA702841520E00B73761 /* VIsitDoctor+CoreDataProperties.swift in Sources */,
 				3E43DA6628414F7C00B73761 /* MyAnalisysController.swift in Sources */,
+				3E43DA6F2841520E00B73761 /* VIsitDoctor+CoreDataClass.swift in Sources */,
 				3E1EA662282894FB00818056 /* DoctorsProfessionsController.swift in Sources */,
 				3EA008102829CD1F00B15612 /* TypicallCell.swift in Sources */,
 				3E1E06DD2822D76A00B5A9D3 /* DoctorsTableViewController.swift in Sources */,
@@ -309,10 +330,13 @@
 				3EA0080D2829C74700B15612 /* ProfessionsCell.swift in Sources */,
 				3E43DA6428414F6500B73761 /* MyVisitsToDoctorController.swift in Sources */,
 				3E1E06BF2822D24100B5A9D3 /* SceneDelegate.swift in Sources */,
+				3E43DA6E2841520E00B73761 /* Disease+CoreDataProperties.swift in Sources */,
 				3E31241228317F4600C58A00 /* Medicament+CoreDataProperties.swift in Sources */,
+				3E43DA6D2841520E00B73761 /* Disease+CoreDataClass.swift in Sources */,
 				3E2C5101282854BF00855FB9 /* NewDoctorController.swift in Sources */,
 				3E3B41042822FC9800531423 /* NewPillController.swift in Sources */,
 				3E31240028317B1E00C58A00 /* MedicalCardVersion2.xcdatamodeld in Sources */,
+				3E43DA712841520E00B73761 /* Analisys+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
