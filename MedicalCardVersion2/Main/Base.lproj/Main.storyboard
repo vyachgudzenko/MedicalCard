@@ -705,6 +705,93 @@
             </objects>
             <point key="canvasLocation" x="751" y="2545"/>
         </scene>
+        <!--Мои диагнозы-->
+        <scene sceneID="h4B-V8-RT2">
+            <objects>
+                <tableViewController id="x43-Lp-2KJ" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="6dR-PY-H6c">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Mqb-E8-QVq">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mqb-E8-QVq" id="BXI-aS-VDM">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="x43-Lp-2KJ" id="fnF-WD-MCR"/>
+                            <outlet property="delegate" destination="x43-Lp-2KJ" id="CtF-ms-7nJ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Мои диагнозы" id="Yq4-3f-7tf"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qGZ-Ck-ImK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3361" y="1841"/>
+        </scene>
+        <!--Посещение врача-->
+        <scene sceneID="e4X-Wf-qgg">
+            <objects>
+                <tableViewController id="1aV-92-Pnq" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="EkX-IS-j4v">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Sgo-ru-KMF">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sgo-ru-KMF" id="MbN-2I-Vje">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1aV-92-Pnq" id="UZh-TE-0xJ"/>
+                            <outlet property="delegate" destination="1aV-92-Pnq" id="ypI-di-Pec"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Посещение врача" id="Qji-j9-FXO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wq2-wT-ssF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2623" y="1841"/>
+        </scene>
+        <!--Мои анализы-->
+        <scene sceneID="94f-d9-XgT">
+            <objects>
+                <tableViewController id="WVX-YB-emD" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="6UH-Xi-WJ9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="5Ji-l1-PnN">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Ji-l1-PnN" id="sAr-IW-2o4">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="WVX-YB-emD" id="aOf-Lg-t3a"/>
+                            <outlet property="delegate" destination="WVX-YB-emD" id="BN4-VD-eyl"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Мои анализы" id="HUF-zE-2bi"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="anp-Wk-qmI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1845" y="1841"/>
+        </scene>
         <!--Медицинская карта-->
         <scene sceneID="U3K-ls-nmJ">
             <objects>
@@ -747,6 +834,9 @@
                                                 <constraint firstItem="jQz-ua-6Te" firstAttribute="top" secondItem="YYa-XA-gbf" secondAttribute="topMargin" id="vP1-wS-6Pg"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="x43-Lp-2KJ" kind="show" identifier="MyDiseasesSegue" id="0pE-Ib-SoB"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="117" id="5bM-Ub-sBN">
                                         <rect key="frame" x="0.0" y="161.5" width="414" height="117"/>
@@ -779,6 +869,9 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="6YV-Tu-WFs" secondAttribute="bottom" id="zii-3z-3ek"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="1aV-92-Pnq" kind="show" identifier="MyVisitsToDoctorsSegue" id="o3g-eH-NR1"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="117" id="yJK-sQ-8M0">
                                         <rect key="frame" x="0.0" y="278.5" width="414" height="117"/>
@@ -811,6 +904,9 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="hT6-Lm-A0c" secondAttribute="trailing" id="xCE-dr-vpt"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="WVX-YB-emD" kind="show" identifier="MyAnalisysSegue" id="jND-6e-Qz0"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -824,7 +920,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5WS-Q9-4XP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1962.3188405797102" y="1155.8035714285713"/>
+            <point key="canvasLocation" x="-2623" y="1168"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jZb-c9-qGZ">
