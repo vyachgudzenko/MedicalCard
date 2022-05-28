@@ -76,5 +76,9 @@ class NewDiagnosisController: UITableViewController {
         }
     }
     
+    //MARK: tableView Delegate
+    
+    
+    
 
 }
