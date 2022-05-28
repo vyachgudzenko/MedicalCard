@@ -2,14 +2,20 @@
 //  Doctor+CoreDataClass.swift
 //  MedicalCardVersion2
 //
-//  Created by Вячеслав Гудзенко on 15.05.2022.
+//  Created by Вячеслав Гудзенко on 28.05.2022.
 //
 //
 
 import Foundation
 import CoreData
 
-//сделать нормальный класс с перечислением TypeOfProfession
+
 public class Doctor: NSManagedObject {
-    
+
+}
+
+extension Doctor{
+    func getFullName() -> String{
+        return "\(self.firstName!) \(self.lastName!)"
+    }
 }

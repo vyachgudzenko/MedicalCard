@@ -6,40 +6,56 @@
 //
 
 import UIKit
+import CoreData
 
-class MyDiseaseController: UITableViewController {
+class MyDiagnosesController: UITableViewController {
+    var diagnoses:[NSManagedObject] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        let cellNib = UINib(nibName: "DiagnosisCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "DiagnosisCell")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Diagnosis")
+        do{
+            diagnoses = try managedContext.fetch(fetchRequest)
+            tableView.reloadData()
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
+        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return diagnoses.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DiagnosisCell", for: indexPath) as! DiagnosisCell
+        let diagnosis = diagnoses[indexPath.row] as! Diagnosis
+        cell.titleLabel.text = diagnosis.title
+        cell.descriptionLabel.text = diagnosis.descriptionOfDiagnosis
+        let dataFormater = DateFormatter()
+        dataFormater.dateFormat = "yyyy-MM-dd"
+        let formatedDate = dataFormater.string(from: diagnosis.date!)
+        cell.dateLabel.text = "Дата: \(formatedDate)"
+        cell.doctorFullNameLabel.text = "Врач: \(diagnosis.doctor!.getFullName())"
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

@@ -2,7 +2,7 @@
 //  Doctor+CoreDataProperties.swift
 //  MedicalCardVersion2
 //
-//  Created by Вячеслав Гудзенко on 15.05.2022.
+//  Created by Вячеслав Гудзенко on 28.05.2022.
 //
 //
 

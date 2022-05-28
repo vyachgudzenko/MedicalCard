@@ -15,6 +15,8 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let cellNib = UINib(nibName: "DoctorPrototypeCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "DoctorPrototypeCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -26,6 +28,7 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Doctor")
         do{
             doctors = try managedContext.fetch(fetchRequest)
+            tableView.reloadData()
         } catch let error as NSError{
             print("Could not save.\(error),\(error.userInfo)")
         }
@@ -39,12 +42,11 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
             destination.doAfterCreate = {
                 [self] firstName,lastName,clinic,phoneNumber,profession in
                 save(firstName: firstName, lastName: lastName, clinic: clinic, phoneNumber: phoneNumber, profession: profession)
-                tableView.reloadData()
             }
         }
     }
     
-    func save(firstName:String,lastName:String,clinic:String,phoneNumber:String,profession:String){
+    private func save(firstName:String,lastName:String,clinic:String,phoneNumber:String,profession:String){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Doctor", in: managedContext)!
@@ -56,7 +58,7 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
         doctor.setValue(profession, forKey: "profession")
         do{
             try managedContext.save()
-            doctors.append(doctor)
+            tableView.reloadData()
         } catch let error as NSError{
             print("Could not save.\(error),\(error.userInfo)")
         }
@@ -75,18 +77,13 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DoctorCell", for: indexPath) as! DoctorCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DoctorPrototypeCell", for: indexPath) as! DoctorPrototypeCell
         let currentDoctor = doctors[indexPath.row] as! Doctor
-        cell.doctorFullNameLabel.text = getFullName(doctor: currentDoctor)
+        cell.doctorFullName.text = currentDoctor.getFullName()
         cell.professionLabel.text = currentDoctor.profession
         cell.clininNameLabel.text = currentDoctor.clinic
         cell.phoneNumberLabel.text = currentDoctor.phoneNumber
         return cell
-    }
-    
-    func getFullName(doctor:Doctor) -> String{
-        let fullName = doctor.firstName! + " " + doctor.lastName!
-        return fullName
     }
     
     //MARK: TableView delegate
@@ -130,7 +127,7 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentDoctor = doctors[indexPath.row] as! Doctor
         let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewDoctorController") as! NewDoctorController
-        editScreen.navigationItem.title = getFullName(doctor: currentDoctor)
+        editScreen.navigationItem.title = currentDoctor.getFullName()
         editScreen.firstName = currentDoctor.firstName!
         editScreen.lastName = currentDoctor.lastName!
         editScreen.clinic = currentDoctor.clinic!
