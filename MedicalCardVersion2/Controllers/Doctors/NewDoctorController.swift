@@ -40,13 +40,15 @@ class NewDoctorController: UITableViewController {
         let lastName = lastNameTextField.text ?? ""
         let clinic = clinicTextField.text ?? ""
         let numberPhone = numberPhoneTextField.text ?? ""
+        if fieldIsEmpty(){
+            showAlertFieldISEmpty()
+        }
         if validatedPhoneNumber(phoneStr: numberPhone) == true {
             doAfterCreate?(firstName,lastName,clinic,numberPhone,profession)
             navigationController?.popViewController(animated: true)
         } else {
-            showAlert()
+            showAlertPhoneNumberValidation()
         }
-        
     }
     
     //MARK: Navigation
@@ -84,8 +86,23 @@ class NewDoctorController: UITableViewController {
         return validPhoneNumber
     }
     
-    func showAlert(){
+    func fieldIsEmpty() -> Bool{
+        if firstNameTextField.text == "" || lastNameTextField.text == "" || clinicTextField.text == "" {
+            return true
+        } else{
+            return false
+        }
+    }
+    
+    //MARK: AlertControllers
+    func showAlertPhoneNumberValidation(){
         let alert = UIAlertController(title: "Не правильно введен номер телефона", message: "Введите номер телефона в формате 0991234567", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        self.present(alert, animated: true)
+    }
+    
+    func showAlertFieldISEmpty(){
+        let alert = UIAlertController(title: "Не заполнены поля", message: "Заполните пожалуйста все поля, что бы можно было корректно сохранить информацию", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default))
         self.present(alert, animated: true)
     }
