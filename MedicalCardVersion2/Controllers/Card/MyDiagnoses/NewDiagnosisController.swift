@@ -9,9 +9,6 @@ import UIKit
 
 class NewDiagnosisController: UITableViewController {
     
-    //var titleDiagnosis:String?
-    //var descriptionDiagnosis:String?
-    var dateDiagnosis:Date?
     var doctor:Doctor?
     
     var titleFirst:String = ""

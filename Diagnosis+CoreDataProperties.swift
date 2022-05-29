@@ -2,7 +2,7 @@
 //  Diagnosis+CoreDataProperties.swift
 //  MedicalCardVersion2
 //
-//  Created by Вячеслав Гудзенко on 28.05.2022.
+//  Created by Вячеслав Гудзенко on 29.05.2022.
 //
 //
 
@@ -19,6 +19,7 @@ extension Diagnosis {
     @NSManaged public var date: Date?
     @NSManaged public var descriptionOfDiagnosis: String?
     @NSManaged public var title: String?
+    @NSManaged public var doctorFullName: String?
     @NSManaged public var doctor: Doctor?
 
 }

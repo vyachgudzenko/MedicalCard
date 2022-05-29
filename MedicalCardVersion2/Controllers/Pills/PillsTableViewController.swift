@@ -34,11 +34,7 @@ class PillsTableViewController: UITableViewController {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Medicament")
         do{
             originalPill = try managedContext.fetch(fetchRequest)
-            print("ViewWillAppear загружен")
-            print(originalPill)
             pills = sortForSectionOfDay(arrayOfMedicament: originalPill)
-            print("Отсортированный массив")
-            print(pills)
             tableView.reloadData()
         } catch let error as NSError{
             print("Could not save.\(error),\(error.userInfo)")
@@ -97,7 +93,6 @@ class PillsTableViewController: UITableViewController {
         do{
             try managedContext.save()
             originalPill.append(newMedicament)
-            //pills = sortForSectionOfDay(arrayOfMedicament: originalPill)
         } catch let error as NSError{
             print("Could not save.\(error),\(error.userInfo)")
         }
@@ -157,7 +152,6 @@ class PillsTableViewController: UITableViewController {
     }
     
     //MARK: TableViewDelegate
-    
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionSwipeEdit = UIContextualAction(style: .normal, title: "Принято") { [self] _, _, _ in
             let selectSectionDay = sectionOfDay[indexPath.section]
@@ -207,7 +201,6 @@ class PillsTableViewController: UITableViewController {
             let managedContext = appDelegate.persistentContainer.viewContext
             do{
                 try managedContext.save()
-                //pills = sortForSectionOfDay(arrayOfMedicament: originalPill)
                 tableView.reloadData()
             } catch let error as NSError{
                 print("Could not save.\(error),\(error.userInfo)")

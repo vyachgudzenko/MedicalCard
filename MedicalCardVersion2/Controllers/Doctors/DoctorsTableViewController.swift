@@ -13,6 +13,7 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
     
     var doctors:[NSManagedObject] = []
 
+    //MARK: Life circle controller
     override func viewDidLoad() {
         super.viewDidLoad()
         let cellNib = UINib(nibName: "DoctorPrototypeCell", bundle: nil)
@@ -34,18 +35,7 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
         }
     }
     
-    //MARK: Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toNewDoctorScreen"{
-            let destination = segue.destination as! NewDoctorController
-            destination.doAfterCreate = {
-                [self] firstName,lastName,clinic,phoneNumber,profession in
-                save(firstName: firstName, lastName: lastName, clinic: clinic, phoneNumber: phoneNumber, profession: profession)
-            }
-        }
-    }
-    
+    //MARK: Other function
     private func save(firstName:String,lastName:String,clinic:String,phoneNumber:String,profession:String){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -63,16 +53,42 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
             print("Could not save.\(error),\(error.userInfo)")
         }
     }
-
-    // MARK: - Table view data source
-
+    
+    private func canBeDeleteDoctor(doctor:Doctor) -> Bool{
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<Diagnosis>
+        fetchRequest = Diagnosis.fetchRequest()
+        fetchRequest.predicate = NSPredicate(
+            format: "doctorFullName LIKE %@", doctor.getFullName())
+        do{
+            let object = try managedContext.fetch(fetchRequest)
+            if object.isEmpty{
+                return true
+            }
+        } catch{
+            fatalError()
+        }
+        return false
+    }
+    
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toNewDoctorScreen"{
+            let destination = segue.destination as! NewDoctorController
+            destination.doAfterCreate = {
+                [self] firstName,lastName,clinic,phoneNumber,profession in
+                save(firstName: firstName, lastName: lastName, clinic: clinic, phoneNumber: phoneNumber, profession: profession)
+            }
+        }
+    }
+    
+    // MARK: - Tableview data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return doctors.count
     }
 
@@ -87,7 +103,6 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
     }
     
     //MARK: TableView delegate
-    
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionSwipe = UIContextualAction(style: .normal, title: "Добавить в контакты") { [self]  _, _, _ in
             let doctor = doctors[indexPath.row]
@@ -108,16 +123,20 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionSwipe = UIContextualAction(style: .normal, title: "Удалить") { [self] _, _, _ in
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-            let managedContext = appDelegate.persistentContainer.viewContext
-            
-            managedContext.delete(doctors[indexPath.row])
-            do{
-                try managedContext.save()
-                doctors.remove(at: indexPath.row)
-                tableView.reloadData()
-            } catch let error as NSError{
-                print("Could not save.\(error),\(error.userInfo)")
+            if canBeDeleteDoctor(doctor: doctors[indexPath.row] as! Doctor){
+                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+                let managedContext = appDelegate.persistentContainer.viewContext
+                
+                managedContext.delete(doctors[indexPath.row])
+                do{
+                    try managedContext.save()
+                    doctors.remove(at: indexPath.row)
+                    tableView.reloadData()
+                } catch let error as NSError{
+                    print("Could not save.\(error),\(error.userInfo)")
+                }
+            } else {
+                showAlertCanBeDeletedDoctor()
             }
         }
         actionSwipe.backgroundColor = .systemGray
@@ -150,5 +169,12 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
             tableView.reloadData()
         }
         self.navigationController?.pushViewController(editScreen, animated: true)
+    }
+    
+    //MARK: AlertControllers
+    func showAlertCanBeDeletedDoctor(){
+        let alert = UIAlertController(title: "Невозможно удалить", message: "Невозможно удалить эту карточку данных - есть связаные данные", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        self.present(alert, animated: true)
     }
 }

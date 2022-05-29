@@ -32,8 +32,8 @@ class MyDiagnosesController: UITableViewController {
             print("Could not save.\(error),\(error.userInfo)")
         }
     }
-    //MARK: Other function
     
+    //MARK: Other function
     private func save(title:String,description:String,date:Date,doctor:Doctor){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -42,6 +42,7 @@ class MyDiagnosesController: UITableViewController {
         newDiagnosis.setValue(title, forKey: "title")
         newDiagnosis.setValue(description, forKey: "descriptionOfDiagnosis")
         newDiagnosis.setValue(date, forKey: "date")
+        newDiagnosis.setValue(doctor.getFullName(), forKey: "doctorFullName")
         newDiagnosis.setValue(doctor, forKey: "doctor")
         do{
             try managedContext.save()
@@ -52,7 +53,6 @@ class MyDiagnosesController: UITableViewController {
 
     
     //MARK: Navigation
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toNewDiagnosisScreen"{
             let destination = segue.destination as! NewDiagnosisController
@@ -67,12 +67,10 @@ class MyDiagnosesController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return diagnoses.count
     }
 
@@ -94,7 +92,6 @@ class MyDiagnosesController: UITableViewController {
         let actionSwipe = UIContextualAction(style: .normal, title: "Удалить") { [self] _, _, _ in
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
             let managedContext = appDelegate.persistentContainer.viewContext
-            
             managedContext.delete(diagnoses[indexPath.row])
             do{
                 try managedContext.save()
@@ -133,6 +130,5 @@ class MyDiagnosesController: UITableViewController {
             tableView.reloadData()
         }
         navigationController?.pushViewController(editScreen, animated: true)
-        
     }
 }
