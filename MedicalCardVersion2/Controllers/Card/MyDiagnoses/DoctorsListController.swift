@@ -12,12 +12,12 @@ class DoctorsListController: UITableViewController {
     
     var doctors:[NSManagedObject] = []
     var doAfterSelected:((Doctor) -> Void)?
-
+    
+    //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         let cellNib = UINib(nibName: "DoctorPrototypeCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "DoctorPrototypeCell")
-       
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +35,7 @@ class DoctorsListController: UITableViewController {
         }
     }
     
+    //MARK: Other function
     private func save(firstName:String,lastName:String,clinic:String,phoneNumber:String,profession:String){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -52,20 +53,8 @@ class DoctorsListController: UITableViewController {
             print("Could not save.\(error),\(error.userInfo)")
         }
     }
-    //MARK: Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "fromDiagnosisToNewDoctor"{
-            let destination = segue.destination as! NewDoctorController
-            destination.doAfterCreate = {
-                [self] firstName,lastName,clinic,phoneNumber,profession in
-                save(firstName: firstName, lastName: lastName, clinic: clinic, phoneNumber: phoneNumber, profession: profession)
-            }
-        }
-    }
-
     
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -92,4 +81,16 @@ class DoctorsListController: UITableViewController {
         doAfterSelected?(selectedDoctor)
         navigationController?.popViewController(animated: true)
     }
+    
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "fromDiagnosisToNewDoctor"{
+            let destination = segue.destination as! NewDoctorController
+            destination.doAfterCreate = {
+                [self] firstName,lastName,clinic,phoneNumber,profession in
+                save(firstName: firstName, lastName: lastName, clinic: clinic, phoneNumber: phoneNumber, profession: profession)
+            }
+        }
+    }
+
 }

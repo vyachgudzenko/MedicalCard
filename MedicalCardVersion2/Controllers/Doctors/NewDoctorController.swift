@@ -26,6 +26,7 @@ class NewDoctorController: UITableViewController {
     var professionTitles:[String] = [
         "Терапевт","Невропатолог","Травматолог"]
 
+    //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         firstNameTextField.text = firstName
@@ -35,6 +36,25 @@ class NewDoctorController: UITableViewController {
         professionLabel.text = profession
     }
     
+    //MARK: Other function
+    func validatedPhoneNumber(phoneStr:String) -> Bool {
+        let phonePattern = #"^\(?\d{3}\)?[ -]?\d{3}[ -]?\d{4}$"#
+        let result = phoneStr.range(
+            of: phonePattern,
+            options: .regularExpression)
+        let validPhoneNumber = (result != nil)
+        return validPhoneNumber
+    }
+    
+    func fieldIsEmpty() -> Bool{
+        if firstNameTextField.text == "" || lastNameTextField.text == "" || clinicTextField.text == "" {
+            return true
+        } else{
+            return false
+        }
+    }
+    
+    //MARK: IBAction
     @IBAction func saveNewDoctor(_ sender:UIBarButtonItem){
         let firstName = firstNameTextField.text ?? ""
         let lastName = lastNameTextField.text ?? ""
@@ -50,7 +70,15 @@ class NewDoctorController: UITableViewController {
                 showAlertPhoneNumberValidation()
             }
         }
-        
+    }
+
+    // MARK: - Table view data source
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
     }
     
     //MARK: Navigation
@@ -63,33 +91,6 @@ class NewDoctorController: UITableViewController {
                 self.profession = selectedProfession
                 self.professionLabel.text = profession
             }
-        }
-    }
-
-    // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    //MARK: Дополнительные функции
-    func validatedPhoneNumber(phoneStr:String) -> Bool {
-        let phonePattern = #"^\(?\d{3}\)?[ -]?\d{3}[ -]?\d{4}$"#
-        let result = phoneStr.range(
-            of: phonePattern,
-            options: .regularExpression)
-        let validPhoneNumber = (result != nil)
-        return validPhoneNumber
-    }
-    
-    func fieldIsEmpty() -> Bool{
-        if firstNameTextField.text == "" || lastNameTextField.text == "" || clinicTextField.text == "" {
-            return true
-        } else{
-            return false
         }
     }
     

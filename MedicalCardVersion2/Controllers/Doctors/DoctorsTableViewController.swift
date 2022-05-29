@@ -13,7 +13,7 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
     
     var doctors:[NSManagedObject] = []
 
-    //MARK: Life circle controller
+    //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         let cellNib = UINib(nibName: "DoctorPrototypeCell", bundle: nil)
@@ -70,17 +70,6 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
             fatalError()
         }
         return false
-    }
-    
-    //MARK: Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toNewDoctorScreen"{
-            let destination = segue.destination as! NewDoctorController
-            destination.doAfterCreate = {
-                [self] firstName,lastName,clinic,phoneNumber,profession in
-                save(firstName: firstName, lastName: lastName, clinic: clinic, phoneNumber: phoneNumber, profession: profession)
-            }
-        }
     }
     
     // MARK: - Tableview data source
@@ -169,6 +158,17 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
             tableView.reloadData()
         }
         self.navigationController?.pushViewController(editScreen, animated: true)
+    }
+    
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toNewDoctorScreen"{
+            let destination = segue.destination as! NewDoctorController
+            destination.doAfterCreate = {
+                [self] firstName,lastName,clinic,phoneNumber,profession in
+                save(firstName: firstName, lastName: lastName, clinic: clinic, phoneNumber: phoneNumber, profession: profession)
+            }
+        }
     }
     
     //MARK: AlertControllers

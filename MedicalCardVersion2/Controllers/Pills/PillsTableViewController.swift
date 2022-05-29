@@ -20,7 +20,7 @@ class PillsTableViewController: UITableViewController {
         }
     }
     
-    
+    //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -41,7 +41,7 @@ class PillsTableViewController: UITableViewController {
         }
     }
     
-    
+    //MARK: Other function
     func sortForSectionOfDay(arrayOfMedicament:[NSManagedObject]) -> [PeriodOfTheDay:[(Medicament,Bool)]]{
         var sortedArray:[PeriodOfTheDay:[(medicament:Medicament,isDrunk:Bool)]] = [:]
         let sectionOfDay:[PeriodOfTheDay] = [.morning,.dinner,.evening]
@@ -68,18 +68,6 @@ class PillsTableViewController: UITableViewController {
         }
         return sortedArray
     }
-    
-    //MARK: Навигация
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toNewPillScreen"{
-            let destination = segue.destination as! NewPillController
-            destination.doAfterEdit = {
-                [self] title,dosage,type,frequency in
-                saveNewMedicament(title: title, dosage: dosage, type: type, frequency: frequency)
-                tableView.reloadData()
-                }
-            }
-        }
     
     func saveNewMedicament(title:String,dosage:String,type:String,frequency:String){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
@@ -208,4 +196,16 @@ class PillsTableViewController: UITableViewController {
         }
         self.navigationController?.pushViewController(editScreen, animated: true)
     }
+    
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toNewPillScreen"{
+            let destination = segue.destination as! NewPillController
+            destination.doAfterEdit = {
+                [self] title,dosage,type,frequency in
+                saveNewMedicament(title: title, dosage: dosage, type: type, frequency: frequency)
+                tableView.reloadData()
+                }
+            }
+        }
 }

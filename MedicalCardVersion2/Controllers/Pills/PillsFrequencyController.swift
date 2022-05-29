@@ -23,12 +23,12 @@ class PillsFrequencyController: UITableViewController {
     
     var doAfterFrequencySelected:((String) -> Void)?
 
+    //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -52,6 +52,7 @@ class PillsFrequencyController: UITableViewController {
         return cell
     }
     
+    //MARK: Tableview Delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedFraquency = medicamentFraquencyInformation[indexPath.row].fraquency
         doAfterFrequencySelected?(selectedFraquency)

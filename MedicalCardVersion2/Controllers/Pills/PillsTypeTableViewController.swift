@@ -24,6 +24,7 @@ class PillsTypeTableViewController: UITableViewController {
     
     var doAfterTypeSelected:((String) -> Void)?
 
+    //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         let cellNib = UINib(nibName: "TypicallCell", bundle: nil)
@@ -32,7 +33,6 @@ class PillsTypeTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -42,7 +42,6 @@ class PillsTypeTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return medicamentTypeInformation.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TypicallCell", for: indexPath) as! TypicallCell
@@ -57,6 +56,7 @@ class PillsTypeTableViewController: UITableViewController {
        return cell
     }
     
+    //MARK: Tableview Delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedType = medicamentTypeInformation[indexPath.row].type
         doAfterTypeSelected?(selectedType)

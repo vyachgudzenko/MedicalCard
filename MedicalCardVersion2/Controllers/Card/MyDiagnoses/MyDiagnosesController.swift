@@ -11,7 +11,7 @@ import CoreData
 class MyDiagnosesController: UITableViewController {
     var diagnoses:[NSManagedObject] = []
     
-    //MARK: Life circle controller
+    //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         let cellNib = UINib(nibName: "DiagnosisCell", bundle: nil)
@@ -51,21 +51,7 @@ class MyDiagnosesController: UITableViewController {
         }
     }
 
-    
-    //MARK: Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toNewDiagnosisScreen"{
-            let destination = segue.destination as! NewDiagnosisController
-            destination.doAfterCreate = {
-                [self] titleOfDiagnosis,descriptionOfDiagnosis,date,doctor in
-                save(title: titleOfDiagnosis, description: descriptionOfDiagnosis, date: date, doctor: doctor)
-                
-            }
-        }
-    }
-
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -131,4 +117,17 @@ class MyDiagnosesController: UITableViewController {
         }
         navigationController?.pushViewController(editScreen, animated: true)
     }
+    
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toNewDiagnosisScreen"{
+            let destination = segue.destination as! NewDiagnosisController
+            destination.doAfterCreate = {
+                [self] titleOfDiagnosis,descriptionOfDiagnosis,date,doctor in
+                save(title: titleOfDiagnosis, description: descriptionOfDiagnosis, date: date, doctor: doctor)
+                
+            }
+        }
+    }
+
 }

@@ -31,7 +31,7 @@ class NewPillController: UITableViewController {
     @IBOutlet weak var medicamentFrequencyLabel: UILabel!
     @IBOutlet weak var medicamentTypeLabel: UILabel!
     
-    
+    //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         medicamentNameTextField.text = medicamentName
@@ -39,6 +39,7 @@ class NewPillController: UITableViewController {
         medicamentTypeLabel.text = titlesType[medicamentType]
         medicamentFrequencyLabel.text = titlesFrequency[medicamentFrequency]
     }
+    
     //MARK: @IBAction
     @IBAction func saveNewMedicament(_ sender:UIBarButtonItem){
         let title = medicamentNameTextField.text ?? ""
@@ -50,7 +51,20 @@ class NewPillController: UITableViewController {
     
     }
     
-    //MARK: навигация
+    
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return 4
+    }
+    
+    //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "toTypeScreen"{
@@ -69,16 +83,5 @@ class NewPillController: UITableViewController {
                 self.medicamentFrequencyLabel?.text = titlesFrequency[medicamentFrequency]
             }
         }
-    }
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 4
     }
 }

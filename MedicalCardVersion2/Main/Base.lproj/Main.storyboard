@@ -544,6 +544,35 @@
             </objects>
             <point key="canvasLocation" x="648" y="1841"/>
         </scene>
+        <!--Table View Controller-->
+        <scene sceneID="dZR-Jf-Y9N">
+            <objects>
+                <tableViewController id="YPt-Ej-6GI" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Vao-25-AfB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="t48-sr-Hh1">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="t48-sr-Hh1" id="EzQ-Hk-wBd">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="YPt-Ej-6GI" id="qea-rB-DgV"/>
+                            <outlet property="delegate" destination="YPt-Ej-6GI" id="phs-gW-VTJ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Ybj-3C-xSM"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bCI-gf-XUB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1858" y="2523"/>
+        </scene>
         <!--Doctors Professions Controller-->
         <scene sceneID="tIM-CV-IIm">
             <objects>
@@ -936,7 +965,7 @@
         <!--Анализы/Исследования-->
         <scene sceneID="94f-d9-XgT">
             <objects>
-                <tableViewController id="WVX-YB-emD" customClass="MyAnalisysController" customModule="MedicalCardVersion2" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="WVX-YB-emD" customClass="MyAnalyzesController" customModule="MedicalCardVersion2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="6UH-Xi-WJ9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -956,7 +985,13 @@
                             <outlet property="delegate" destination="WVX-YB-emD" id="BN4-VD-eyl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Анализы/Исследования" id="HUF-zE-2bi"/>
+                    <navigationItem key="navigationItem" title="Анализы/Исследования" id="HUF-zE-2bi">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ie1-SW-s8U">
+                            <connections>
+                                <segue destination="YPt-Ej-6GI" kind="show" id="qi4-g8-1sO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="anp-Wk-qmI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

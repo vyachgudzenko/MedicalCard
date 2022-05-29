@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyAnalisysController: UITableViewController {
+class MyAnalyzesController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

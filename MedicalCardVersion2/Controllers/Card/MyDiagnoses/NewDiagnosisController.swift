@@ -21,6 +21,7 @@ class NewDiagnosisController: UITableViewController {
     @IBOutlet weak var datePiecker: UIDatePicker!
     @IBOutlet weak var doctorLabel: UILabel!
    
+    //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         titleTextField.text = titleFirst
@@ -32,7 +33,6 @@ class NewDiagnosisController: UITableViewController {
     var doAfterCreate:((String,String,Date,Doctor) -> Void)?
     
     //MARK: Other function
-    
     func fieldIsEmpty() -> Bool{
         if titleTextField.text == "" || descriptionTextField.text == "" || doctor == nil{
             return true
@@ -42,7 +42,6 @@ class NewDiagnosisController: UITableViewController {
     }
     
     //MARK: IBAction function
-    
     @IBAction func clickOnSaveButton(_ sender:UIBarButtonItem){
         if fieldIsEmpty(){
             showAlertFieldISEmpty()
@@ -67,7 +66,6 @@ class NewDiagnosisController: UITableViewController {
         return 4
     }
 
-    
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
