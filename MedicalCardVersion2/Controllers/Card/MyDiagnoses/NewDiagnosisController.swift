@@ -6,14 +6,18 @@
 //
 
 import UIKit
-import CoreData
 
 class NewDiagnosisController: UITableViewController {
     
-    var titleDiagnosis:String?
-    var descriptionDiagnosis:String?
+    //var titleDiagnosis:String?
+    //var descriptionDiagnosis:String?
     var dateDiagnosis:Date?
     var doctor:Doctor?
+    
+    var titleFirst:String = ""
+    var descriptionFirst:String = ""
+    var dateFirst:Date = Date()
+    var doctorLabelText = "Выберите врача"
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
@@ -22,31 +26,23 @@ class NewDiagnosisController: UITableViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleTextField.text = titleFirst
+        descriptionTextField.text = descriptionFirst
+        datePiecker.date = dateFirst
+        doctorLabel.text = doctorLabelText
     }
+    
+    var doAfterCreate:((String,String,Date,Doctor) -> Void)?
+    
+    //MARK: IBAction function
     
     @IBAction func clickOnSaveButton(_ sender:UIBarButtonItem){
-        var titleDiagnosis:String = titleTextField.text!
-        var descriptionDiagnosis:String = descriptionTextField.text!
-        var dateDiagnosis:Date = datePiecker.date
-        save(title: titleDiagnosis, description: descriptionDiagnosis, date: dateDiagnosis, doctor: self.doctor!)
+        let titleDiagnosis:String = titleTextField.text!
+        let descriptionDiagnosis:String = descriptionTextField.text!
+        let dateDiagnosis:Date = datePiecker.date
+        doAfterCreate?(titleDiagnosis,descriptionDiagnosis,dateDiagnosis,doctor!)
         navigationController?.popViewController(animated: true)
         
-    }
-    
-    private func save(title:String,description:String,date:Date,doctor:Doctor){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Diagnosis", in: managedContext)!
-        let newDiagnosis = NSManagedObject(entity: entity, insertInto: managedContext)
-        newDiagnosis.setValue(title, forKey: "title")
-        newDiagnosis.setValue(description, forKey: "descriptionOfDiagnosis")
-        newDiagnosis.setValue(date, forKey: "date")
-        newDiagnosis.setValue(doctor, forKey: "doctor")
-        do{
-            try managedContext.save()
-        } catch let error as NSError{
-            print("Could not save.\(error),\(error.userInfo)")
-        }
     }
 
     // MARK: - Table view data source
@@ -75,8 +71,6 @@ class NewDiagnosisController: UITableViewController {
             }
         }
     }
-    
-    //MARK: tableView Delegate
     
     
     

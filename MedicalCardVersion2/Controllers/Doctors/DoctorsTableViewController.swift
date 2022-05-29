@@ -140,7 +140,6 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
             currentDoctor.clinic = clinic
             currentDoctor.phoneNumber = numberPhone
             currentDoctor.profession = profession
-            print(currentDoctor.isDeleted)
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
             let managedContext = appDelegate.persistentContainer.viewContext
             do{
