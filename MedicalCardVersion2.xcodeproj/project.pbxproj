@@ -45,6 +45,7 @@
 		3E43DAA728416DCD00B73761 /* DoctorPrototypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E43DAA528416DCD00B73761 /* DoctorPrototypeCell.xib */; };
 		3E50447D284432210095A304 /* Analysis+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50447B284432210095A304 /* Analysis+CoreDataClass.swift */; };
 		3E50447E284432210095A304 /* Analysis+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50447C284432210095A304 /* Analysis+CoreDataProperties.swift */; };
+		3E5044812844387A0095A304 /* NewAnalysisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5044802844387A0095A304 /* NewAnalysisController.swift */; };
 		3EA0080D2829C74700B15612 /* ProfessionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0080C2829C74700B15612 /* ProfessionsCell.swift */; };
 		3EA008102829CD1F00B15612 /* TypicallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0080E2829CD1F00B15612 /* TypicallCell.swift */; };
 		3EA008112829CD1F00B15612 /* TypicallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0080F2829CD1F00B15612 /* TypicallCell.xib */; };
@@ -91,6 +92,7 @@
 		3E43DAA528416DCD00B73761 /* DoctorPrototypeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DoctorPrototypeCell.xib; sourceTree = "<group>"; };
 		3E50447B284432210095A304 /* Analysis+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analysis+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3E50447C284432210095A304 /* Analysis+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analysis+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3E5044802844387A0095A304 /* NewAnalysisController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAnalysisController.swift; sourceTree = "<group>"; };
 		3EA0080C2829C74700B15612 /* ProfessionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionsCell.swift; sourceTree = "<group>"; };
 		3EA0080E2829CD1F00B15612 /* TypicallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypicallCell.swift; sourceTree = "<group>"; };
 		3EA0080F2829CD1F00B15612 /* TypicallCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypicallCell.xib; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				3E43DA6528414F7C00B73761 /* MyAnalyzesController.swift */,
+				3E5044802844387A0095A304 /* NewAnalysisController.swift */,
 			);
 			path = MyAnalyzes;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				3E1EA662282894FB00818056 /* DoctorsProfessionsController.swift in Sources */,
 				3E36CBF82841896C009556A1 /* Doctor+CoreDataClass.swift in Sources */,
 				3EA008102829CD1F00B15612 /* TypicallCell.swift in Sources */,
+				3E5044812844387A0095A304 /* NewAnalysisController.swift in Sources */,
 				3E1E06DD2822D76A00B5A9D3 /* DoctorsTableViewController.swift in Sources */,
 				3E1E06E92822D9C300B5A9D3 /* PillsTableViewCell.swift in Sources */,
 				3EA0080D2829C74700B15612 /* ProfessionsCell.swift in Sources */,
