@@ -42,13 +42,15 @@ class NewDoctorController: UITableViewController {
         let numberPhone = numberPhoneTextField.text ?? ""
         if fieldIsEmpty(){
             showAlertFieldISEmpty()
-        }
-        if validatedPhoneNumber(phoneStr: numberPhone) == true {
-            doAfterCreate?(firstName,lastName,clinic,numberPhone,profession)
-            navigationController?.popViewController(animated: true)
         } else {
-            showAlertPhoneNumberValidation()
+            if validatedPhoneNumber(phoneStr: numberPhone) == true {
+                doAfterCreate?(firstName,lastName,clinic,numberPhone,profession)
+                navigationController?.popViewController(animated: true)
+            } else {
+                showAlertPhoneNumberValidation()
+            }
         }
+        
     }
     
     //MARK: Navigation

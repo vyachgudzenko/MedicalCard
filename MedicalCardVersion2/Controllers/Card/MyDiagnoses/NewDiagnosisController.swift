@@ -34,19 +34,32 @@ class NewDiagnosisController: UITableViewController {
     
     var doAfterCreate:((String,String,Date,Doctor) -> Void)?
     
+    //MARK: Other function
+    
+    func fieldIsEmpty() -> Bool{
+        if titleTextField.text == "" || descriptionTextField.text == "" || doctor == nil{
+            return true
+        } else {
+            return false
+        }
+    }
+    
     //MARK: IBAction function
     
     @IBAction func clickOnSaveButton(_ sender:UIBarButtonItem){
-        let titleDiagnosis:String = titleTextField.text!
-        let descriptionDiagnosis:String = descriptionTextField.text!
-        let dateDiagnosis:Date = datePiecker.date
-        doAfterCreate?(titleDiagnosis,descriptionDiagnosis,dateDiagnosis,doctor!)
-        navigationController?.popViewController(animated: true)
+        if fieldIsEmpty(){
+            showAlertFieldISEmpty()
+        } else{
+            let titleDiagnosis:String = titleTextField.text!
+            let descriptionDiagnosis:String = descriptionTextField.text!
+            let dateDiagnosis:Date = datePiecker.date
+            doAfterCreate?(titleDiagnosis,descriptionDiagnosis,dateDiagnosis,doctor!)
+            navigationController?.popViewController(animated: true)
+        }
         
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -60,7 +73,6 @@ class NewDiagnosisController: UITableViewController {
     
     
     // MARK: - Navigation
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDoctorsScreen"{
             let destination = segue.destination as! DoctorsListController
@@ -72,7 +84,11 @@ class NewDiagnosisController: UITableViewController {
         }
     }
     
-    
-    
+    //MARK: AlertControllers
+    func showAlertFieldISEmpty(){
+        let alert = UIAlertController(title: "Не заполнены поля", message: "Заполните пожалуйста все поля, что бы можно было корректно сохранить информацию", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        self.present(alert, animated: true)
+    }
 
 }
