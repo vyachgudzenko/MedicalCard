@@ -69,13 +69,11 @@ class DoctorsListController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DoctorPrototypeCell", for: indexPath) as! DoctorPrototypeCell
         let currentDoctor = doctors[indexPath.row] as! Doctor
-        cell.doctorFullName.text = currentDoctor.getFullName()
-        cell.professionLabel.text = currentDoctor.profession
-        cell.clininNameLabel.text = currentDoctor.clinic
-        cell.phoneNumberLabel.text = currentDoctor.phoneNumber
+        cell.setupCell(doctor: currentDoctor)
         return cell
     }
     
+    //MARK: Tableview Delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedDoctor = doctors[indexPath.row] as! Doctor
         doAfterSelected?(selectedDoctor)

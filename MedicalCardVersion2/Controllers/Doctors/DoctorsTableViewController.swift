@@ -12,6 +12,7 @@ import CoreData
 class DoctorsTableViewController: UITableViewController, CNContactViewControllerDelegate {
     
     var doctors:[NSManagedObject] = []
+    var cellSpacing:CGFloat = 0
 
     //MARK: Life cycle
     override func viewDidLoad() {
@@ -84,10 +85,7 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DoctorPrototypeCell", for: indexPath) as! DoctorPrototypeCell
         let currentDoctor = doctors[indexPath.row] as! Doctor
-        cell.doctorFullName.text = currentDoctor.getFullName()
-        cell.professionLabel.text = currentDoctor.profession
-        cell.clininNameLabel.text = currentDoctor.clinic
-        cell.phoneNumberLabel.text = currentDoctor.phoneNumber
+        cell.setupCell(doctor: currentDoctor)
         return cell
     }
     

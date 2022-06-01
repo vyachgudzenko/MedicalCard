@@ -63,13 +63,7 @@ class MyDiagnosesController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiagnosisCell", for: indexPath) as! DiagnosisCell
         let diagnosis = diagnoses[indexPath.row] as! Diagnosis
-        cell.titleLabel.text = diagnosis.title
-        cell.descriptionLabel.text = diagnosis.descriptionOfDiagnosis
-        let dataFormater = DateFormatter()
-        dataFormater.dateFormat = "yyyy-MM-dd"
-        let formatedDate = dataFormater.string(from: diagnosis.date!)
-        cell.dateLabel.text = "Дата: \(formatedDate)"
-        cell.doctorFullNameLabel.text = "Врач: \(diagnosis.doctor!.getFullName())"
+        cell.setupCell(diagnosis: diagnosis)
         return cell
     }
 
@@ -94,7 +88,7 @@ class MyDiagnosesController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentDiagnosis = diagnoses[indexPath.row] as! Diagnosis
         let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewDiagnosisController") as! NewDiagnosisController
-        navigationItem.title = currentDiagnosis.title
+        editScreen.navigationItem.title = currentDiagnosis.title
         editScreen.titleFirst = currentDiagnosis.title!
         editScreen.descriptionFirst = currentDiagnosis.descriptionOfDiagnosis!
         editScreen.dateFirst = currentDiagnosis.date!

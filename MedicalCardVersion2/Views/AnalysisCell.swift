@@ -1,27 +1,28 @@
 //
-//  DiagnosisCell.swift
+//  AnalysisCell.swift
 //  MedicalCardVersion2
 //
-//  Created by Вячеслав Гудзенко on 28.05.2022.
+//  Created by Вячеслав Гудзенко on 01.06.2022.
 //
 
 import UIKit
 
-class DiagnosisCell: UITableViewCell {
+class AnalysisCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var doctorFullNameLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
     
-    func setupCell(diagnosis:Diagnosis){
-        titleLabel.text = diagnosis.title
-        descriptionLabel.text = diagnosis.descriptionOfDiagnosis
-        doctorFullNameLabel.text = "Врач: \(diagnosis.doctor!.getFullName())"
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var doctorFullName: UILabel!
+    
+    func setupCell(analysis:Analysis){
+        titleLabel.text = analysis.title
+        resultLabel.text = analysis.result
         let dataFormater = DateFormatter()
         dataFormater.dateFormat = "yyyy-MM-dd"
-        let formatedDate = dataFormater.string(from: diagnosis.date!)
+        let formatedDate = dataFormater.string(from: analysis.date!)
         dateLabel.text = "Дата: \(formatedDate)"
+        doctorFullName.text = "Врач: \(analysis.doctor!.getFullName())"
     }
     
     override func awakeFromNib() {

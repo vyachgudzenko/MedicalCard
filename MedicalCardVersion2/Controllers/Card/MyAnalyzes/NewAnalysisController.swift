@@ -8,76 +8,75 @@
 import UIKit
 
 class NewAnalysisController: UITableViewController {
-
+    
+    
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var resultTextField: UITextField!
+    @IBOutlet weak var datePiecker: UIDatePicker!
+    @IBOutlet weak var doctorLabel: UILabel!
+    @IBOutlet weak var diagnosisLabel: UILabel!
+    @IBOutlet weak var uploadButton: UIButton!
+    
+    var titleText:String = ""
+    var descriptionText:String = ""
+    var resultText:String = ""
+    var dateAnalysis:Date = Date()
+    var doctor:Doctor?
+    var diagnosis:Diagnosis?
+    var doctorLabelText = "Выберите врача"
+    var diagnosisLabelText = "Выберите диагноз"
+    
+    var doAfterCreate:((String,String,String,Date,Doctor,Diagnosis) -> Void)?
+    
+    //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleTextField.text = titleText
+        descriptionTextField.text = descriptionText
+        resultTextField.text = resultText
+        datePiecker.date = dateAnalysis
+        doctorLabel.text = doctorLabelText
+        diagnosisLabel.text = diagnosisLabelText
+    }
+    
+    //MARK: IBAction
+    @IBAction func clickOnSaveButton(_ sender:UIBarButtonItem){
+        let title = titleTextField.text!
+        let description = descriptionTextField.text!
+        let result = resultTextField.text!
+        let date = datePiecker.date
+        doAfterCreate?(title,description,result,date,doctor!,diagnosis!)
+        navigationController?.popViewController(animated: true)
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 6
+        return 7
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "fromNewAnaysisToDoctors"{
+            let destination = segue.destination as! DoctorsListController
+            destination.doAfterSelected = {
+                [self] selectedDoctor in
+                self.doctor = selectedDoctor
+                self.doctorLabel.text = selectedDoctor.getFullName()
+            }
+        }
+        if segue.identifier == "toDiagnosesList"{
+            let destination = segue.destination as! DiagnosesListController
+            destination.doAfterSelected = {
+                selectedDiagnosis in
+                self.diagnosis = selectedDiagnosis
+                self.diagnosisLabel.text = selectedDiagnosis.title
+            }
+        }
     }
-    */
 
 }
