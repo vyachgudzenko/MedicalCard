@@ -97,7 +97,7 @@ class MyAnalyzesController: UITableViewController {
         editScreen.doctorLabelText = currentAnalysis.doctorFullName!
         editScreen.diagnosis = currentAnalysis.diagnosis
         editScreen.diagnosisLabelText = currentAnalysis.diagnosisTitle!
-        editScreen.doAfterCreate = { [self]
+        editScreen.doAfterCreate = {
             titleOfAnalysis,descriptionOfAnalysis,result,date,doctor,diagnosis in
             currentAnalysis.title = titleOfAnalysis
             currentAnalysis.descriptionOfAnalysis = descriptionOfAnalysis
