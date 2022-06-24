@@ -9,16 +9,31 @@ import UIKit
 import ContactsUI
 import CoreData
 
-class DoctorsTableViewController: UITableViewController, CNContactViewControllerDelegate {
+class DoctorsTableViewController: UIViewController, CNContactViewControllerDelegate{
     
     var doctors:[NSManagedObject] = []
     var cellSpacing:CGFloat = 0
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addBurButton: UIBarButtonItem!
+    
+    @IBAction func addBarButtonTapped(_ sender: Any) {
+        createNewDoctorController()
+    }
+    var addButton:RedButton = {
+        let button = RedButton()
+        return button
+    }()
 
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
         let cellNib = UINib(nibName: "DoctorPrototypeCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "DoctorPrototypeCell")
+        view.addSubview(addButton)
+        addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +49,12 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
         } catch let error as NSError{
             print("Could not save.\(error),\(error.userInfo)")
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print(view.frame.height)
+        addButton.frame = CGRect(x: view.frame.width - 90, y: view.frame.height - view.frame.height * 0.2, width: 70, height: 70)
     }
     
     //MARK: Other function
@@ -73,24 +94,61 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
         return false
     }
     
-    // MARK: - Tableview data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    private func createNewDoctorController(){
+        let newDoctorScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewDoctorController") as! NewDoctorController
+        newDoctorScreen.doAfterCreate = {
+            [self] firstName,lastName,clinic,phoneNumber,profession in
+            save(firstName: firstName, lastName: lastName, clinic: clinic, phoneNumber: phoneNumber, profession: profession)
+        }
+        self.navigationController?.pushViewController(newDoctorScreen, animated: true)
+        
+        
+    }
+    
+    @objc
+    func addButtonTapped(){
+        createNewDoctorController()
+    }
+        
+    //MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toNewDoctorScreen"{
+            let destination = segue.destination as! NewDoctorController
+            destination.doAfterCreate = {
+                [self] firstName,lastName,clinic,phoneNumber,profession in
+                save(firstName: firstName, lastName: lastName, clinic: clinic, phoneNumber: phoneNumber, profession: profession)
+            }
+        }
+    }
+    
+    //MARK: AlertControllers
+    func showAlertCanBeDeletedDoctor(){
+        let alert = UIAlertController(title: "Невозможно удалить", message: "Невозможно удалить эту карточку данных - есть связаные данные", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        self.present(alert, animated: true)
+    }
+}
+
+extension DoctorsTableViewController:UITableViewDataSource{
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return doctors.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DoctorPrototypeCell", for: indexPath) as! DoctorPrototypeCell
         let currentDoctor = doctors[indexPath.row] as! Doctor
         cell.setupCell(doctor: currentDoctor)
         return cell
     }
-    
-    //MARK: TableView delegate
-    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+
+}
+
+extension DoctorsTableViewController:UITableViewDelegate{
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionSwipe = UIContextualAction(style: .normal, title: "Добавить в контакты") { [self]  _, _, _ in
             let doctor = doctors[indexPath.row]
             let newContact = CNMutableContact()
@@ -108,7 +166,7 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
         return UISwipeActionsConfiguration(actions: [actionSwipe])
     }
     
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionSwipe = UIContextualAction(style: .normal, title: "Удалить") { [self] _, _, _ in
             if canBeDeleteDoctor(doctor: doctors[indexPath.row] as! Doctor){
                 guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
@@ -130,7 +188,7 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
         return UISwipeActionsConfiguration(actions: [actionSwipe])
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentDoctor = doctors[indexPath.row] as! Doctor
         let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewDoctorController") as! NewDoctorController
         editScreen.navigationItem.title = currentDoctor.getFullName()
@@ -157,22 +215,5 @@ class DoctorsTableViewController: UITableViewController, CNContactViewController
         }
         self.navigationController?.pushViewController(editScreen, animated: true)
     }
-    
-    //MARK: Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toNewDoctorScreen"{
-            let destination = segue.destination as! NewDoctorController
-            destination.doAfterCreate = {
-                [self] firstName,lastName,clinic,phoneNumber,profession in
-                save(firstName: firstName, lastName: lastName, clinic: clinic, phoneNumber: phoneNumber, profession: profession)
-            }
-        }
-    }
-    
-    //MARK: AlertControllers
-    func showAlertCanBeDeletedDoctor(){
-        let alert = UIAlertController(title: "Невозможно удалить", message: "Невозможно удалить эту карточку данных - есть связаные данные", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default))
-        self.present(alert, animated: true)
-    }
+
 }
