@@ -8,14 +8,29 @@
 import UIKit
 import CoreData
 
-class MyDiagnosesController: UITableViewController {
+class MyDiagnosesController: UIViewController {
     var diagnoses:[NSManagedObject] = []
+    
+    @IBOutlet weak var tableView: UITableView!
+    var floatButton:RedButton! = {
+        let button = RedButton()
+        return button
+    }()
+    
+    @IBAction func addBarButtonTapped(_ sender: Any) {
+        createNewDiagnosisController()
+    }
+    
     
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
         let cellNib = UINib(nibName: "DiagnosisCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "DiagnosisCell")
+        view.addSubview(floatButton)
+        floatButton.addTarget(self, action: #selector(floatButtonTapped), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,6 +46,11 @@ class MyDiagnosesController: UITableViewController {
         } catch let error as NSError{
             print("Could not save.\(error),\(error.userInfo)")
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        floatButton.frame = CGRect(x: view.frame.width - 90, y: view.frame.height - view.frame.height * 0.2, width: 70, height: 70)
     }
     
     //MARK: Other function
@@ -50,25 +70,43 @@ class MyDiagnosesController: UITableViewController {
             print("Could not save.\(error),\(error.userInfo)")
         }
     }
+    
+    func createNewDiagnosisController(){
+        let newDiagnosis = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewDiagnosisController") as! NewDiagnosisController
+        newDiagnosis.doAfterCreate = {
+            [self] titleOfDiagnosis,descriptionOfDiagnosis,date,doctor in
+            save(title: titleOfDiagnosis, description: descriptionOfDiagnosis, date: date, doctor: doctor)
+            
+        }
+        navigationController?.pushViewController(newDiagnosis, animated: true)
+    }
+    
+    @objc
+    func floatButtonTapped(){
+        createNewDiagnosisController()
+    }
+}
 
-    // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
+extension MyDiagnosesController:UITableViewDataSource{
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return diagnoses.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiagnosisCell", for: indexPath) as! DiagnosisCell
         let diagnosis = diagnoses[indexPath.row] as! Diagnosis
         cell.setupCell(diagnosis: diagnosis)
         return cell
     }
 
-    //MARK: TableView delegate
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+}
+
+extension MyDiagnosesController:UITableViewDelegate{
+     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionSwipe = UIContextualAction(style: .normal, title: "Удалить") { [self] _, _, _ in
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
             let managedContext = appDelegate.persistentContainer.viewContext
@@ -85,7 +123,7 @@ class MyDiagnosesController: UITableViewController {
         return UISwipeActionsConfiguration(actions: [actionSwipe])
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentDiagnosis = diagnoses[indexPath.row] as! Diagnosis
         let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewDiagnosisController") as! NewDiagnosisController
         editScreen.navigationItem.title = currentDiagnosis.title
@@ -111,17 +149,4 @@ class MyDiagnosesController: UITableViewController {
         }
         navigationController?.pushViewController(editScreen, animated: true)
     }
-    
-    //MARK: Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toNewDiagnosisScreen"{
-            let destination = segue.destination as! NewDiagnosisController
-            destination.doAfterCreate = {
-                [self] titleOfDiagnosis,descriptionOfDiagnosis,date,doctor in
-                save(title: titleOfDiagnosis, description: descriptionOfDiagnosis, date: date, doctor: doctor)
-                
-            }
-        }
-    }
-
 }

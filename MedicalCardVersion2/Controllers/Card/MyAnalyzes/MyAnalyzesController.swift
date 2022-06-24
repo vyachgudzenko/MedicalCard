@@ -8,15 +8,30 @@
 import UIKit
 import CoreData
 
-class MyAnalyzesController: UITableViewController {
+class MyAnalyzesController: UIViewController {
 
     var analyzes:[NSManagedObject] = []
+    
+    var floatButton:RedButton! = {
+        let button = RedButton()
+        return button
+    }()
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
+        createNewAnalisys()
+    }
     
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
         let cellNib = UINib(nibName: "AnalysisCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "AnalysisCell")
+        view.addSubview(floatButton)
+        floatButton.addTarget(self, action: #selector(floatButtonTapped), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,6 +47,10 @@ class MyAnalyzesController: UITableViewController {
         } catch let error as NSError{
             print("Could not save.\(error),\(error.userInfo)")
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        floatButton.frame = CGRect(x: view.frame.width - 90, y: view.frame.height - view.frame.height * 0.2, width: 70, height: 70)
     }
     //MARK: Other function
     private  func save(title:String,descriptionofAnalysis:String,result:String,date:Date,doctor:Doctor,diagnosis:Diagnosis){
@@ -49,26 +68,53 @@ class MyAnalyzesController: UITableViewController {
         newAnalysis.setValue(diagnosis.title, forKey: "diagnosisTitle")
     }
 
-    // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func createNewAnalisys(){
+        let newAnalisys = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewAnalysisController") as! NewAnalysisController
+        newAnalisys.doAfterCreate = { [self]
+            titleOfAnalysis,descriptionOfAnalysis,result,date,doctor,diagnosis in
+            save(title: titleOfAnalysis, descriptionofAnalysis: descriptionOfAnalysis, result: result, date: date, doctor: doctor, diagnosis: diagnosis)
+        }
+        navigationController?.pushViewController(newAnalisys, animated: true)
+    }
+    
+    @objc
+    func floatButtonTapped(){
+        createNewAnalisys()
+    }
+    
+    // MARK: - Navigation
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toNewAnalysis"{
+            let destination = segue.destination as! NewAnalysisController
+            destination.doAfterCreate = { [self]
+                titleOfAnalysis,descriptionOfAnalysis,result,date,doctor,diagnosis in
+                save(title: titleOfAnalysis, descriptionofAnalysis: descriptionOfAnalysis, result: result, date: date, doctor: doctor, diagnosis: diagnosis)
+            }
+        }
+    }*/
+}
+
+extension MyAnalyzesController:UITableViewDataSource{
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return analyzes.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AnalysisCell", for: indexPath) as! AnalysisCell
         let currentAnalysis = analyzes[indexPath.row] as! Analysis
         cell.setupCell(analysis: currentAnalysis)
         return cell
     }
-    
-    //MARK: Tableview delegate
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+}
+
+extension MyAnalyzesController:UITableViewDelegate{
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionSwipe = UIContextualAction(style: .normal, title: "Удалить") { [self] _, _, _ in
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
             let managedContext = appDelegate.persistentContainer.viewContext
@@ -85,7 +131,7 @@ class MyAnalyzesController: UITableViewController {
         return UISwipeActionsConfiguration(actions: [actionSwipe])
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentAnalysis = analyzes[indexPath.row] as! Analysis
         let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewAnalysisController") as! NewAnalysisController
         editScreen.navigationItem.title = currentAnalysis.title
@@ -118,17 +164,5 @@ class MyAnalyzesController: UITableViewController {
         }
         navigationController?.pushViewController(editScreen, animated: true)
     }
-
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toNewAnalysis"{
-            let destination = segue.destination as! NewAnalysisController
-            destination.doAfterCreate = { [self]
-                titleOfAnalysis,descriptionOfAnalysis,result,date,doctor,diagnosis in
-                save(title: titleOfAnalysis, descriptionofAnalysis: descriptionOfAnalysis, result: result, date: date, doctor: doctor, diagnosis: diagnosis)
-            }
-        }
-    }
-   
 
 }

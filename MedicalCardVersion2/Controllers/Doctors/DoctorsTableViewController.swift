@@ -33,7 +33,7 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
         let cellNib = UINib(nibName: "DoctorPrototypeCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "DoctorPrototypeCell")
         view.addSubview(addButton)
-        addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+        addButton.addTarget(self, action: #selector(addBarButtonTapped), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,7 +53,6 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        print(view.frame.height)
         addButton.frame = CGRect(x: view.frame.width - 90, y: view.frame.height - view.frame.height * 0.2, width: 70, height: 70)
     }
     
