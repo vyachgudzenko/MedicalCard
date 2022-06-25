@@ -20,10 +20,12 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
     @IBAction func addBarButtonTapped(_ sender: Any) {
         createNewDoctorController()
     }
-    var addButton:RedButton = {
+    var floatButton:RedButton = {
         let button = RedButton()
         return button
     }()
+    
+    var medicalAlert:MedicalAlert!
 
     //MARK: Life cycle
     override func viewDidLoad() {
@@ -32,8 +34,8 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
         tableView.delegate = self
         let cellNib = UINib(nibName: "DoctorPrototypeCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "DoctorPrototypeCell")
-        view.addSubview(addButton)
-        addButton.addTarget(self, action: #selector(addBarButtonTapped), for: .touchUpInside)
+        view.addSubview(floatButton)
+        floatButton.addTarget(self, action: #selector(addBarButtonTapped), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,7 +55,7 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        addButton.frame = CGRect(x: view.frame.width - 90, y: view.frame.height - view.frame.height * 0.2, width: 70, height: 70)
+        floatButton.frame = CGRect(x: view.frame.width - 90, y: view.frame.height - view.frame.height * 0.2, width: 70, height: 70)
     }
     
     //MARK: Other function
@@ -110,7 +112,7 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
     }
         
     //MARK: Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toNewDoctorScreen"{
             let destination = segue.destination as! NewDoctorController
             destination.doAfterCreate = {
@@ -118,13 +120,12 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
                 save(firstName: firstName, lastName: lastName, clinic: clinic, phoneNumber: phoneNumber, profession: profession)
             }
         }
-    }
+    }*/
     
     //MARK: AlertControllers
     func showAlertCanBeDeletedDoctor(){
-        let alert = UIAlertController(title: "Невозможно удалить", message: "Невозможно удалить эту карточку данных - есть связаные данные", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default))
-        self.present(alert, animated: true)
+        medicalAlert = MedicalAlert()
+        medicalAlert.showAlert(title: "Невозможно удалить", message: "Невозможно удалить эту карточку данных - есть связаные данные", viewController: self)
     }
 }
 
