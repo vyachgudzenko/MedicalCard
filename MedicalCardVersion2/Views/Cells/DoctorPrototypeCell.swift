@@ -14,11 +14,20 @@ class DoctorPrototypeCell: UITableViewCell {
     @IBOutlet weak var clininNameLabel: UILabel!
     @IBOutlet weak var professionLabel: UILabel!
     
+    
+    @IBOutlet weak var phoneImage: UIImageView!
+    @IBOutlet weak var workImage: UIImageView!
+    @IBOutlet weak var doctorImage: UIImageView!
+    
     func setupCell(doctor:Doctor){
         doctorFullName.text = doctor.getFullName()
         phoneNumberLabel.text = doctor.phoneNumber
         clininNameLabel.text = doctor.clinic
         professionLabel.text = doctor.profession
+        phoneImage.image = UIImage(systemName: "phone")?.withRenderingMode(.alwaysTemplate)
+        workImage.image = UIImage(named: "hospitalImage")?.withRenderingMode(.alwaysTemplate)
+        doctorImage.image = UIImage(named: "doctor")?.withRenderingMode(.alwaysTemplate)
+        
     }
     
     override func awakeFromNib() {

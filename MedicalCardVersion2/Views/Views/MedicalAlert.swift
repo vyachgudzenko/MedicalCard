@@ -55,11 +55,12 @@ class MedicalAlert{
         imageView.contentMode = .scaleAspectFill
         titleView.addSubview(imageView)
         
-        let titleLabel = UILabel(frame: CGRect(x: 90, y: 40, width: 250, height: 30))
+        let titleLabel = UILabel(frame: CGRect(x: 80, y: 40, width: titleView.frame.width - 10, height: 30))
         titleLabel.center.y = titleView.center.y
         titleLabel.text = title
         titleLabel.textColor = .white
         titleLabel.font = UIFont.systemFont(ofSize: 22)
+        titleLabel.numberOfLines = 2
         titleView.addSubview(titleLabel)
         
         let messageLabel = UILabel(frame: CGRect(x: 10, y: 90, width: alertView.frame.width - 20, height: 150))

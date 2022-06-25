@@ -125,7 +125,7 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
     //MARK: AlertControllers
     func showAlertCanBeDeletedDoctor(){
         medicalAlert = MedicalAlert()
-        medicalAlert.showAlert(title: "Невозможно удалить", message: "Невозможно удалить эту карточку данных - есть связаные данные", viewController: self)
+        medicalAlert.showAlert(title: "Упс...", message: "Невозможно удалить эту карточку данных - есть связаные данные", viewController: self)
     }
 }
 
