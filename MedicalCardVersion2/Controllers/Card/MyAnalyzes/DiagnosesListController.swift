@@ -48,14 +48,7 @@ class DiagnosesListController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiagnosisCell", for: indexPath) as! DiagnosisCell
         let diagnosis = diagnoses[indexPath.row] as! Diagnosis
-        print(diagnosis)
-        cell.titleLabel.text = diagnosis.title
-        cell.descriptionLabel.text = diagnosis.descriptionOfDiagnosis
-        let dataFormater = DateFormatter()
-        dataFormater.dateFormat = "yyyy-MM-dd"
-        let formatedDate = dataFormater.string(from: diagnosis.date!)
-        cell.dateLabel.text = "Дата: \(formatedDate)"
-        cell.doctorFullNameLabel.text = "Врач: \(diagnosis.doctor!.getFullName())"
+        cell.setupCell(diagnosis: diagnosis)
         return cell
     }
 

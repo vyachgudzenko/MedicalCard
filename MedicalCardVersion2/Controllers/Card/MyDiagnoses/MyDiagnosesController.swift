@@ -99,6 +99,7 @@ extension MyDiagnosesController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiagnosisCell", for: indexPath) as! DiagnosisCell
         let diagnosis = diagnoses[indexPath.row] as! Diagnosis
+        
         cell.setupCell(diagnosis: diagnosis)
         return cell
     }

@@ -110,17 +110,6 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
     func addButtonTapped(){
         createNewDoctorController()
     }
-        
-    //MARK: Navigation
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toNewDoctorScreen"{
-            let destination = segue.destination as! NewDoctorController
-            destination.doAfterCreate = {
-                [self] firstName,lastName,clinic,phoneNumber,profession in
-                save(firstName: firstName, lastName: lastName, clinic: clinic, phoneNumber: phoneNumber, profession: profession)
-            }
-        }
-    }*/
     
     //MARK: AlertControllers
     func showAlertCanBeDeletedDoctor(){
@@ -142,6 +131,7 @@ extension DoctorsTableViewController:UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "DoctorPrototypeCell", for: indexPath) as! DoctorPrototypeCell
         let currentDoctor = doctors[indexPath.row] as! Doctor
         cell.setupCell(doctor: currentDoctor)
+        print(cell.frame.height)
         return cell
     }
 

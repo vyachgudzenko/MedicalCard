@@ -2,26 +2,31 @@
 //  DiagnosisCell.swift
 //  MedicalCardVersion2
 //
-//  Created by Вячеслав Гудзенко on 28.05.2022.
+//  Created by Вячеслав Гудзенко on 26.06.2022.
 //
 
 import UIKit
 
 class DiagnosisCell: UITableViewCell {
-
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var doctorFullNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var doctorFullNameLabel: UILabel!
+    @IBOutlet weak var dateImageView: UIImageView!
+    @IBOutlet weak var doctorImageView: UIImageView!
     
     func setupCell(diagnosis:Diagnosis){
         titleLabel.text = diagnosis.title
         descriptionLabel.text = diagnosis.descriptionOfDiagnosis
-        doctorFullNameLabel.text = "Врач: \(diagnosis.doctor!.getFullName())"
         let dataFormater = DateFormatter()
         dataFormater.dateFormat = "yyyy-MM-dd"
         let formatedDate = dataFormater.string(from: diagnosis.date!)
-        dateLabel.text = "Дата: \(formatedDate)"
+        dateLabel.text = formatedDate
+        doctorFullNameLabel.text = diagnosis.doctor!.getFullName()
+        dateImageView.image = UIImage(systemName: "clock")
+        doctorImageView.image = UIImage(named: "doctor")?.withRenderingMode(.alwaysTemplate)
+        
     }
     
     override func awakeFromNib() {
