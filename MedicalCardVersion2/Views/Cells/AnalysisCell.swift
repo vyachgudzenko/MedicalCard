@@ -15,14 +15,20 @@ class AnalysisCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var doctorFullName: UILabel!
     
+    @IBOutlet weak var fileNameLabel: UILabel!
+    
+    @IBOutlet weak var doctorImageView: UIImageView!
+    
     func setupCell(analysis:Analysis){
         titleLabel.text = analysis.title
         resultLabel.text = analysis.result
         let dataFormater = DateFormatter()
         dataFormater.dateFormat = "yyyy-MM-dd"
         let formatedDate = dataFormater.string(from: analysis.date!)
-        dateLabel.text = "Дата: \(formatedDate)"
-        doctorFullName.text = "Врач: \(analysis.doctor!.getFullName())"
+        dateLabel.text = formatedDate
+        doctorFullName.text = analysis.doctor!.getFullName()
+        fileNameLabel.text = "Нет файла"
+        doctorImageView.image = UIImage(named: "doctor")?.withRenderingMode(.alwaysTemplate)
     }
     
     override func awakeFromNib() {
