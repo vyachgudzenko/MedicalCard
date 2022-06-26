@@ -10,6 +10,7 @@ import CoreData
 
 class MyDiagnosesController: UIViewController {
     var diagnoses:[NSManagedObject] = []
+    var alert:MedicalAlert?
     
     @IBOutlet weak var tableView: UITableView!
     var floatButton:RedButton! = {
@@ -85,8 +86,47 @@ class MyDiagnosesController: UIViewController {
     func floatButtonTapped(){
         createNewDiagnosisController()
     }
+    
+    private func deleteDiagnosis(diagnosis:Diagnosis, index:Int){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        let managedContext = appDelegate.persistentContainer.viewContext
+        managedContext.delete(diagnosis)
+        do{
+            try managedContext.save()
+            diagnoses.remove(at: index)
+            tableView.reloadData()
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
+        }
+    }
+    
+    private func canBeDeleteDiagnosis(diagnosis:Diagnosis) -> Bool{
+        if hasAnalysisThisDiagnosis(diagnosisTitle: diagnosis.title!){
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    private func hasAnalysisThisDiagnosis(diagnosisTitle:String) -> Bool{
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<Analysis>
+        fetchRequest = Analysis.fetchRequest()
+        fetchRequest.predicate = NSPredicate(
+            format: "diagnosisTitle LIKE %@", diagnosisTitle)
+        do{
+            let object = try managedContext.fetch(fetchRequest)
+            if object.isEmpty{
+                return false
+            }
+        } catch{
+            fatalError()
+        }
+        return true
+    }
 }
-
+//MARK: TableViewDataSource
 extension MyDiagnosesController:UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -103,21 +143,22 @@ extension MyDiagnosesController:UITableViewDataSource{
         cell.setupCell(diagnosis: diagnosis)
         return cell
     }
+    
+    //MARK: AlertController
+    private func showAlert(){
+        alert = MedicalAlert()
+        alert?.showAlert(title: "Упс...", message: "Невозможно удалить эту карточку данных - есть связаные данные", viewController: self)
+    }
 
 }
-
+//MARK: TableViewDelegate
 extension MyDiagnosesController:UITableViewDelegate{
      func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionSwipe = UIContextualAction(style: .normal, title: "Удалить") { [self] _, _, _ in
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-            let managedContext = appDelegate.persistentContainer.viewContext
-            managedContext.delete(diagnoses[indexPath.row])
-            do{
-                try managedContext.save()
-                diagnoses.remove(at: indexPath.row)
-                tableView.reloadData()
-            } catch let error as NSError{
-                print("Could not save.\(error),\(error.userInfo)")
+            if canBeDeleteDiagnosis(diagnosis: diagnoses[indexPath.row] as! Diagnosis){
+                deleteDiagnosis(diagnosis: diagnoses[indexPath.row] as! Diagnosis, index: indexPath.row)
+            } else {
+                showAlert()
             }
         }
         actionSwipe.backgroundColor = .systemGray
