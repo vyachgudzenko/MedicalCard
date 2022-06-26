@@ -41,7 +41,7 @@ class MedicalAlert{
         targetView.addSubview(backgroundView)
         targetView.addSubview(alertView)
         
-        alertView.frame = CGRect(x: 40, y: -300, width: targetView.frame.size.width - 80, height: 300)
+        alertView.frame = CGRect(x: 40, y:  (myTargetView?.frame.height)!, width: targetView.frame.size.width - 80, height: 300)
         
         let titleView = UIView(frame: CGRect(x: 0, y: 0, width: alertView.frame.width, height: 80))
         titleView.backgroundColor = .systemPink
@@ -55,12 +55,12 @@ class MedicalAlert{
         imageView.contentMode = .scaleAspectFill
         titleView.addSubview(imageView)
         
-        let titleLabel = UILabel(frame: CGRect(x: 80, y: 40, width: titleView.frame.width - 10, height: 30))
+        let titleLabel = UILabel(frame: CGRect(x: 80, y: 40, width: titleView.frame.width - 90, height: 60))
         titleLabel.center.y = titleView.center.y
         titleLabel.text = title
         titleLabel.textColor = .white
-        titleLabel.font = UIFont.systemFont(ofSize: 22)
-        titleLabel.numberOfLines = 2
+        titleLabel.font = UIFont.systemFont(ofSize: 20)
+        titleLabel.numberOfLines = 0
         titleView.addSubview(titleLabel)
         
         let messageLabel = UILabel(frame: CGRect(x: 10, y: 90, width: alertView.frame.width - 20, height: 150))
@@ -74,6 +74,7 @@ class MedicalAlert{
         let button = UIButton(type: .system)
         button.frame = CGRect(x: alertView.frame.width / 2 - 40, y: 240, width: 80, height: 50)
         button.backgroundColor = .systemPink
+        button.alpha = 0.95
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 10
         button.setTitle("OK", for: .normal)
