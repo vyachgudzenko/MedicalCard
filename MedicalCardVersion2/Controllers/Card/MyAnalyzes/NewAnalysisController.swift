@@ -29,6 +29,20 @@ class NewAnalysisController: UITableViewController {
     
     var doAfterCreate:((String,String,String,Date,Doctor,Diagnosis) -> Void)?
     
+    var alert:MedicalAlert?
+    
+    //MARK: Other function
+    func fieldsIsEmpty() -> Bool {
+        if titleTextField.text == "" || descriptionTextField.text == "" ||
+            resultTextField.text == "" ||
+            doctor == nil ||
+            diagnosis == nil{
+            return true
+        } else {
+            return false
+        }
+    }
+    
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +56,17 @@ class NewAnalysisController: UITableViewController {
     
     //MARK: IBAction
     @IBAction func clickOnSaveButton(_ sender:UIBarButtonItem){
-        let title = titleTextField.text!
-        let description = descriptionTextField.text!
-        let result = resultTextField.text!
-        let date = datePiecker.date
-        doAfterCreate?(title,description,result,date,doctor!,diagnosis!)
-        navigationController?.popViewController(animated: true)
+        if fieldsIsEmpty() {
+            showAlertFieldISEmpty()
+        } else {
+            let title = titleTextField.text!
+            let description = descriptionTextField.text!
+            let result = resultTextField.text!
+            let date = datePiecker.date
+            doAfterCreate?(title,description,result,date,doctor!,diagnosis!)
+            navigationController?.popViewController(animated: true)
+        }
+        
     }
 
     // MARK: - Table view data source
@@ -77,6 +96,12 @@ class NewAnalysisController: UITableViewController {
                 self.diagnosisLabel.text = selectedDiagnosis.title
             }
         }
+    }
+    
+    //MARK: AlertControllers
+    func showAlertFieldISEmpty(){
+        alert = MedicalAlert()
+        alert?.showAlert(title: "Не заполнены поля", message: "Заполните пожалуйста все поля, что бы можно было корректно сохранить информацию", viewController: self)
     }
 
 }

@@ -11,6 +11,8 @@ class NewDiagnosisController: UITableViewController {
     
     var doctor:Doctor?
     
+    var alert:MedicalAlert?
+    
     var titleFirst:String = ""
     var descriptionFirst:String = ""
     var dateFirst:Date = Date()
@@ -81,9 +83,8 @@ class NewDiagnosisController: UITableViewController {
     
     //MARK: AlertControllers
     func showAlertFieldISEmpty(){
-        let alert = UIAlertController(title: "Не заполнены поля", message: "Заполните пожалуйста все поля, что бы можно было корректно сохранить информацию", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default))
-        self.present(alert, animated: true)
+        alert = MedicalAlert()
+        alert?.showAlert(title: "Не заполнены поля", message: "Заполните пожалуйста все поля, что бы можно было корректно сохранить информацию", viewController: self)
     }
 
 }

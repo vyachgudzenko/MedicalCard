@@ -78,21 +78,47 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
     }
     
     private func canBeDeleteDoctor(doctor:Doctor) -> Bool{
+        if hasDiagnosisThisDoctor(doctor: doctor.getFullName()) == true || hasAnalysisThisDoctor(doctor: doctor.getFullName()) == true {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    private func hasDiagnosisThisDoctor(doctor:String) -> Bool{
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Diagnosis>
         fetchRequest = Diagnosis.fetchRequest()
         fetchRequest.predicate = NSPredicate(
-            format: "doctorFullName LIKE %@", doctor.getFullName())
+            format: "doctorFullName LIKE %@", doctor)
         do{
             let object = try managedContext.fetch(fetchRequest)
             if object.isEmpty{
-                return true
+                return false
             }
         } catch{
             fatalError()
         }
-        return false
+        return true
+    }
+    
+    private func hasAnalysisThisDoctor(doctor:String) -> Bool {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<Analysis>
+        fetchRequest = Analysis.fetchRequest()
+        fetchRequest.predicate = NSPredicate(
+            format: "doctorFullName LIKE %@", doctor)
+        do{
+            let object = try managedContext.fetch(fetchRequest)
+            if object.isEmpty{
+                return false
+            }
+        } catch{
+            fatalError()
+        }
+        return true
     }
     
     private func createNewDoctorController(){
