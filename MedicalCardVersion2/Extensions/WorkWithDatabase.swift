@@ -178,4 +178,33 @@ extension UIViewController{
             print("Could not save.\(error),\(error.userInfo)")
         }
     }
+    
+    //MARK: Pills
+    func saveNewMedicament(title:String,dosage:String,type:String,frequency:String){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Medicament", in: managedContext)!
+        let newMedicament = NSManagedObject(entity: entity, insertInto: managedContext)
+        newMedicament.setValue(title, forKey: "title")
+        newMedicament.setValue(dosage, forKey: "dosage")
+        newMedicament.setValue(type, forKey: "type")
+        newMedicament.setValue(frequency, forKey: "frequency")
+        do{
+            try managedContext.save()
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
+        }
+    }
+    
+    func deleteMedicament(medicament:Medicament){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        let managedContext = appDelegate.persistentContainer.viewContext
+        managedContext.delete(medicament)
+        do{
+            try managedContext.save()
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
+        }
+    }
 }
+

@@ -69,23 +69,6 @@ class PillsTableViewController: UITableViewController {
         return sortedArray
     }
     
-    func saveNewMedicament(title:String,dosage:String,type:String,frequency:String){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Medicament", in: managedContext)!
-        let newMedicament = NSManagedObject(entity: entity, insertInto: managedContext)
-        newMedicament.setValue(title, forKey: "title")
-        newMedicament.setValue(dosage, forKey: "dosage")
-        newMedicament.setValue(type, forKey: "type")
-        newMedicament.setValue(frequency, forKey: "frequency")
-        do{
-            try managedContext.save()
-            originalPill.append(newMedicament)
-        } catch let error as NSError{
-            print("Could not save.\(error),\(error.userInfo)")
-        }
-        
-    }
     
     
     //MARK: TableViewDataSource
@@ -154,17 +137,9 @@ class PillsTableViewController: UITableViewController {
         
         let currentSection = sectionOfDay[indexPath.section]
         let actionSwipeDelete = UIContextualAction(style: .normal, title: "Удалить") { [self] _, _, _ in
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-            let managedContext = appDelegate.persistentContainer.viewContext
-            managedContext.delete(originalPill[indexPath.row])
-            do{
-                try managedContext.save()
-                originalPill.remove(at: indexPath.row)
-                //pills = sortForSectionOfDay(arrayOfMedicament: originalPill)
-                tableView.reloadData()
-            } catch let error as NSError{
-                print("Could not save.\(error),\(error.userInfo)")
-            }
+            deleteMedicament(medicament: originalPill[indexPath.row] as! Medicament)
+            originalPill.remove(at: indexPath.row)
+            tableView.reloadData()
         }
         actionSwipeDelete.backgroundColor = .systemGray
         return UISwipeActionsConfiguration(actions: [actionSwipeDelete])
