@@ -1,13 +1,13 @@
 //
-//  MyVisitsToDoctorController.swift
+//  NewVisitController.swift
 //  MedicalCardVersion2
 //
-//  Created by Вячеслав Гудзенко on 27.05.2022.
+//  Created by Вячеслав Гудзенко on 27.06.2022.
 //
 
 import UIKit
 
-class MyVisitsToDoctorController: UITableViewController {
+class NewVisitController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,12 +23,12 @@ class MyVisitsToDoctorController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 6
     }
 
     /*

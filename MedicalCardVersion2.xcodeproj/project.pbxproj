@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3E17BC0A286888CE00698692 /* DiagnosisPrototypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E17BC09286888CE00698692 /* DiagnosisPrototypeCell.swift */; };
+		3E1953B7286A0362006AC405 /* NewVisitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1953B6286A0362006AC405 /* NewVisitController.swift */; };
 		3E1E06BD2822D24100B5A9D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E06BC2822D24100B5A9D3 /* AppDelegate.swift */; };
 		3E1E06BF2822D24100B5A9D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E06BE2822D24100B5A9D3 /* SceneDelegate.swift */; };
 		3E1E06C42822D24100B5A9D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E1E06C22822D24100B5A9D3 /* Main.storyboard */; };
@@ -47,6 +48,8 @@
 		3E50447E284432210095A304 /* Analysis+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50447C284432210095A304 /* Analysis+CoreDataProperties.swift */; };
 		3E5044812844387A0095A304 /* NewAnalysisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5044802844387A0095A304 /* NewAnalysisController.swift */; };
 		3E504483284448EB0095A304 /* DiagnosesListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E504482284448EB0095A304 /* DiagnosesListController.swift */; };
+		3E5F4DCD2869FBC400DDBABE /* VisitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F4DCB2869FBC400DDBABE /* VisitCell.swift */; };
+		3E5F4DCE2869FBC400DDBABE /* VisitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5F4DCC2869FBC400DDBABE /* VisitCell.xib */; };
 		3E7AC4A02865FC6B00FF41E5 /* RedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AC49F2865FC6B00FF41E5 /* RedButton.swift */; };
 		3E7AC4A32866775B00FF41E5 /* MedicalAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AC4A22866775B00FF41E5 /* MedicalAlert.swift */; };
 		3E8A4BFE28688EEA00440F11 /* DiagnosisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A4BFC28688EEA00440F11 /* DiagnosisCell.swift */; };
@@ -61,6 +64,7 @@
 
 /* Begin PBXFileReference section */
 		3E17BC09286888CE00698692 /* DiagnosisPrototypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisPrototypeCell.swift; sourceTree = "<group>"; };
+		3E1953B6286A0362006AC405 /* NewVisitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVisitController.swift; sourceTree = "<group>"; };
 		3E1E06B92822D24100B5A9D3 /* MedicalCardVersion2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedicalCardVersion2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E1E06BC2822D24100B5A9D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E1E06BE2822D24100B5A9D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 		3E50447C284432210095A304 /* Analysis+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analysis+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3E5044802844387A0095A304 /* NewAnalysisController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAnalysisController.swift; sourceTree = "<group>"; };
 		3E504482284448EB0095A304 /* DiagnosesListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosesListController.swift; sourceTree = "<group>"; };
+		3E5F4DCB2869FBC400DDBABE /* VisitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitCell.swift; sourceTree = "<group>"; };
+		3E5F4DCC2869FBC400DDBABE /* VisitCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisitCell.xib; sourceTree = "<group>"; };
 		3E7AC49F2865FC6B00FF41E5 /* RedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedButton.swift; sourceTree = "<group>"; };
 		3E7AC4A22866775B00FF41E5 /* MedicalAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalAlert.swift; sourceTree = "<group>"; };
 		3E8A4BFC28688EEA00440F11 /* DiagnosisCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisCell.swift; sourceTree = "<group>"; };
@@ -189,10 +195,10 @@
 		3E1E06D52822D70200B5A9D3 /* Card */ = {
 			isa = PBXGroup;
 			children = (
+				3E5F4DCA2869F8F800DDBABE /* MyVisitToDoctor */,
 				3E50447F284432520095A304 /* MyAnalyzes */,
 				3E43DAA128416A1100B73761 /* MyDiagnoses */,
 				3E1E06E02822D78800B5A9D3 /* CardTableViewController.swift */,
-				3E43DA6328414F6500B73761 /* MyVisitsToDoctorController.swift */,
 			);
 			path = Card;
 			sourceTree = "<group>";
@@ -280,6 +286,8 @@
 				3E17BC09286888CE00698692 /* DiagnosisPrototypeCell.swift */,
 				3E8A4BFC28688EEA00440F11 /* DiagnosisCell.swift */,
 				3E8A4BFD28688EEA00440F11 /* DiagnosisCell.xib */,
+				3E5F4DCB2869FBC400DDBABE /* VisitCell.swift */,
+				3E5F4DCC2869FBC400DDBABE /* VisitCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -292,6 +300,15 @@
 				3E504482284448EB0095A304 /* DiagnosesListController.swift */,
 			);
 			path = MyAnalyzes;
+			sourceTree = "<group>";
+		};
+		3E5F4DCA2869F8F800DDBABE /* MyVisitToDoctor */ = {
+			isa = PBXGroup;
+			children = (
+				3E43DA6328414F6500B73761 /* MyVisitsToDoctorController.swift */,
+				3E1953B6286A0362006AC405 /* NewVisitController.swift */,
+			);
+			path = MyVisitToDoctor;
 			sourceTree = "<group>";
 		};
 		3E7AC4A12866773C00FF41E5 /* Views */ = {
@@ -374,6 +391,7 @@
 				3E36FB4C2847A5A300F101BC /* AnalysisCell.xib in Resources */,
 				3E8A4BFF28688EEA00440F11 /* DiagnosisCell.xib in Resources */,
 				3E1E06C62822D24200B5A9D3 /* Assets.xcassets in Resources */,
+				3E5F4DCE2869FBC400DDBABE /* VisitCell.xib in Resources */,
 				3E1E06C42822D24100B5A9D3 /* Main.storyboard in Resources */,
 				3EA008112829CD1F00B15612 /* TypicallCell.xib in Resources */,
 			);
@@ -411,11 +429,13 @@
 				3E43DA6628414F7C00B73761 /* MyAnalyzesController.swift in Sources */,
 				3E1EA662282894FB00818056 /* DoctorsProfessionsController.swift in Sources */,
 				3E504483284448EB0095A304 /* DiagnosesListController.swift in Sources */,
+				3E5F4DCD2869FBC400DDBABE /* VisitCell.swift in Sources */,
 				3E36CBF82841896C009556A1 /* Doctor+CoreDataClass.swift in Sources */,
 				3EA008102829CD1F00B15612 /* TypicallCell.swift in Sources */,
 				3E5044812844387A0095A304 /* NewAnalysisController.swift in Sources */,
 				3E1E06DD2822D76A00B5A9D3 /* DoctorsTableViewController.swift in Sources */,
 				3E1E06E92822D9C300B5A9D3 /* PillsTableViewCell.swift in Sources */,
+				3E1953B7286A0362006AC405 /* NewVisitController.swift in Sources */,
 				3EA0080D2829C74700B15612 /* ProfessionsCell.swift in Sources */,
 				3E43DA6428414F6500B73761 /* MyVisitsToDoctorController.swift in Sources */,
 				3E36FB4B2847A5A300F101BC /* AnalysisCell.swift in Sources */,

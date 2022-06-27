@@ -206,5 +206,12 @@ extension UIViewController{
             print("Could not save.\(error),\(error.userInfo)")
         }
     }
+    
+    //MARK: Visits
+    func createNewVisit(){
+        let newVisit  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewVisitController") as! NewVisitController
+        navigationController?.pushViewController(newVisit, animated: true)
+    }
+    
 }
 
