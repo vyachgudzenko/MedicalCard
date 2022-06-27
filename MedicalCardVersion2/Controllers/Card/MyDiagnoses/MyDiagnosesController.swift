@@ -55,50 +55,11 @@ class MyDiagnosesController: UIViewController {
     }
     
     //MARK: Other function
-    private func save(title:String,description:String,date:Date,doctor:Doctor){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Diagnosis", in: managedContext)!
-        let newDiagnosis = NSManagedObject(entity: entity, insertInto: managedContext)
-        newDiagnosis.setValue(title, forKey: "title")
-        newDiagnosis.setValue(description, forKey: "descriptionOfDiagnosis")
-        newDiagnosis.setValue(date, forKey: "date")
-        newDiagnosis.setValue(doctor.getFullName(), forKey: "doctorFullName")
-        newDiagnosis.setValue(doctor, forKey: "doctor")
-        do{
-            try managedContext.save()
-        } catch let error as NSError{
-            print("Could not save.\(error),\(error.userInfo)")
-        }
-    }
-    
-    func createNewDiagnosisController(){
-        let newDiagnosis = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewDiagnosisController") as! NewDiagnosisController
-        newDiagnosis.doAfterCreate = {
-            [self] titleOfDiagnosis,descriptionOfDiagnosis,date,doctor in
-            save(title: titleOfDiagnosis, description: descriptionOfDiagnosis, date: date, doctor: doctor)
-            
-        }
-        navigationController?.pushViewController(newDiagnosis, animated: true)
-    }
-    
     @objc
     func floatButtonTapped(){
         createNewDiagnosisController()
     }
     
-    private func deleteDiagnosis(diagnosis:Diagnosis, index:Int){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-        let managedContext = appDelegate.persistentContainer.viewContext
-        managedContext.delete(diagnosis)
-        do{
-            try managedContext.save()
-            diagnoses.remove(at: index)
-            tableView.reloadData()
-        } catch let error as NSError{
-            print("Could not save.\(error),\(error.userInfo)")
-        }
-    }
     
     private func canBeDeleteDiagnosis(diagnosis:Diagnosis) -> Bool{
         if hasAnalysisThisDiagnosis(diagnosisTitle: diagnosis.title!){
@@ -108,23 +69,7 @@ class MyDiagnosesController: UIViewController {
         }
     }
     
-    private func hasAnalysisThisDiagnosis(diagnosisTitle:String) -> Bool{
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest: NSFetchRequest<Analysis>
-        fetchRequest = Analysis.fetchRequest()
-        fetchRequest.predicate = NSPredicate(
-            format: "diagnosisTitle LIKE %@", diagnosisTitle)
-        do{
-            let object = try managedContext.fetch(fetchRequest)
-            if object.isEmpty{
-                return false
-            }
-        } catch{
-            fatalError()
-        }
-        return true
-    }
+    
 }
 //MARK: TableViewDataSource
 extension MyDiagnosesController:UITableViewDataSource{
@@ -157,6 +102,8 @@ extension MyDiagnosesController:UITableViewDelegate{
         let actionSwipe = UIContextualAction(style: .normal, title: "Удалить") { [self] _, _, _ in
             if canBeDeleteDiagnosis(diagnosis: diagnoses[indexPath.row] as! Diagnosis){
                 deleteDiagnosis(diagnosis: diagnoses[indexPath.row] as! Diagnosis, index: indexPath.row)
+                diagnoses.remove(at: indexPath.row)
+                tableView.reloadData()
             } else {
                 showAlert()
             }
