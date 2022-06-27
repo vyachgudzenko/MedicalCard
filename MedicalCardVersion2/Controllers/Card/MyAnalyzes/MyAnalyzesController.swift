@@ -53,45 +53,10 @@ class MyAnalyzesController: UIViewController {
         floatButton.frame = CGRect(x: view.frame.width - 90, y: view.frame.height - view.frame.height * 0.2, width: 70, height: 70)
     }
     //MARK: Other function
-    private  func save(title:String,descriptionofAnalysis:String,result:String,date:Date,doctor:Doctor,diagnosis:Diagnosis){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Analysis", in: managedContext)!
-        let newAnalysis = NSManagedObject(entity: entity, insertInto: managedContext)
-        newAnalysis.setValue(title, forKey: "title")
-        newAnalysis.setValue(descriptionofAnalysis, forKey: "descriptionOfAnalysis")
-        newAnalysis.setValue(result, forKey: "result")
-        newAnalysis.setValue(date, forKey: "date")
-        newAnalysis.setValue(doctor, forKey: "doctor")
-        newAnalysis.setValue(doctor.getFullName(), forKey: "doctorFullName")
-        newAnalysis.setValue(diagnosis, forKey: "diagnosis")
-        newAnalysis.setValue(diagnosis.title, forKey: "diagnosisTitle")
-    }
-
-    func createNewAnalisys(){
-        let newAnalisys = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewAnalysisController") as! NewAnalysisController
-        newAnalisys.doAfterCreate = { [self]
-            titleOfAnalysis,descriptionOfAnalysis,result,date,doctor,diagnosis in
-            save(title: titleOfAnalysis, descriptionofAnalysis: descriptionOfAnalysis, result: result, date: date, doctor: doctor, diagnosis: diagnosis)
-        }
-        navigationController?.pushViewController(newAnalisys, animated: true)
-    }
-    
     @objc
     func floatButtonTapped(){
         createNewAnalisys()
     }
-    
-    // MARK: - Navigation
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toNewAnalysis"{
-            let destination = segue.destination as! NewAnalysisController
-            destination.doAfterCreate = { [self]
-                titleOfAnalysis,descriptionOfAnalysis,result,date,doctor,diagnosis in
-                save(title: titleOfAnalysis, descriptionofAnalysis: descriptionOfAnalysis, result: result, date: date, doctor: doctor, diagnosis: diagnosis)
-            }
-        }
-    }*/
 }
 
 extension MyAnalyzesController:UITableViewDataSource{
@@ -116,16 +81,7 @@ extension MyAnalyzesController:UITableViewDataSource{
 extension MyAnalyzesController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionSwipe = UIContextualAction(style: .normal, title: "Удалить") { [self] _, _, _ in
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-            let managedContext = appDelegate.persistentContainer.viewContext
-            managedContext.delete(analyzes[indexPath.row])
-            do{
-                try managedContext.save()
-                analyzes.remove(at: indexPath.row)
-                tableView.reloadData()
-            } catch let error as NSError{
-                print("Could not save.\(error),\(error.userInfo)")
-            }
+            
         }
         actionSwipe.backgroundColor = .systemGray
         return UISwipeActionsConfiguration(actions: [actionSwipe])

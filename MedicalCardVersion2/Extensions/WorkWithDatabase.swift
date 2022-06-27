@@ -142,4 +142,40 @@ extension UIViewController{
         }
         return true
     }
+    
+    //MARK: Analizes
+    func saveAnalysis(title:String,descriptionofAnalysis:String,result:String,date:Date,doctor:Doctor,diagnosis:Diagnosis){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Analysis", in: managedContext)!
+        let newAnalysis = NSManagedObject(entity: entity, insertInto: managedContext)
+        newAnalysis.setValue(title, forKey: "title")
+        newAnalysis.setValue(descriptionofAnalysis, forKey: "descriptionOfAnalysis")
+        newAnalysis.setValue(result, forKey: "result")
+        newAnalysis.setValue(date, forKey: "date")
+        newAnalysis.setValue(doctor, forKey: "doctor")
+        newAnalysis.setValue(doctor.getFullName(), forKey: "doctorFullName")
+        newAnalysis.setValue(diagnosis, forKey: "diagnosis")
+        newAnalysis.setValue(diagnosis.title, forKey: "diagnosisTitle")
+    }
+
+    func createNewAnalisys(){
+        let newAnalisys = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewAnalysisController") as! NewAnalysisController
+        newAnalisys.doAfterCreate = { [self]
+            titleOfAnalysis,descriptionOfAnalysis,result,date,doctor,diagnosis in
+            saveAnalysis(title: titleOfAnalysis, descriptionofAnalysis: descriptionOfAnalysis, result: result, date: date, doctor: doctor, diagnosis: diagnosis)
+        }
+        navigationController?.pushViewController(newAnalisys, animated: true)
+    }
+    
+    func deleteAnalysis(analysis:Analysis){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        let managedContext = appDelegate.persistentContainer.viewContext
+        managedContext.delete(analysis)
+        do{
+            try managedContext.save()
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
+        }
+    }
 }
