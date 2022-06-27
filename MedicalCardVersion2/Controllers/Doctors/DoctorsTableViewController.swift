@@ -59,23 +59,6 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
     }
     
     //MARK: Other function
-    private func save(firstName:String,lastName:String,clinic:String,phoneNumber:String,profession:String){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Doctor", in: managedContext)!
-        let doctor = NSManagedObject(entity: entity, insertInto: managedContext)
-        doctor.setValue(firstName, forKey: "firstName")
-        doctor.setValue(lastName, forKey: "lastName")
-        doctor.setValue(clinic, forKey: "clinic")
-        doctor.setValue(phoneNumber, forKey: "phoneNumber")
-        doctor.setValue(profession, forKey: "profession")
-        do{
-            try managedContext.save()
-            tableView.reloadData()
-        } catch let error as NSError{
-            print("Could not save.\(error),\(error.userInfo)")
-        }
-    }
     
     private func canBeDeleteDoctor(doctor:Doctor) -> Bool{
         if hasDiagnosisThisDoctor(doctor: doctor.getFullName()) == true || hasAnalysisThisDoctor(doctor: doctor.getFullName()) == true {
@@ -83,53 +66,6 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
         } else {
             return true
         }
-    }
-    
-    private func hasDiagnosisThisDoctor(doctor:String) -> Bool{
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest: NSFetchRequest<Diagnosis>
-        fetchRequest = Diagnosis.fetchRequest()
-        fetchRequest.predicate = NSPredicate(
-            format: "doctorFullName LIKE %@", doctor)
-        do{
-            let object = try managedContext.fetch(fetchRequest)
-            if object.isEmpty{
-                return false
-            }
-        } catch{
-            fatalError()
-        }
-        return true
-    }
-    
-    private func hasAnalysisThisDoctor(doctor:String) -> Bool {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest: NSFetchRequest<Analysis>
-        fetchRequest = Analysis.fetchRequest()
-        fetchRequest.predicate = NSPredicate(
-            format: "doctorFullName LIKE %@", doctor)
-        do{
-            let object = try managedContext.fetch(fetchRequest)
-            if object.isEmpty{
-                return false
-            }
-        } catch{
-            fatalError()
-        }
-        return true
-    }
-    
-    private func createNewDoctorController(){
-        let newDoctorScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewDoctorController") as! NewDoctorController
-        newDoctorScreen.doAfterCreate = {
-            [self] firstName,lastName,clinic,phoneNumber,profession in
-            save(firstName: firstName, lastName: lastName, clinic: clinic, phoneNumber: phoneNumber, profession: profession)
-        }
-        self.navigationController?.pushViewController(newDoctorScreen, animated: true)
-        
-        
     }
     
     @objc
@@ -185,18 +121,11 @@ extension DoctorsTableViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionSwipe = UIContextualAction(style: .normal, title: "Удалить") { [self] _, _, _ in
             if canBeDeleteDoctor(doctor: doctors[indexPath.row] as! Doctor){
-                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-                let managedContext = appDelegate.persistentContainer.viewContext
+                deleteDoctor(doctor: doctors[indexPath.row] as! Doctor)
+                doctors.remove(at: indexPath.row)
+                tableView.reloadData()
                 
-                managedContext.delete(doctors[indexPath.row])
-                do{
-                    try managedContext.save()
-                    doctors.remove(at: indexPath.row)
-                    tableView.reloadData()
-                } catch let error as NSError{
-                    print("Could not save.\(error),\(error.userInfo)")
-                }
-            } else {
+        } else{
                 showAlertCanBeDeletedDoctor()
             }
         }
