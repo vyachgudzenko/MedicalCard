@@ -847,7 +847,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Диагнозы" id="jPR-AL-rAB">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="twZ-Pd-rzn"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="twZ-Pd-rzn">
+                            <connections>
+                                <action selector="addButtonTapped:" destination="pa0-vr-itA" id="RvI-Ut-NM8"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Cl-JB-h2I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -13,6 +13,17 @@ class DiagnosesListController: UITableViewController {
     var diagnoses:[NSManagedObject] = []
     var doAfterSelected:((Diagnosis) -> Void)?
     
+    
+    @IBAction func addButtonTapped(_ sender: Any) {
+        let newDiagnosis = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewDiagnosisController") as! NewDiagnosisController
+        newDiagnosis.doAfterCreate = {
+            [self] titleOfDiagnosis,descriptionOfDiagnosis,date,doctor in
+            save(title: titleOfDiagnosis, description: descriptionOfDiagnosis, date: date, doctor: doctor)
+            
+        }
+        navigationController?.pushViewController(newDiagnosis, animated: true)
+    }
+    
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +41,24 @@ class DiagnosesListController: UITableViewController {
         do{
             diagnoses = try managedContext.fetch(fetchRequest)
             tableView.reloadData()
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
+        }
+    }
+    
+    //MARK: Other function
+    private func save(title:String,description:String,date:Date,doctor:Doctor){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Diagnosis", in: managedContext)!
+        let newDiagnosis = NSManagedObject(entity: entity, insertInto: managedContext)
+        newDiagnosis.setValue(title, forKey: "title")
+        newDiagnosis.setValue(description, forKey: "descriptionOfDiagnosis")
+        newDiagnosis.setValue(date, forKey: "date")
+        newDiagnosis.setValue(doctor.getFullName(), forKey: "doctorFullName")
+        newDiagnosis.setValue(doctor, forKey: "doctor")
+        do{
+            try managedContext.save()
         } catch let error as NSError{
             print("Could not save.\(error),\(error.userInfo)")
         }
