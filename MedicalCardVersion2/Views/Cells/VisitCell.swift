@@ -8,7 +8,23 @@
 import UIKit
 
 class VisitCell: UITableViewCell {
-
+    
+    
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var complaintLAbel: UILabel!
+    @IBOutlet weak var doctorLabel: UILabel!
+    @IBOutlet weak var doctorImageView: UIImageView!
+    
+    func setupCell(visit:VisitToDoctor){
+        let dataFormater = DateFormatter()
+        dataFormater.dateFormat = "yyyy-MM-dd"
+        let formatedDate = dataFormater.string(from: visit.date!)
+        dateLabel.text = formatedDate
+        complaintLAbel.text = visit.complaint
+        doctorLabel.text = visit.doctorFullName
+        doctorImageView.image = UIImage(named: "doctor")?.withRenderingMode(.alwaysTemplate)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

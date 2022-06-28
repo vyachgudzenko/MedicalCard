@@ -9,14 +9,35 @@ import UIKit
 
 class NewVisitController: UITableViewController {
 
+    var complaint:String = ""
+    var date = Date()
+    var doctor:Doctor?
+    var diagnosis:Diagnosis?
+    
+    var doAfterCreate:((String,Date,Doctor?,Diagnosis?) -> Void)?
+    
+    
+    @IBOutlet weak var complaintTextField: UITextField!
+    
+    @IBOutlet weak var datePiecker: UIDatePicker!
+    @IBOutlet weak var doctorLabel: UILabel!
+    @IBOutlet weak var diagnosisLabel: UILabel!
+    @IBOutlet weak var countOfAnalysisLAbel: UILabel!
+    @IBOutlet weak var countOfMedicamentLabel: UILabel!
+    
+    @IBAction func saveButtonTapped(_ sender:UIBarButtonItem){
+        complaint = complaintTextField.text ?? ""
+        date = datePiecker.date
+        doAfterCreate?(complaint,date,doctor,diagnosis)
+        navigationController?.popViewController(animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        doctorLabel.text = doctor?.getFullName() ?? "Выберите врача"
+        diagnosisLabel.text = diagnosis?.title ?? "Выберите диагноз"
+        countOfAnalysisLAbel.text = "0 шт."
+        countOfMedicamentLabel.text = "0 шт."
     }
 
     // MARK: - Table view data source
@@ -41,49 +62,30 @@ class NewVisitController: UITableViewController {
     }
     */
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
+   
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "fromVisitToDoctors"{
+            let destination = segue.destination as! DoctorsListController
+            destination.doAfterSelected = {
+                [self] selectedDoctor in
+                self.doctor = selectedDoctor
+                self.doctorLabel.text = selectedDoctor.getFullName()
+            }
+        }
+        if segue.identifier == "fromVisitToDiagnosis"{
+            let destination = segue.destination as! DiagnosesListController
+            destination.doAfterSelected = {
+                selectedDiagnosis in
+                self.diagnosis = selectedDiagnosis
+                self.diagnosisLabel.text = selectedDiagnosis.title
+            }
+        }
+        
+        
     }
-    */
+    
 
 }
