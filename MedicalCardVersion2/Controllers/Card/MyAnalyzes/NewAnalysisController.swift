@@ -10,6 +10,7 @@ import UIKit
 class NewAnalysisController: UITableViewController {
     
     
+    
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var resultTextField: UITextField!
@@ -24,10 +25,11 @@ class NewAnalysisController: UITableViewController {
     var dateAnalysis:Date = Date()
     var doctor:Doctor?
     var diagnosis:Diagnosis?
+    var visitUUID:UUID?
     var doctorLabelText = "Выберите врача"
     var diagnosisLabelText = "Выберите диагноз"
     
-    var doAfterCreate:((String,String,String,Date,Doctor,Diagnosis) -> Void)?
+    var doAfterCreate:((String,String,String,Date,Doctor,Diagnosis,String?) -> Void)?
     
     var alert:MedicalAlert?
     
@@ -63,7 +65,7 @@ class NewAnalysisController: UITableViewController {
             let description = descriptionTextField.text!
             let result = resultTextField.text!
             let date = datePiecker.date
-            doAfterCreate?(title,description,result,date,doctor!,diagnosis!)
+            doAfterCreate?(title,description,result,date,doctor!,diagnosis!,visitUUID?.uuidString)
             navigationController?.popViewController(animated: true)
         }
         

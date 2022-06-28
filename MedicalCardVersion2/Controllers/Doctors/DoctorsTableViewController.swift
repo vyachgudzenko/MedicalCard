@@ -79,7 +79,7 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
         medicalAlert.showAlert(title: "Упс...", message: "Невозможно удалить эту карточку данных - есть связаные данные", viewController: self)
     }
 }
-
+//MARK: TableViewDataSource
 extension DoctorsTableViewController:UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -99,6 +99,7 @@ extension DoctorsTableViewController:UITableViewDataSource{
 
 }
 
+//MARK: TableViewDelegate
 extension DoctorsTableViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionSwipe = UIContextualAction(style: .normal, title: "Добавить в контакты") { [self]  _, _, _ in

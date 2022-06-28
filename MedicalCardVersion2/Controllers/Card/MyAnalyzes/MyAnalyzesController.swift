@@ -20,7 +20,7 @@ class MyAnalyzesController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
-        createNewAnalisys()
+        createNewAnalisys(uuid: nil)
     }
     
     //MARK: Life cycle
@@ -55,10 +55,10 @@ class MyAnalyzesController: UIViewController {
     //MARK: Other function
     @objc
     func floatButtonTapped(){
-        createNewAnalisys()
+        createNewAnalisys(uuid: nil)
     }
 }
-
+//MARK: TableView DataSource
 extension MyAnalyzesController:UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -73,15 +73,18 @@ extension MyAnalyzesController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AnalysisCell", for: indexPath) as! AnalysisCell
         let currentAnalysis = analyzes[indexPath.row] as! Analysis
+        print(currentAnalysis.visitUUID)
         cell.setupCell(analysis: currentAnalysis)
         return cell
     }
 }
-
+//MARK: TableView Delegate
 extension MyAnalyzesController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionSwipe = UIContextualAction(style: .normal, title: "Удалить") { [self] _, _, _ in
-            
+            deleteAnalysis(analysis: analyzes[indexPath.row] as! Analysis)
+            tableView.reloadData()
+            analyzes.remove(at: indexPath.row)
         }
         actionSwipe.backgroundColor = .systemGray
         return UISwipeActionsConfiguration(actions: [actionSwipe])
@@ -100,7 +103,7 @@ extension MyAnalyzesController:UITableViewDelegate{
         editScreen.diagnosis = currentAnalysis.diagnosis
         editScreen.diagnosisLabelText = currentAnalysis.diagnosisTitle!
         editScreen.doAfterCreate = {
-            titleOfAnalysis,descriptionOfAnalysis,result,date,doctor,diagnosis in
+            titleOfAnalysis,descriptionOfAnalysis,result,date,doctor,diagnosis,visitUUID in
             currentAnalysis.title = titleOfAnalysis
             currentAnalysis.descriptionOfAnalysis = descriptionOfAnalysis
             currentAnalysis.result = result

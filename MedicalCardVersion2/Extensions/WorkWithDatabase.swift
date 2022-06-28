@@ -144,7 +144,7 @@ extension UIViewController{
     }
     
     //MARK: Analizes
-    func saveAnalysis(title:String,descriptionofAnalysis:String,result:String,date:Date,doctor:Doctor,diagnosis:Diagnosis){
+    func saveAnalysis(title:String,descriptionofAnalysis:String,result:String,date:Date,doctor:Doctor,diagnosis:Diagnosis,visitUUID:String?){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Analysis", in: managedContext)!
@@ -157,13 +157,20 @@ extension UIViewController{
         newAnalysis.setValue(doctor.getFullName(), forKey: "doctorFullName")
         newAnalysis.setValue(diagnosis, forKey: "diagnosis")
         newAnalysis.setValue(diagnosis.title, forKey: "diagnosisTitle")
+        newAnalysis.setValue(visitUUID, forKey: "visitUUID")
+        do{
+            try managedContext.save()
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
+        }
     }
 
-    func createNewAnalisys(){
+    func createNewAnalisys(uuid:UUID?){
         let newAnalisys = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewAnalysisController") as! NewAnalysisController
+        newAnalisys.visitUUID = uuid
         newAnalisys.doAfterCreate = { [self]
-            titleOfAnalysis,descriptionOfAnalysis,result,date,doctor,diagnosis in
-            saveAnalysis(title: titleOfAnalysis, descriptionofAnalysis: descriptionOfAnalysis, result: result, date: date, doctor: doctor, diagnosis: diagnosis)
+            titleOfAnalysis,descriptionOfAnalysis,result,date,doctor,diagnosis,visitUUID in
+            saveAnalysis(title: titleOfAnalysis, descriptionofAnalysis: descriptionOfAnalysis, result: result, date: date, doctor: doctor, diagnosis: diagnosis,visitUUID: visitUUID)
         }
         navigationController?.pushViewController(newAnalisys, animated: true)
     }
@@ -210,13 +217,13 @@ extension UIViewController{
     //MARK: Visits
     func createNewVisit(){
         let newVisit  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewVisitController") as! NewVisitController
-        newVisit.doAfterCreate = {[self] complaint,date,doctor,diagnosis in
-            saveNewVisit(complaint: complaint, date: date, doctor: doctor, diagnosis: diagnosis)
+        newVisit.doAfterCreate = {[self] complaint,date,doctor,diagnosis,uuid in
+            saveNewVisit(complaint: complaint, date: date, doctor: doctor, diagnosis: diagnosis,uuid: uuid)
         }
         navigationController?.pushViewController(newVisit, animated: true)
     }
     
-    func saveNewVisit(complaint:String,date:Date,doctor:Doctor?,diagnosis:Diagnosis?){
+    func saveNewVisit(complaint:String?,date:Date?,doctor:Doctor?,diagnosis:Diagnosis?,uuid:UUID){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "VisitToDoctor", in: managedContext)!
@@ -227,7 +234,6 @@ extension UIViewController{
         newVisit.setValue(doctor?.getFullName(), forKey: "doctorFullName")
         newVisit.setValue(diagnosis, forKey: "diagnosis")
         newVisit.setValue(diagnosis?.title, forKey: "diagnosisTitle")
-        let uuid = UUID()
         newVisit.setValue(uuid, forKey: "uuid")
         do{
             try managedContext.save()

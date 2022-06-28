@@ -9,12 +9,14 @@ import UIKit
 
 class NewVisitController: UITableViewController {
 
-    var complaint:String = ""
-    var date = Date()
+    var complaint:String? = ""
+    var date:Date?
     var doctor:Doctor?
     var diagnosis:Diagnosis?
+    var uuid:UUID?
     
-    var doAfterCreate:((String,Date,Doctor?,Diagnosis?) -> Void)?
+    
+    var doAfterCreate:((String?,Date?,Doctor?,Diagnosis?,UUID) -> Void)?
     
     
     @IBOutlet weak var complaintTextField: UITextField!
@@ -28,16 +30,20 @@ class NewVisitController: UITableViewController {
     @IBAction func saveButtonTapped(_ sender:UIBarButtonItem){
         complaint = complaintTextField.text ?? ""
         date = datePiecker.date
-        doAfterCreate?(complaint,date,doctor,diagnosis)
+        doAfterCreate?(complaint,date,doctor,diagnosis,uuid!)
         navigationController?.popViewController(animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        complaintTextField.text = complaint
         doctorLabel.text = doctor?.getFullName() ?? "Выберите врача"
         diagnosisLabel.text = diagnosis?.title ?? "Выберите диагноз"
         countOfAnalysisLAbel.text = "0 шт."
         countOfMedicamentLabel.text = "0 шт."
+        if uuid == nil{
+            uuid = UUID()
+        }
     }
 
     // MARK: - Table view data source
@@ -82,6 +88,12 @@ class NewVisitController: UITableViewController {
                 self.diagnosis = selectedDiagnosis
                 self.diagnosisLabel.text = selectedDiagnosis.title
             }
+        }
+        if segue.identifier == "fromVisitToAnalyzes"{
+            let destination = segue.destination as!
+            AnalyzesLisController
+            destination.visitUUID = uuid
+            tableView.reloadData()
         }
         
         

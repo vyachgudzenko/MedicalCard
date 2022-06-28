@@ -76,5 +76,29 @@ extension MyVisitsToDoctorController:UITableViewDataSource{
 }
 
 extension MyVisitsToDoctorController:UITableViewDelegate{
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentVisit = visits[indexPath.row] as! VisitToDoctor
+        let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewVisitController") as! NewVisitController
+        editScreen.complaint = currentVisit.complaint
+        editScreen.date = currentVisit.date
+        editScreen.diagnosis = currentVisit.diagnosis
+        editScreen.doctor = currentVisit.doctor
+        editScreen.uuid = currentVisit.uuid
+        editScreen.doAfterCreate = {[self] complaint,date,doctor,diagnosis,uuid in
+            currentVisit.complaint = complaint
+            currentVisit.date = date
+            currentVisit.diagnosis = diagnosis
+            currentVisit.doctor = doctor
+            currentVisit.uuid = uuid
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+            let managedContext = appDelegate.persistentContainer.viewContext
+            do{
+                try managedContext.save()
+            } catch let error as NSError{
+                print("Could not save.\(error),\(error.userInfo)")
+            }
+            tableView.reloadData()
+        }
+        navigationController?.pushViewController(editScreen, animated: true)
+    }
 }
