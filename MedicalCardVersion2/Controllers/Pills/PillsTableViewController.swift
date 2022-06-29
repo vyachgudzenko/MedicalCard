@@ -69,6 +69,11 @@ class PillsTableViewController: UITableViewController {
         return sortedArray
     }
     
+    @objc
+    func headerViewButtonTapped(){
+        
+    }
+    
     
     
     //MARK: TableViewDataSource
@@ -120,12 +125,21 @@ class PillsTableViewController: UITableViewController {
         case .evening:
             title = "Ужин"
         }
-        let titleLabel = UILabel(frame: CGRect(x: view.frame.width / 2 - 50, y: 0, width: 100 , height: 50))
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100 , height: 50))
         titleLabel.text = title
         titleLabel.textColor = .black
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.systemFont(ofSize: 25)
         headerView.addSubview(titleLabel)
+        let button = UIButton(type: .system)
+        button.frame = CGRect(x: view.frame.width - 140, y: 5, width: 100, height: 40)
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 10
+        button.layer.backgroundColor = UIColor.systemOrange.cgColor
+        button.setTitle("Выпито все", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(headerViewButtonTapped), for: .touchUpInside)
+        headerView.addSubview(button)
         return headerView
     }
     
