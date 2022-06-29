@@ -80,7 +80,7 @@
             </objects>
             <point key="canvasLocation" x="-949" y="1140"/>
         </scene>
-        <!--Мои лекарства-->
+        <!--Принимаемые лекарства-->
         <scene sceneID="fKW-G4-d5z">
             <objects>
                 <tableViewController id="P7B-6e-krs" customClass="PillsTableViewController" customModule="MedicalCardVersion2" customModuleProvider="target" sceneMemberID="viewController">
@@ -136,7 +136,7 @@
                             <outlet property="delegate" destination="P7B-6e-krs" id="0Rr-IY-MuW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Мои лекарства" id="wRI-UO-uQo">
+                    <navigationItem key="navigationItem" title="Принимаемые лекарства" id="wRI-UO-uQo">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="a9R-s5-Usj">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -594,7 +594,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYI-0w-n1x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="648" y="1841"/>
+            <point key="canvasLocation" x="-4552" y="2537"/>
         </scene>
         <!--Новый анализ-->
         <scene sceneID="dZR-Jf-Y9N">
@@ -920,7 +920,7 @@
             <objects>
                 <tableViewController id="xh2-QF-xxG" customClass="PillsFrequencyController" customModule="MedicalCardVersion2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="HVh-dH-Knn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -959,14 +959,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xeq-PX-Glo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-78" y="2545"/>
+            <point key="canvasLocation" x="-4967" y="3250"/>
         </scene>
         <!--Вид препарата-->
         <scene sceneID="EBy-48-BOT">
             <objects>
                 <tableViewController id="lEc-RU-HEP" customClass="PillsTypeTableViewController" customModule="MedicalCardVersion2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="lF7-Kl-8UW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -1017,7 +1017,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kuB-DD-acg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="751" y="2545"/>
+            <point key="canvasLocation" x="-4171" y="3250"/>
         </scene>
         <!--Новый диагноз-->
         <scene sceneID="Xj8-w0-Kzy">
@@ -1460,6 +1460,53 @@
             </objects>
             <point key="canvasLocation" x="-2201" y="3909"/>
         </scene>
+        <!--Мои лекарства-->
+        <scene sceneID="dq5-A7-xYh">
+            <objects>
+                <viewController id="3UB-MV-d7R" customClass="MyMedicamentController" customModule="MedicalCardVersion2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hc7-1l-69z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lOc-WY-szG">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="separatorColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="wzO-dL-eXN">
+                                        <rect key="frame" x="20" y="49.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wzO-dL-eXN" id="O3X-uv-PFo">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="r7A-Ws-GnQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="r7A-Ws-GnQ" firstAttribute="trailing" secondItem="lOc-WY-szG" secondAttribute="trailing" id="AaU-lr-juL"/>
+                            <constraint firstItem="r7A-Ws-GnQ" firstAttribute="bottom" secondItem="lOc-WY-szG" secondAttribute="bottom" id="M4w-VQ-Htc"/>
+                            <constraint firstItem="lOc-WY-szG" firstAttribute="top" secondItem="r7A-Ws-GnQ" secondAttribute="top" id="sQb-Uj-CDh"/>
+                            <constraint firstItem="lOc-WY-szG" firstAttribute="leading" secondItem="r7A-Ws-GnQ" secondAttribute="leading" id="wOA-ag-ndp"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Мои лекарства" id="je1-z4-ewn">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hqx-0D-VGa">
+                            <connections>
+                                <action selector="addButtonTapped:" destination="3UB-MV-d7R" id="gbR-Pq-oqK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="lOc-WY-szG" id="KNd-V3-0fA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uss-JF-mVY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4552" y="1841"/>
+        </scene>
         <!--Мои диагнозы-->
         <scene sceneID="62o-CW-vqk">
             <objects>
@@ -1701,6 +1748,39 @@
                                             <segue destination="DmD-5u-GMv" kind="show" id="k8D-yF-Dpf"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="117" id="T4x-e0-WWC">
+                                        <rect key="frame" x="20" y="369" width="374" height="117"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="T4x-e0-WWC" id="N4r-bv-LDp">
+                                            <rect key="frame" x="0.0" y="0.0" width="345.5" height="117"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мои лекарства" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGe-Wt-ORh">
+                                                    <rect key="frame" x="20" y="11" width="317.5" height="26.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Здесь хранятся все данные о Ваших назначенных лекарствах" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTc-gU-Kvx">
+                                                    <rect key="frame" x="20" y="47.5" width="305.5" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" red="0.17254901959999999" green="0.18823529410000001" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hTc-gU-Kvx" secondAttribute="trailing" constant="12" id="1Gn-c5-hqp"/>
+                                                <constraint firstItem="XGe-Wt-ORh" firstAttribute="leading" secondItem="N4r-bv-LDp" secondAttribute="leadingMargin" id="LBR-db-n3o"/>
+                                                <constraint firstItem="XGe-Wt-ORh" firstAttribute="trailing" secondItem="N4r-bv-LDp" secondAttribute="trailingMargin" id="VJ5-J3-sVC"/>
+                                                <constraint firstItem="hTc-gU-Kvx" firstAttribute="top" secondItem="XGe-Wt-ORh" secondAttribute="bottom" constant="10" id="oLY-WU-bky"/>
+                                                <constraint firstItem="XGe-Wt-ORh" firstAttribute="top" secondItem="N4r-bv-LDp" secondAttribute="topMargin" id="sCv-yA-Wep"/>
+                                                <constraint firstItem="hTc-gU-Kvx" firstAttribute="leading" secondItem="N4r-bv-LDp" secondAttribute="leadingMargin" id="y0U-u0-dA8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="3UB-MV-d7R" kind="show" id="3nM-hC-ywU"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -1713,7 +1793,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5WS-Q9-4XP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2623" y="1168"/>
+            <point key="canvasLocation" x="-2623.1884057971015" y="1167.8571428571429"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jZb-c9-qGZ">
@@ -1840,8 +1920,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="wUI-6C-i3F"/>
-        <segue reference="VMg-94-tAL"/>
-        <segue reference="5N7-YG-lda"/>
+        <segue reference="J8E-Qu-H53"/>
+        <segue reference="XxJ-4Y-pXF"/>
         <segue reference="IxQ-Ns-2N5"/>
     </inferredMetricsTieBreakers>
     <resources>

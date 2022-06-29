@@ -186,7 +186,7 @@ extension UIViewController{
         }
     }
     
-    //MARK: Pills
+    //MARK: Medicament
     func saveNewMedicament(title:String,dosage:String,type:String,frequency:String){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -201,6 +201,15 @@ extension UIViewController{
         } catch let error as NSError{
             print("Could not save.\(error),\(error.userInfo)")
         }
+    }
+    
+    func createNewMedicament(){
+        let newMedicament = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewPillController") as! NewPillController
+        newMedicament.doAfterEdit = {
+            [self] title,dosage,type,frequency in
+            saveNewMedicament(title: title, dosage: dosage, type: type, frequency: frequency)
+            }
+        navigationController?.pushViewController(newMedicament, animated: true)
     }
     
     func deleteMedicament(medicament:Medicament){

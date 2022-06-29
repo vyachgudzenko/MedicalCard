@@ -38,6 +38,9 @@
 		3E3B41062823029000531423 /* PillsTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B41052823029000531423 /* PillsTypeTableViewController.swift */; };
 		3E3B41082823031600531423 /* PillsFrequencyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B41072823031600531423 /* PillsFrequencyController.swift */; };
 		3E3F1855286B30D600C00A45 /* AnalyzesLisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F1854286B30D600C00A45 /* AnalyzesLisController.swift */; };
+		3E3F1858286C92C300C00A45 /* MyMedicamentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F1857286C92C300C00A45 /* MyMedicamentController.swift */; };
+		3E3F185B286C943300C00A45 /* MedicamentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F1859286C943300C00A45 /* MedicamentCell.swift */; };
+		3E3F185C286C943300C00A45 /* MedicamentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3F185A286C943300C00A45 /* MedicamentCell.xib */; };
 		3E43DA6228414F3C00B73761 /* MyDiagnosesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43DA6128414F3C00B73761 /* MyDiagnosesController.swift */; };
 		3E43DA6428414F6500B73761 /* MyVisitsToDoctorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43DA6328414F6500B73761 /* MyVisitsToDoctorController.swift */; };
 		3E43DA6628414F7C00B73761 /* MyAnalyzesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43DA6528414F7C00B73761 /* MyAnalyzesController.swift */; };
@@ -97,6 +100,9 @@
 		3E3B41052823029000531423 /* PillsTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsTypeTableViewController.swift; sourceTree = "<group>"; };
 		3E3B41072823031600531423 /* PillsFrequencyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsFrequencyController.swift; sourceTree = "<group>"; };
 		3E3F1854286B30D600C00A45 /* AnalyzesLisController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzesLisController.swift; sourceTree = "<group>"; };
+		3E3F1857286C92C300C00A45 /* MyMedicamentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMedicamentController.swift; sourceTree = "<group>"; };
+		3E3F1859286C943300C00A45 /* MedicamentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicamentCell.swift; sourceTree = "<group>"; };
+		3E3F185A286C943300C00A45 /* MedicamentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MedicamentCell.xib; sourceTree = "<group>"; };
 		3E43DA6128414F3C00B73761 /* MyDiagnosesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiagnosesController.swift; sourceTree = "<group>"; };
 		3E43DA6328414F6500B73761 /* MyVisitsToDoctorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitsToDoctorController.swift; sourceTree = "<group>"; };
 		3E43DA6528414F7C00B73761 /* MyAnalyzesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAnalyzesController.swift; sourceTree = "<group>"; };
@@ -197,6 +203,7 @@
 		3E1E06D52822D70200B5A9D3 /* Card */ = {
 			isa = PBXGroup;
 			children = (
+				3E3F1856286C915C00C00A45 /* MyMedicament */,
 				3E5F4DCA2869F8F800DDBABE /* MyVisitToDoctor */,
 				3E50447F284432520095A304 /* MyAnalyzes */,
 				3E43DAA128416A1100B73761 /* MyDiagnoses */,
@@ -266,6 +273,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		3E3F1856286C915C00C00A45 /* MyMedicament */ = {
+			isa = PBXGroup;
+			children = (
+				3E3F1857286C92C300C00A45 /* MyMedicamentController.swift */,
+			);
+			path = MyMedicament;
+			sourceTree = "<group>";
+		};
 		3E43DAA128416A1100B73761 /* MyDiagnoses */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +305,8 @@
 				3E8A4BFD28688EEA00440F11 /* DiagnosisCell.xib */,
 				3E5F4DCB2869FBC400DDBABE /* VisitCell.swift */,
 				3E5F4DCC2869FBC400DDBABE /* VisitCell.xib */,
+				3E3F1859286C943300C00A45 /* MedicamentCell.swift */,
+				3E3F185A286C943300C00A45 /* MedicamentCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -394,6 +411,7 @@
 				3E36FB4C2847A5A300F101BC /* AnalysisCell.xib in Resources */,
 				3E8A4BFF28688EEA00440F11 /* DiagnosisCell.xib in Resources */,
 				3E1E06C62822D24200B5A9D3 /* Assets.xcassets in Resources */,
+				3E3F185C286C943300C00A45 /* MedicamentCell.xib in Resources */,
 				3E5F4DCE2869FBC400DDBABE /* VisitCell.xib in Resources */,
 				3E1E06C42822D24100B5A9D3 /* Main.storyboard in Resources */,
 				3EA008112829CD1F00B15612 /* TypicallCell.xib in Resources */,
@@ -413,6 +431,7 @@
 				3E8A4C0328692AD800440F11 /* VisitToDoctor+CoreDataProperties.swift in Sources */,
 				3E43DA78284159B300B73761 /* NewDiagnosisController.swift in Sources */,
 				3E43DAA328416A3F00B73761 /* DoctorsListController.swift in Sources */,
+				3E3F185B286C943300C00A45 /* MedicamentCell.swift in Sources */,
 				3E17BC0A286888CE00698692 /* DiagnosisPrototypeCell.swift in Sources */,
 				3E3F1855286B30D600C00A45 /* AnalyzesLisController.swift in Sources */,
 				3E3123BB2831498900C58A00 /* PillsHelper.swift in Sources */,
@@ -444,6 +463,7 @@
 				3E43DA6428414F6500B73761 /* MyVisitsToDoctorController.swift in Sources */,
 				3E36FB4B2847A5A300F101BC /* AnalysisCell.swift in Sources */,
 				3E8A4C0228692AD800440F11 /* VisitToDoctor+CoreDataClass.swift in Sources */,
+				3E3F1858286C92C300C00A45 /* MyMedicamentController.swift in Sources */,
 				3E8A4BFE28688EEA00440F11 /* DiagnosisCell.swift in Sources */,
 				3E1E06BF2822D24100B5A9D3 /* SceneDelegate.swift in Sources */,
 				3E50447D284432210095A304 /* Analysis+CoreDataClass.swift in Sources */,
