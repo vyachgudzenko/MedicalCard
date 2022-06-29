@@ -27,10 +27,18 @@
         <attribute name="profession" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Medicament" representedClassName=".Medicament" syncable="YES">
+        <attribute name="amountDay" optional="YES" attributeType="String"/>
         <attribute name="dosage" optional="YES" attributeType="String"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="frequency" optional="YES" attributeType="String"/>
+        <attribute name="isOver" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isTaken" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="visitUUID" optional="YES" attributeType="String"/>
+        <relationship name="doctor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Doctor"/>
     </entity>
     <entity name="VisitToDoctor" representedClassName="VisitToDoctor" syncable="YES">
         <attribute name="complaint" optional="YES" attributeType="String"/>
@@ -45,7 +53,7 @@
         <element name="Analysis" positionX="-45" positionY="54" width="128" height="179"/>
         <element name="Diagnosis" positionX="-36" positionY="54" width="128" height="104"/>
         <element name="Doctor" positionX="-63" positionY="-18" width="128" height="104"/>
-        <element name="Medicament" positionX="-54" positionY="27" width="128" height="89"/>
+        <element name="Medicament" positionX="-54" positionY="27" width="128" height="209"/>
         <element name="VisitToDoctor" positionX="-45" positionY="90" width="128" height="134"/>
     </elements>
 </model>

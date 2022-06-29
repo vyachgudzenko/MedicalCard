@@ -32,7 +32,7 @@ class MedicamentCell: UITableViewCell {
         titleLabel.text = medicament.title
         typeLabel.text = titlesType[medicament.type!]!
         frequencyLabel.text = titlesFrequency[medicament.frequency!]!
-        doctorLabel.text = "Не выбран"
+        doctorLabel.text = medicament.doctor?.getFullName() ?? "Не указан"
         typeImageView.image = getCurrentImageForPillsList(medicament: medicament).withRenderingMode(.alwaysTemplate)
         doctorImageView.image = UIImage(named: "doctor")?.withRenderingMode(.alwaysTemplate)
     }

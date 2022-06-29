@@ -9,6 +9,9 @@ import UIKit
 
 class NewPillController: UITableViewController {
     
+    var doctor:Doctor?
+    var visitUUID:String?
+    
     var medicamentName = ""
     var medicamentDosage:String = "0"
     var medicamentType:String = "pill"
@@ -24,13 +27,31 @@ class NewPillController: UITableViewController {
         "twiceADay":"Дважды",
         "threeTimeADay":"Трижды"]
     
-    var doAfterEdit:((String,String,String,String) -> Void)?
+    var doAfterEdit:((String,String,String,String,Doctor?,String?) -> Void)?
     
     @IBOutlet weak var medicamentNameTextField: UITextField!
     @IBOutlet weak var medicamentDosageTextField: UITextField!
     @IBOutlet weak var medicamentFrequencyLabel: UILabel!
     @IBOutlet weak var medicamentTypeLabel: UILabel!
-    
+    @IBOutlet weak var doctorLabel: UILabel!
+    @IBOutlet weak var startDatePiecker: UIDatePicker!
+    @IBOutlet weak var endDatePicker: UIDatePicker!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var isOverSwitch: UISwitch!
+    @IBOutlet weak var goButton: UIButton!
+    @IBAction func goButtonPressed(_ sender: UIButton) {
+        print("button pressed")
+    }
+
+    //MARK: @IBAction
+    @IBAction func saveNewMedicament(_ sender:UIBarButtonItem){
+        let title = medicamentNameTextField.text ?? ""
+        let dosage = medicamentDosageTextField.text ?? "0"
+        let type = medicamentType
+        let frequency = medicamentFrequency
+        doAfterEdit?(title,dosage,type,frequency,doctor,visitUUID)
+        navigationController?.popViewController(animated: true)
+    }
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,22 +59,21 @@ class NewPillController: UITableViewController {
         medicamentDosageTextField.text = medicamentDosage
         medicamentTypeLabel.text = titlesType[medicamentType]
         medicamentFrequencyLabel.text = titlesFrequency[medicamentFrequency]
+        doctorLabel.text = doctor?.getFullName() ?? "Выберите врача"
+        setupGoButton()
     }
     
-    //MARK: @IBAction
-    @IBAction func saveNewMedicament(_ sender:UIBarButtonItem){
-        let title = medicamentNameTextField.text ?? ""
-        let dosage = medicamentDosageTextField.text ?? "0"
-        let type = medicamentType
-        let frequency = medicamentFrequency
-        doAfterEdit?(title,dosage,type,frequency)
-        navigationController?.popViewController(animated: true)
+    //MARK: Other function
     
+    func setupGoButton(){
+        goButton.layer.masksToBounds = true
+        goButton.layer.backgroundColor = UIColor.systemPink.cgColor
+        goButton.layer.cornerRadius = 10
+        goButton.setTitle("Вперед", for: .normal)
+        goButton.setTitleColor(UIColor.white, for: .normal)
     }
-    
     
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -61,7 +81,7 @@ class NewPillController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return 11
     }
     
     //MARK: Navigation
@@ -81,6 +101,14 @@ class NewPillController: UITableViewController {
             destination.doAfterFrequencySelected = { [self] selectedFraquency in
                 self.medicamentFrequency = selectedFraquency
                 self.medicamentFrequencyLabel?.text = titlesFrequency[medicamentFrequency]
+            }
+        }
+        if segue.identifier == "fromNewPillToDoctorList"{
+            let destination = segue.destination as! DoctorsListController
+            destination.doAfterSelected = {
+                [self] selectedDoctor in
+                self.doctor = selectedDoctor
+                self.doctorLabel.text = selectedDoctor.getFullName()
             }
         }
     }

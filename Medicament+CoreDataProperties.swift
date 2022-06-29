@@ -2,7 +2,7 @@
 //  Medicament+CoreDataProperties.swift
 //  MedicalCardVersion2
 //
-//  Created by Вячеслав Гудзенко on 28.05.2022.
+//  Created by Вячеслав Гудзенко on 30.06.2022.
 //
 //
 
@@ -16,10 +16,18 @@ extension Medicament {
         return NSFetchRequest<Medicament>(entityName: "Medicament")
     }
 
-    @NSManaged public var title: String?
-    @NSManaged public var type: String?
     @NSManaged public var dosage: String?
     @NSManaged public var frequency: String?
+    @NSManaged public var isOver: Bool
+    @NSManaged public var isTaken: Bool
+    @NSManaged public var status: String?
+    @NSManaged public var title: String?
+    @NSManaged public var type: String?
+    @NSManaged public var visitUUID: String?
+    @NSManaged public var amountDay: String?
+    @NSManaged public var startDate: Date?
+    @NSManaged public var endDate: Date?
+    @NSManaged public var doctor: Doctor?
 
 }
 

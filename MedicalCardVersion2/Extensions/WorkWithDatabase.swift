@@ -187,7 +187,7 @@ extension UIViewController{
     }
     
     //MARK: Medicament
-    func saveNewMedicament(title:String,dosage:String,type:String,frequency:String){
+    func saveNewMedicament(title:String,dosage:String,type:String,frequency:String,doctor:Doctor?,visitUUID:String?){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Medicament", in: managedContext)!
@@ -196,6 +196,8 @@ extension UIViewController{
         newMedicament.setValue(dosage, forKey: "dosage")
         newMedicament.setValue(type, forKey: "type")
         newMedicament.setValue(frequency, forKey: "frequency")
+        newMedicament.setValue(doctor, forKey: "doctor")
+        newMedicament.setValue(visitUUID, forKey: "visitUUID")
         do{
             try managedContext.save()
         } catch let error as NSError{
@@ -206,8 +208,8 @@ extension UIViewController{
     func createNewMedicament(){
         let newMedicament = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewPillController") as! NewPillController
         newMedicament.doAfterEdit = {
-            [self] title,dosage,type,frequency in
-            saveNewMedicament(title: title, dosage: dosage, type: type, frequency: frequency)
+            [self] title,dosage,type,frequency,doctor,visitUUID in
+            saveNewMedicament(title: title, dosage: dosage, type: type, frequency: frequency, doctor: doctor,visitUUID:visitUUID)
             }
         navigationController?.pushViewController(newMedicament, animated: true)
     }

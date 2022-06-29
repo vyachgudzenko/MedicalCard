@@ -10,6 +10,8 @@ import CoreData
 
 class PillsTableViewController: UITableViewController {
 
+    var visitUUID:String?
+    
     let sectionOfDay:[PeriodOfTheDay] = [.morning,.dinner,.evening]
     let professionList:[String] = [
         "Терапевт","Травматолог","Невропатолог"]
@@ -179,7 +181,7 @@ class PillsTableViewController: UITableViewController {
         editScreen.medicamentDosage = currentMedicament!.dosage!
         editScreen.medicamentType = currentMedicament!.type!
         editScreen.medicamentFrequency = currentMedicament!.frequency!
-        editScreen.doAfterEdit = { [self] title,dosage,type,frequency in
+        editScreen.doAfterEdit = { [self] title,dosage,type,frequency,doctor,visitUUID in
             
             originalPill[indexPath.row].setValue(title, forKey: "title")
             originalPill[indexPath.row].setValue(dosage, forKey: "dosage")
@@ -202,8 +204,8 @@ class PillsTableViewController: UITableViewController {
         if segue.identifier == "toNewPillScreen"{
             let destination = segue.destination as! NewPillController
             destination.doAfterEdit = {
-                [self] title,dosage,type,frequency in
-                saveNewMedicament(title: title, dosage: dosage, type: type, frequency: frequency)
+                [self] title,dosage,type,frequency,doctor,visitUUID in
+                saveNewMedicament(title: title, dosage: dosage, type: type, frequency: frequency, doctor: doctor,visitUUID: visitUUID)
                 tableView.reloadData()
                 }
             }
