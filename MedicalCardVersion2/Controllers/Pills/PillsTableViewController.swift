@@ -109,7 +109,8 @@ class PillsTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
         var title:String?
         switch sectionOfDay[section]{
         case .morning:
@@ -119,7 +120,17 @@ class PillsTableViewController: UITableViewController {
         case .evening:
             title = "Ужин"
         }
-        return title
+        let titleLabel = UILabel(frame: CGRect(x: view.frame.width / 2 - 50, y: 0, width: 100 , height: 50))
+        titleLabel.text = title
+        titleLabel.textColor = .black
+        titleLabel.textAlignment = .left
+        titleLabel.font = UIFont.systemFont(ofSize: 25)
+        headerView.addSubview(titleLabel)
+        return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
     }
     
     //MARK: TableViewDelegate
