@@ -8,12 +8,17 @@
 import UIKit
 import CoreData
 
-class DiagnosesListController: UITableViewController {
+class DiagnosesListController: UIViewController {
 
     var diagnoses:[NSManagedObject] = []
     var doAfterSelected:((Diagnosis) -> Void)?
     
+    var floatButton:RedButton = {
+        let button = RedButton()
+        return button
+    }()
     
+    @IBOutlet weak var tableView: UITableView!
     @IBAction func addButtonTapped(_ sender: Any) {
         createNewDiagnosisController()
     }
@@ -21,8 +26,12 @@ class DiagnosesListController: UITableViewController {
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
         let cellNib = UINib(nibName: "DiagnosisCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "DiagnosisCell")
+        floatButton.addTarget(self, action: #selector(floatButtonTapped), for: .touchUpInside)
+        view.addSubview(floatButton)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,28 +49,40 @@ class DiagnosesListController: UITableViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        floatButton.frame = CGRect(x: view.frame.width - 90, y: view.frame.height - view.frame.height * 0.2, width: 70, height: 70)
+    }
+    
+    //MARK: Other function
+    @objc
+    func floatButtonTapped(){
+        createNewDiagnosisController()
+    }
+}
 
-    // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
+extension DiagnosesListController:UITableViewDataSource{
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return diagnoses.count
     }
 
    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiagnosisCell", for: indexPath) as! DiagnosisCell
         let diagnosis = diagnoses[indexPath.row] as! Diagnosis
         cell.setupCell(diagnosis: diagnosis)
         return cell
     }
+}
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+extension DiagnosesListController:UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentDiagnosis = diagnoses[indexPath.row] as! Diagnosis
         doAfterSelected?(currentDiagnosis)
         navigationController?.popViewController(animated: true)
     }
-
 }
