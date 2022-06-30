@@ -95,7 +95,12 @@ class NewVisitController: UITableViewController {
             destination.visitUUID = uuid
             tableView.reloadData()
         }
-        
+        if segue.identifier == "fromVisitToMedicament"{
+            let destination = segue.destination as!
+            MedicamentListController
+            destination.visitUUID = uuid
+            tableView.reloadData()
+        }
         
     }
     

@@ -205,8 +205,9 @@ extension UIViewController{
         }
     }
     
-    func createNewMedicament(){
+    func createNewMedicament(visitUUID:String?){
         let newMedicament = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewPillController") as! NewPillController
+        newMedicament.visitUUID = visitUUID
         newMedicament.doAfterEdit = {
             [self] title,dosage,type,frequency,doctor,visitUUID in
             saveNewMedicament(title: title, dosage: dosage, type: type, frequency: frequency, doctor: doctor,visitUUID:visitUUID)

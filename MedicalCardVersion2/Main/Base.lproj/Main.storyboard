@@ -646,7 +646,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="7Nn-VL-seH">
-                                                    <rect key="frame" x="234" y="11" width="160" height="32"/>
+                                                    <rect key="frame" x="234" y="11" width="160" height="31.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="K3h-E4-fm3"/>
                                                     </constraints>
@@ -676,7 +676,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="E3i-qf-VWy">
-                                                    <rect key="frame" x="234" y="11" width="160" height="31"/>
+                                                    <rect key="frame" x="234" y="11" width="160" height="31.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="Dxi-l1-E9g"/>
                                                     </constraints>
@@ -1680,14 +1680,45 @@
         <!--Назначенные медикаменты-->
         <scene sceneID="vPb-cD-oHh">
             <objects>
-                <viewController id="5fA-Oj-F7o" sceneMemberID="viewController">
+                <viewController id="5fA-Oj-F7o" customClass="MedicamentListController" customModule="MedicalCardVersion2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6kS-2S-64A">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="1y2-tm-6Dz">
+                                <rect key="frame" x="0.0" y="44" width="414" height="798"/>
+                                <color key="separatorColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="0r0-dQ-oIW">
+                                        <rect key="frame" x="20" y="49.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0r0-dQ-oIW" id="i2F-jx-4pL">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="2hz-u3-yWq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1y2-tm-6Dz" firstAttribute="leading" secondItem="2hz-u3-yWq" secondAttribute="leading" id="58w-cE-cOY"/>
+                            <constraint firstItem="2hz-u3-yWq" firstAttribute="trailing" secondItem="1y2-tm-6Dz" secondAttribute="trailing" id="7nV-GW-16H"/>
+                            <constraint firstItem="1y2-tm-6Dz" firstAttribute="top" secondItem="2hz-u3-yWq" secondAttribute="top" id="Gcs-n2-hIk"/>
+                            <constraint firstItem="2hz-u3-yWq" firstAttribute="bottom" secondItem="1y2-tm-6Dz" secondAttribute="bottom" id="f1Z-7o-auy"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Назначенные медикаменты" id="eSR-2u-blV"/>
+                    <navigationItem key="navigationItem" title="Назначенные медикаменты" id="eSR-2u-blV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="WRt-66-LvD">
+                            <connections>
+                                <action selector="addBarButtonTapped:" destination="5fA-Oj-F7o" id="Cji-hw-DAc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="1y2-tm-6Dz" id="WHr-fO-92o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y5P-h6-62E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

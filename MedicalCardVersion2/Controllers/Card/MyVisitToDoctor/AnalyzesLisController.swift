@@ -25,6 +25,7 @@ class AnalyzesLisController: UIViewController {
         tableView.reloadData()
     }
     
+    //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -58,12 +59,14 @@ class AnalyzesLisController: UIViewController {
         floatButton.frame = CGRect(x: view.frame.width - 90, y: view.frame.height - view.frame.height * 0.2, width: 70, height: 70)
     }
     
+    //MARK: Other function
     @objc
     func floatButtonTapped(){
         createNewAnalisys(uuid: visitUUID)
     }
 }
 
+//MARK: TAbleView DataSource
 extension AnalyzesLisController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sortAnalyzes.count
@@ -79,6 +82,7 @@ extension AnalyzesLisController:UITableViewDataSource{
     
 }
 
+//MARK: TAbleView Delegate
 extension AnalyzesLisController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentAnalysis = sortAnalyzes[indexPath.row] as! Analysis
