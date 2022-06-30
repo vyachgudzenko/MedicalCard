@@ -1139,7 +1139,7 @@
             <objects>
                 <tableViewController id="xh2-QF-xxG" customClass="PillsFrequencyController" customModule="MedicalCardVersion2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="HVh-dH-Knn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -1185,7 +1185,7 @@
             <objects>
                 <tableViewController id="lEc-RU-HEP" customClass="PillsTypeTableViewController" customModule="MedicalCardVersion2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="lF7-Kl-8UW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -1757,11 +1757,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Мои лекарства" id="je1-z4-ewn">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hqx-0D-VGa">
-                            <connections>
-                                <action selector="addButtonTapped:" destination="3UB-MV-d7R" id="gbR-Pq-oqK"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="hqx-0D-VGa">
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="3UB-MV-d7R" id="gbR-Pq-oqK"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="line.horizontal.3.decrease" catalog="system" id="LmU-l2-QPS"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="lOc-WY-szG" id="KNd-V3-0fA"/>
@@ -1794,11 +1797,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Мои диагнозы" id="2pz-Ss-O2j">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="icb-QK-uuM">
-                            <connections>
-                                <action selector="addBarButtonTapped:" destination="l8I-0f-jsh" id="J9G-zH-j6v"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="icb-QK-uuM">
+                                <connections>
+                                    <action selector="addBarButtonTapped:" destination="l8I-0f-jsh" id="J9G-zH-j6v"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="line.horizontal.3.decrease" catalog="system" id="tcs-ja-hbv"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="6Xz-Xh-Vvh" id="jas-UE-hDV"/>
@@ -1841,11 +1847,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Посещение врача" id="1TO-BC-lYa">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ivr-R6-4Tj">
-                            <connections>
-                                <action selector="addBurButtonTapped:" destination="eQf-pe-JpZ" id="JIs-wi-GAQ"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="ivr-R6-4Tj">
+                                <connections>
+                                    <action selector="addBurButtonTapped:" destination="eQf-pe-JpZ" id="JIs-wi-GAQ"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="line.3.horizontal.decrease" catalog="system" id="xIJ-Gy-lHX"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Zdt-x9-0D1" id="gkx-85-jSA"/>
@@ -1888,11 +1897,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Анализы/Исследования" id="1DX-sK-hGQ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Nb5-tB-ske">
-                            <connections>
-                                <action selector="addBarButtonTapped:" destination="DmD-5u-GMv" id="fH0-aG-hJD"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="Nb5-tB-ske">
+                                <connections>
+                                    <action selector="addBarButtonTapped:" destination="DmD-5u-GMv" id="fH0-aG-hJD"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="line.3.horizontal.decrease" catalog="system" id="T4Z-Wb-rK0"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="4aS-Oy-a9P" id="dkk-3D-jFk"/>
@@ -2184,13 +2196,14 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Erz-CU-oNC"/>
-        <segue reference="J8E-Qu-H53"/>
-        <segue reference="XxJ-4Y-pXF"/>
+        <segue reference="VMg-94-tAL"/>
+        <segue reference="5N7-YG-lda"/>
         <segue reference="thE-Oa-bXi"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="cough-syrup" width="32" height="32"/>
         <image name="doctor" width="32" height="32"/>
+        <image name="line.3.horizontal.decrease" catalog="system" width="128" height="73"/>
         <image name="line.horizontal.3.decrease" catalog="system" width="128" height="73"/>
         <image name="meds" width="32" height="32"/>
         <image name="patient" width="32" height="32"/>

@@ -80,5 +80,26 @@ extension MyMedicamentController:UITableViewDataSource{
 
 //MARK: TableView Delegate
 extension MyMedicamentController:UITableViewDelegate{
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let actionSwipe = UIContextualAction(style: .normal, title: "Начать прием") { [self]_, _, _ in
+            print("start")
+        }
+        actionSwipe.backgroundColor = .systemGreen
+        return UISwipeActionsConfiguration(actions: [actionSwipe])
+    }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let actionSwipe = UIContextualAction(style: .normal, title: "Удалить") {[self] _, _, _ in
+            deleteMedicament(medicament: medicaments[indexPath.row] as! Medicament)
+            medicaments.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+        actionSwipe.backgroundColor = .systemGray
+        return UISwipeActionsConfiguration(actions: [actionSwipe])
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentMedicament = medicaments[indexPath.row] as! Medicament
+        editMedicament(medicament: currentMedicament)
+    }
 }

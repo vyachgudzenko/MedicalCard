@@ -92,36 +92,7 @@ extension MyAnalyzesController:UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentAnalysis = analyzes[indexPath.row] as! Analysis
-        let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewAnalysisController") as! NewAnalysisController
-        editScreen.navigationItem.title = currentAnalysis.title
-        editScreen.titleText = currentAnalysis.title!
-        editScreen.descriptionText = currentAnalysis.descriptionOfAnalysis ?? ""
-        editScreen.resultText = currentAnalysis.result!
-        editScreen.dateAnalysis = currentAnalysis.date!
-        editScreen.doctor = currentAnalysis.doctor
-        editScreen.doctorLabelText = currentAnalysis.doctorFullName!
-        editScreen.diagnosis = currentAnalysis.diagnosis
-        editScreen.diagnosisLabelText = currentAnalysis.diagnosisTitle!
-        editScreen.doAfterCreate = {
-            titleOfAnalysis,descriptionOfAnalysis,result,date,doctor,diagnosis,visitUUID in
-            currentAnalysis.title = titleOfAnalysis
-            currentAnalysis.descriptionOfAnalysis = descriptionOfAnalysis
-            currentAnalysis.result = result
-            currentAnalysis.date = date
-            currentAnalysis.doctor = doctor
-            currentAnalysis.diagnosis = diagnosis
-            currentAnalysis.doctorFullName = doctor.getFullName()
-            currentAnalysis.diagnosisTitle = diagnosis.title
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-            let managedContext = appDelegate.persistentContainer.viewContext
-            do{
-                try managedContext.save()
-            } catch let error as NSError{
-                print("Could not save.\(error),\(error.userInfo)")
-            }
-            tableView.reloadData()
-        }
-        navigationController?.pushViewController(editScreen, animated: true)
+        editAnalysis(analysis: currentAnalysis)
     }
 
 }

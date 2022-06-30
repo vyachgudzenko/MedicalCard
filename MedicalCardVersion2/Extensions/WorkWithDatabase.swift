@@ -74,6 +74,32 @@ extension UIViewController{
         self.navigationController?.pushViewController(newDoctorScreen, animated: true)
     }
     
+    func editDoctor(doctor:Doctor){
+        let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewDoctorController") as! NewDoctorController
+        editScreen.navigationItem.title = doctor.getFullName()
+        editScreen.firstName = doctor.firstName!
+        editScreen.lastName = doctor.lastName!
+        editScreen.clinic = doctor.clinic!
+        editScreen.phoneNumber = doctor.phoneNumber!
+        editScreen.profession = doctor.profession!
+        editScreen.doAfterCreate = {
+             firstName,lastName,clinic,numberPhone,profession in
+            doctor.firstName = firstName
+            doctor.lastName = lastName
+            doctor.clinic = clinic
+            doctor.phoneNumber = numberPhone
+            doctor.profession = profession
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+            let managedContext = appDelegate.persistentContainer.viewContext
+            do{
+                try managedContext.save()
+            } catch let error as NSError{
+                print("Could not save.\(error),\(error.userInfo)")
+            }
+        }
+        self.navigationController?.pushViewController(editScreen, animated: true)
+    }
+    
     func deleteDoctor(doctor:Doctor){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -112,6 +138,31 @@ extension UIViewController{
             
         }
         navigationController?.pushViewController(newDiagnosis, animated: true)
+    }
+    
+    func editDiagnosis(diagnosis:Diagnosis){
+        let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewDiagnosisController") as! NewDiagnosisController
+        editScreen.navigationItem.title = diagnosis.title
+        editScreen.titleFirst = diagnosis.title!
+        editScreen.descriptionFirst = diagnosis.descriptionOfDiagnosis!
+        editScreen.dateFirst = diagnosis.date!
+        editScreen.doctor = diagnosis.doctor
+        editScreen.doctorLabelText = (diagnosis.doctor?.getFullName())!
+        editScreen.doAfterCreate = {
+            titleOfDiagnosis,descriptionOfDiagnosis,date,doctor in
+            diagnosis.title = titleOfDiagnosis
+            diagnosis.descriptionOfDiagnosis = descriptionOfDiagnosis
+            diagnosis.date = date
+            diagnosis.doctor = doctor
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+            let managedContext = appDelegate.persistentContainer.viewContext
+            do{
+                try managedContext.save()
+            } catch let error as NSError{
+                print("Could not save.\(error),\(error.userInfo)")
+            }
+        }
+        navigationController?.pushViewController(editScreen, animated: true)
     }
     
     func deleteDiagnosis(diagnosis:Diagnosis, index:Int){
@@ -175,6 +226,38 @@ extension UIViewController{
         navigationController?.pushViewController(newAnalisys, animated: true)
     }
     
+    func editAnalysis(analysis:Analysis){
+        let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewAnalysisController") as! NewAnalysisController
+        editScreen.navigationItem.title = analysis.title
+        editScreen.titleText = analysis.title!
+        editScreen.descriptionText = analysis.descriptionOfAnalysis ?? ""
+        editScreen.resultText = analysis.result!
+        editScreen.dateAnalysis = analysis.date!
+        editScreen.doctor = analysis.doctor
+        editScreen.doctorLabelText = analysis.doctorFullName!
+        editScreen.diagnosis = analysis.diagnosis
+        editScreen.diagnosisLabelText = analysis.diagnosisTitle!
+        editScreen.doAfterCreate = {
+            titleOfAnalysis,descriptionOfAnalysis,result,date,doctor,diagnosis,visitUUID in
+            analysis.title = titleOfAnalysis
+            analysis.descriptionOfAnalysis = descriptionOfAnalysis
+            analysis.result = result
+            analysis.date = date
+            analysis.doctor = doctor
+            analysis.diagnosis = diagnosis
+            analysis.doctorFullName = doctor.getFullName()
+            analysis.diagnosisTitle = diagnosis.title
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+            let managedContext = appDelegate.persistentContainer.viewContext
+            do{
+                try managedContext.save()
+            } catch let error as NSError{
+                print("Could not save.\(error),\(error.userInfo)")
+            }
+        }
+        navigationController?.pushViewController(editScreen, animated: true)
+    }
+    
     func deleteAnalysis(analysis:Analysis){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -215,6 +298,30 @@ extension UIViewController{
         navigationController?.pushViewController(newMedicament, animated: true)
     }
     
+    func editMedicament(medicament:Medicament){
+        let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewPillController") as! NewPillController
+        editScreen.navigationItem.title = medicament.title
+        editScreen.medicamentName = medicament.title!
+        editScreen.medicamentDosage = medicament.dosage!
+        editScreen.medicamentType = medicament.type!
+        editScreen.medicamentFrequency = medicament.frequency!
+        editScreen.doAfterEdit = { [self] title,dosage,type,frequency,doctor,visitUUID in
+            
+            medicament.setValue(title, forKey: "title")
+            medicament.setValue(dosage, forKey: "dosage")
+            medicament.setValue(type, forKey: "type")
+            medicament.setValue(frequency, forKey: "frequency")
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+            let managedContext = appDelegate.persistentContainer.viewContext
+            do{
+                try managedContext.save()
+            } catch let error as NSError{
+                print("Could not save.\(error),\(error.userInfo)")
+            }
+        }
+        self.navigationController?.pushViewController(editScreen, animated: true)
+    }
+    
     func deleteMedicament(medicament:Medicament){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -252,6 +359,31 @@ extension UIViewController{
         } catch let error as NSError{
             print("Could not save.\(error),\(error.userInfo)")
         }
+    }
+    
+    func editVisit(visit:VisitToDoctor){
+        let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewVisitController") as! NewVisitController
+        editScreen.navigationItem.title = visit.doctorFullName
+        editScreen.complaint = visit.complaint
+        editScreen.date = visit.date
+        editScreen.diagnosis = visit.diagnosis
+        editScreen.doctor = visit.doctor
+        editScreen.uuid = visit.uuid
+        editScreen.doAfterCreate = {[self] complaint,date,doctor,diagnosis,uuid in
+            visit.complaint = complaint
+            visit.date = date
+            visit.diagnosis = diagnosis
+            visit.doctor = doctor
+            visit.uuid = uuid
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+            let managedContext = appDelegate.persistentContainer.viewContext
+            do{
+                try managedContext.save()
+            } catch let error as NSError{
+                print("Could not save.\(error),\(error.userInfo)")
+            }
+        }
+        navigationController?.pushViewController(editScreen, animated: true)
     }
 }
 

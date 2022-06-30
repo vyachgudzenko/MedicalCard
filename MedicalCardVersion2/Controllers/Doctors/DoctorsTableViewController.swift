@@ -136,30 +136,7 @@ extension DoctorsTableViewController:UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentDoctor = doctors[indexPath.row] as! Doctor
-        let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewDoctorController") as! NewDoctorController
-        editScreen.navigationItem.title = currentDoctor.getFullName()
-        editScreen.firstName = currentDoctor.firstName!
-        editScreen.lastName = currentDoctor.lastName!
-        editScreen.clinic = currentDoctor.clinic!
-        editScreen.phoneNumber = currentDoctor.phoneNumber!
-        editScreen.profession = currentDoctor.profession!
-        editScreen.doAfterCreate = {
-             firstName,lastName,clinic,numberPhone,profession in
-            currentDoctor.firstName = firstName
-            currentDoctor.lastName = lastName
-            currentDoctor.clinic = clinic
-            currentDoctor.phoneNumber = numberPhone
-            currentDoctor.profession = profession
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-            let managedContext = appDelegate.persistentContainer.viewContext
-            do{
-                try managedContext.save()
-            } catch let error as NSError{
-                print("Could not save.\(error),\(error.userInfo)")
-            }
-            tableView.reloadData()
-        }
-        self.navigationController?.pushViewController(editScreen, animated: true)
+        editDoctor(doctor: currentDoctor)
     }
 
 }

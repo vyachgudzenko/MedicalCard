@@ -83,5 +83,8 @@ extension MedicamentListController:UITableViewDataSource{
 
 //MARK: TableView Delegate
 extension MedicamentListController:UITableViewDelegate{
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentMedicament = medicaments[indexPath.row] as! Medicament
+        editMedicament(medicament: currentMedicament)
+    }
 }
