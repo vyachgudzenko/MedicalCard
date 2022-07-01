@@ -402,6 +402,17 @@ extension UIViewController{
         }
     }
     
+    func changeItsDrunk(course:CourseOfMedicament){
+        course.itsDrunk = true
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        let managedContext = appDelegate.persistentContainer.viewContext
+        do{
+            try managedContext.save()
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
+        }
+    }
+    
     func generateCourseOfDay(medicament:Medicament){
         switch medicament.frequency{
         case "onceADay":

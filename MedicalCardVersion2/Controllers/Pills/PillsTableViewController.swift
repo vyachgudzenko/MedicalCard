@@ -15,10 +15,10 @@ class PillsTableViewController: UITableViewController {
     let sectionOfDay:[PeriodOfTheDay] = [.morning,.dinner,.evening]
     let professionList:[String] = [
         "Терапевт","Травматолог","Невропатолог"]
-    var pills:[PeriodOfTheDay:[(Medicament,Bool)]] = [:]
-    var originalPill:[NSManagedObject] = []{
+    var pills:[PeriodOfTheDay:[CourseOfMedicament]] = [:]
+    var coursesOfMedicament:[NSManagedObject] = []{
         didSet{
-            pills = sortForSectionOfDay(arrayOfMedicament: originalPill)
+            pills = sortForSectionOfDay(arrayOfMedicament: coursesOfMedicament)
         }
     }
     
@@ -33,10 +33,10 @@ class PillsTableViewController: UITableViewController {
             return
         }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Medicament")
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CourseOfMedicament")
         do{
-            originalPill = try managedContext.fetch(fetchRequest)
-            pills = sortForSectionOfDay(arrayOfMedicament: originalPill)
+            coursesOfMedicament = try managedContext.fetch(fetchRequest)
+            pills = sortForSectionOfDay(arrayOfMedicament: coursesOfMedicament)
             tableView.reloadData()
         } catch let error as NSError{
             print("Could not save.\(error),\(error.userInfo)")
@@ -44,27 +44,21 @@ class PillsTableViewController: UITableViewController {
     }
     
     //MARK: Other function
-    func sortForSectionOfDay(arrayOfMedicament:[NSManagedObject]) -> [PeriodOfTheDay:[(Medicament,Bool)]]{
-        var sortedArray:[PeriodOfTheDay:[(medicament:Medicament,isDrunk:Bool)]] = [:]
-        let sectionOfDay:[PeriodOfTheDay] = [.morning,.dinner,.evening]
+    func sortForSectionOfDay(arrayOfMedicament:[NSManagedObject]) -> [PeriodOfTheDay:[CourseOfMedicament]]{
+        var sortedArray:[PeriodOfTheDay:[CourseOfMedicament]] = [:]
         sectionOfDay.forEach { section in
             sortedArray[section] = []
         }
-        arrayOfMedicament.forEach { medicament  in
-            let sortedMedicament = medicament as! Medicament
-            switch sortedMedicament.frequency{
-            case "onceADay":
-                let tuple = (medicament as! Medicament,false)
-                sortedArray[.morning]?.append(tuple)
-            case "twiceADay":
-                let tuple = (medicament as! Medicament,false)
-                sortedArray[.morning]?.append(tuple)
-                sortedArray[.evening]?.append(tuple)
-            case "threeTimeADay":
-                let tuple = (medicament as! Medicament,false)
-                sortedArray[.morning]?.append(tuple)
-                sortedArray[.dinner]?.append(tuple)
-                sortedArray[.evening]?.append(tuple)
+        
+        arrayOfMedicament.forEach { course  in
+            let courseOfMedicament = course as! CourseOfMedicament
+            switch courseOfMedicament.section{
+            case "morning":
+                sortedArray[.morning]?.append(courseOfMedicament)
+            case "dinner":
+                sortedArray[.dinner]?.append(courseOfMedicament)
+            case "evening":
+                sortedArray[.evening]?.append(courseOfMedicament)
             default: break
             }
         }
@@ -91,30 +85,15 @@ class PillsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PillsCell") as! PillsTableViewCell
         let fragmentDay = sectionOfDay[indexPath.section]
-        guard let currentMedicamentTuple = pills[fragmentDay]?[indexPath.row] else {
-            return cell
-        }
-        if currentMedicamentTuple.1 == true{
+        let courseOfMedicament = pills[fragmentDay]?[indexPath.row] as! CourseOfMedicament
+        if courseOfMedicament.itsDrunk == true{
             cell.accessoryType = .checkmark
         }
-        cell.titleLabel.text = currentMedicamentTuple.0.title
-        cell.dosageLabel.text = currentMedicamentTuple.0.dosage
-        cell.pic.image = getCurrentImageForPillsList(medicament: currentMedicamentTuple.0)
+        cell.setupCell(medicament: courseOfMedicament.medicament!)
         return cell
     }
     
-    func getCurrentImageForPillsList(medicament:Medicament) -> UIImage{
-        switch medicament.type{
-        case "injection":
-            return UIImage(named: "injection.png")!
-        case "pill":
-            return UIImage(named: "pill (1).png")!
-        case "syrup":
-            return UIImage(named: "cough-syrup.png")!
-        default:
-            return UIImage(named: "pill (1).png")!
-        }
-    }
+    
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
@@ -153,26 +132,27 @@ class PillsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionSwipeEdit = UIContextualAction(style: .normal, title: "Принято") { [self] _, _, _ in
             let selectSectionDay = sectionOfDay[indexPath.section]
-            pills[selectSectionDay]?[indexPath.row].1 = true
+            let course = pills[selectSectionDay]?[indexPath.row] as! CourseOfMedicament
+            changeItsDrunk(course: course)
             tableView.reloadSections(IndexSet(arrayLiteral: indexPath.section), with: .automatic)
         }
         actionSwipeEdit.backgroundColor = .systemIndigo
         return UISwipeActionsConfiguration(actions: [actionSwipeEdit])
     }
     
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    /*override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let currentSection = sectionOfDay[indexPath.section]
         let actionSwipeDelete = UIContextualAction(style: .normal, title: "Удалить") { [self] _, _, _ in
-            deleteMedicament(medicament: originalPill[indexPath.row] as! Medicament)
-            originalPill.remove(at: indexPath.row)
+            deleteMedicament(medicament: coursesOfMedicament[indexPath.row] as! Medicament)
+            coursesOfMedicament.remove(at: indexPath.row)
             tableView.reloadData()
         }
         actionSwipeDelete.backgroundColor = .systemGray
         return UISwipeActionsConfiguration(actions: [actionSwipeDelete])
-    }
+    }*/
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    /*override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentSection = sectionOfDay[indexPath.section]
         let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewPillController") as! NewPillController
         let currentMedicament = pills[currentSection]?[indexPath.row].0
@@ -183,10 +163,10 @@ class PillsTableViewController: UITableViewController {
         editScreen.medicamentFrequency = currentMedicament!.frequency!
         editScreen.doAfterEdit = { [self] title,dosage,type,frequency,doctor,visitUUID in
             
-            originalPill[indexPath.row].setValue(title, forKey: "title")
-            originalPill[indexPath.row].setValue(dosage, forKey: "dosage")
-            originalPill[indexPath.row].setValue(type, forKey: "type")
-            originalPill[indexPath.row].setValue(frequency, forKey: "frequency")
+            coursesOfMedicament[indexPath.row].setValue(title, forKey: "title")
+            coursesOfMedicament[indexPath.row].setValue(dosage, forKey: "dosage")
+            coursesOfMedicament[indexPath.row].setValue(type, forKey: "type")
+            coursesOfMedicament[indexPath.row].setValue(frequency, forKey: "frequency")
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
             let managedContext = appDelegate.persistentContainer.viewContext
             do{
@@ -197,7 +177,7 @@ class PillsTableViewController: UITableViewController {
             }
         }
         self.navigationController?.pushViewController(editScreen, animated: true)
-    }
+    }*/
     
     //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

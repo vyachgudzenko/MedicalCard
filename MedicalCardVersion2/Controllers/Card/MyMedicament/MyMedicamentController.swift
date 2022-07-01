@@ -11,6 +11,7 @@ import CoreData
 class MyMedicamentController: UIViewController {
     
     var medicaments:[NSManagedObject] = []
+    var alert:MedicalAlert?
     
     var floatButton:RedButton = {
         let button = RedButton()
@@ -60,6 +61,8 @@ class MyMedicamentController: UIViewController {
     func floatButtonTapped(){
         createNewMedicament(visitUUID: nil)
     }
+    
+    //MARK: AertController
 }
 
 //MARK: TableView DataSource
@@ -81,8 +84,17 @@ extension MyMedicamentController:UITableViewDataSource{
 //MARK: TableView Delegate
 extension MyMedicamentController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let actionSwipe = UIContextualAction(style: .normal, title: "Начать прием") { [self]_, _, _ in
-            print("start")
+        let actionSwipe = UIContextualAction(style: .normal, title: "Начать прием") { [self] _, _, _ in
+            let currentMedicament = medicaments[indexPath.row] as! Medicament
+            generateCourseOfDay(medicament: currentMedicament)
+            currentMedicament.isTaken = true
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+            let managedContext = appDelegate.persistentContainer.viewContext
+            do{
+                try managedContext.save()
+            } catch let error as NSError{
+                print("Could not save.\(error),\(error.userInfo)")
+            }
         }
         actionSwipe.backgroundColor = .systemGreen
         return UISwipeActionsConfiguration(actions: [actionSwipe])
@@ -90,9 +102,15 @@ extension MyMedicamentController:UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionSwipe = UIContextualAction(style: .normal, title: "Удалить") {[self] _, _, _ in
-            deleteMedicament(medicament: medicaments[indexPath.row] as! Medicament)
-            medicaments.remove(at: indexPath.row)
-            tableView.reloadData()
+            let currentMedicament = medicaments[indexPath.row] as! Medicament
+            if currentMedicament.isTaken{
+                alert = MedicalAlert()
+                alert?.showAlert(title: "Невозможно удалить этот препарат", message: "Вы принимаете этот препарат, поэтому невозможно его удалить. Окончите прием или поменяйте статус", viewController: self)
+            }else{
+                deleteMedicament(medicament: currentMedicament)
+                medicaments.remove(at: indexPath.row)
+                tableView.reloadData()
+            }
         }
         actionSwipe.backgroundColor = .systemGray
         return UISwipeActionsConfiguration(actions: [actionSwipe])
