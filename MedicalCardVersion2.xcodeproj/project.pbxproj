@@ -62,6 +62,8 @@
 		3E8A4C0228692AD800440F11 /* VisitToDoctor+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A4C0028692AD800440F11 /* VisitToDoctor+CoreDataClass.swift */; };
 		3E8A4C0328692AD800440F11 /* VisitToDoctor+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A4C0128692AD800440F11 /* VisitToDoctor+CoreDataProperties.swift */; };
 		3E8A4C0628692C3C00440F11 /* WorkWithDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A4C0528692C3C00440F11 /* WorkWithDatabase.swift */; };
+		3E9F837C286F98F100FB5BE5 /* CourseOfMedicament+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9F837A286F98F100FB5BE5 /* CourseOfMedicament+CoreDataClass.swift */; };
+		3E9F837D286F98F100FB5BE5 /* CourseOfMedicament+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9F837B286F98F100FB5BE5 /* CourseOfMedicament+CoreDataProperties.swift */; };
 		3EA0080D2829C74700B15612 /* ProfessionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0080C2829C74700B15612 /* ProfessionsCell.swift */; };
 		3EA008102829CD1F00B15612 /* TypicallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0080E2829CD1F00B15612 /* TypicallCell.swift */; };
 		3EA008112829CD1F00B15612 /* TypicallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0080F2829CD1F00B15612 /* TypicallCell.xib */; };
@@ -125,6 +127,8 @@
 		3E8A4C0028692AD800440F11 /* VisitToDoctor+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VisitToDoctor+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3E8A4C0128692AD800440F11 /* VisitToDoctor+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VisitToDoctor+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3E8A4C0528692C3C00440F11 /* WorkWithDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkWithDatabase.swift; sourceTree = "<group>"; };
+		3E9F837A286F98F100FB5BE5 /* CourseOfMedicament+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseOfMedicament+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3E9F837B286F98F100FB5BE5 /* CourseOfMedicament+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseOfMedicament+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3EA0080C2829C74700B15612 /* ProfessionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionsCell.swift; sourceTree = "<group>"; };
 		3EA0080E2829CD1F00B15612 /* TypicallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypicallCell.swift; sourceTree = "<group>"; };
 		3EA0080F2829CD1F00B15612 /* TypicallCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypicallCell.xib; sourceTree = "<group>"; };
@@ -144,6 +148,8 @@
 		3E1E06B02822D24100B5A9D3 = {
 			isa = PBXGroup;
 			children = (
+				3E9F837A286F98F100FB5BE5 /* CourseOfMedicament+CoreDataClass.swift */,
+				3E9F837B286F98F100FB5BE5 /* CourseOfMedicament+CoreDataProperties.swift */,
 				3E8A4C0028692AD800440F11 /* VisitToDoctor+CoreDataClass.swift */,
 				3E8A4C0128692AD800440F11 /* VisitToDoctor+CoreDataProperties.swift */,
 				3E50447B284432210095A304 /* Analysis+CoreDataClass.swift */,
@@ -432,6 +438,7 @@
 				3E3B41082823031600531423 /* PillsFrequencyController.swift in Sources */,
 				3E2D3F9D28231998000D0944 /* FraquencyCell.swift in Sources */,
 				3E8A4C0328692AD800440F11 /* VisitToDoctor+CoreDataProperties.swift in Sources */,
+				3E9F837C286F98F100FB5BE5 /* CourseOfMedicament+CoreDataClass.swift in Sources */,
 				3E43DA78284159B300B73761 /* NewDiagnosisController.swift in Sources */,
 				3E43DAA328416A3F00B73761 /* DoctorsListController.swift in Sources */,
 				3E3F185B286C943300C00A45 /* MedicamentCell.swift in Sources */,
@@ -464,6 +471,7 @@
 				3E1E06E92822D9C300B5A9D3 /* PillsTableViewCell.swift in Sources */,
 				3E1953B7286A0362006AC405 /* NewVisitController.swift in Sources */,
 				3EA0080D2829C74700B15612 /* ProfessionsCell.swift in Sources */,
+				3E9F837D286F98F100FB5BE5 /* CourseOfMedicament+CoreDataProperties.swift in Sources */,
 				3E43DA6428414F6500B73761 /* MyVisitsToDoctorController.swift in Sources */,
 				3E36FB4B2847A5A300F101BC /* AnalysisCell.swift in Sources */,
 				3E8A4C0228692AD800440F11 /* VisitToDoctor+CoreDataClass.swift in Sources */,
