@@ -385,5 +385,37 @@ extension UIViewController{
         }
         navigationController?.pushViewController(editScreen, animated: true)
     }
+    
+    //MARK: CourseMedicament
+    func saveNewCourse(medicament:Medicament,section:String){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "CourseOfMedicament", in: managedContext)!
+        let newCourse = NSManagedObject(entity: entity, insertInto: managedContext)
+        newCourse.setValue(medicament, forKey: "medicament")
+        newCourse.setValue(section, forKey: "section")
+        newCourse.setValue(false, forKey: "itsDrunk")
+        do{
+            try managedContext.save()
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
+        }
+    }
+    
+    func generateCourseOfDay(medicament:Medicament){
+        switch medicament.frequency{
+        case "onceADay":
+            saveNewCourse(medicament: medicament, section: "morning")
+        case "twiceADay":
+            saveNewCourse(medicament: medicament, section: "morning")
+            saveNewCourse(medicament: medicament, section: "evening")
+        case "threeTimeADay":
+            saveNewCourse(medicament: medicament, section: "morning")
+            saveNewCourse(medicament: medicament, section: "dinner")
+            saveNewCourse(medicament: medicament, section: "evening")
+        default:
+            break
+        }
+    }
 }
 
