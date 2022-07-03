@@ -61,8 +61,6 @@ class MyMedicamentController: UIViewController {
     func floatButtonTapped(){
         createNewMedicament(visitUUID: nil)
     }
-    
-    //MARK: AertController
 }
 
 //MARK: TableView DataSource
@@ -95,6 +93,9 @@ extension MyMedicamentController:UITableViewDelegate{
             } catch let error as NSError{
                 print("Could not save.\(error),\(error.userInfo)")
             }
+            tableView.reloadData()
+            alert = MedicalAlert()
+            alert?.showAlert(title: "Добавление к принимаемым лекарствам", message: "Вы добавили новый медикамент в список принимаемых лекарств.", viewController: self)
         }
         actionSwipe.backgroundColor = .systemGreen
         return UISwipeActionsConfiguration(actions: [actionSwipe])

@@ -24,7 +24,7 @@ class MedicamentCell: UITableViewCell {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var frequencyLabel: UILabel!
     @IBOutlet weak var doctorLabel: UILabel!
-    
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var typeImageView: UIImageView!
     @IBOutlet weak var doctorImageView: UIImageView!
     
@@ -33,6 +33,11 @@ class MedicamentCell: UITableViewCell {
         typeLabel.text = titlesType[medicament.type!]!
         frequencyLabel.text = titlesFrequency[medicament.frequency!]!
         doctorLabel.text = medicament.doctor?.getFullName() ?? "Не указан"
+        if medicament.isTaken{
+            statusLabel.text = "Принимается"
+        } else{
+            statusLabel.text = "Не принимается"
+        }
         typeImageView.image = getCurrentImageForPillsList(medicament: medicament).withRenderingMode(.alwaysTemplate)
         doctorImageView.image = UIImage(named: "doctor")?.withRenderingMode(.alwaysTemplate)
     }

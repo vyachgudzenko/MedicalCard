@@ -14,6 +14,7 @@
     </entity>
     <entity name="CourseOfMedicament" representedClassName="CourseOfMedicament" syncable="YES">
         <attribute name="itsDrunk" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="medicamentName" optional="YES" attributeType="String"/>
         <attribute name="section" optional="YES" attributeType="String"/>
         <relationship name="medicament" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Medicament"/>
     </entity>
@@ -60,6 +61,6 @@
         <element name="Doctor" positionX="-63" positionY="-18" width="128" height="104"/>
         <element name="Medicament" positionX="-54" positionY="27" width="128" height="209"/>
         <element name="VisitToDoctor" positionX="-45" positionY="90" width="128" height="134"/>
-        <element name="CourseOfMedicament" positionX="-36" positionY="108" width="128" height="74"/>
+        <element name="CourseOfMedicament" positionX="-36" positionY="108" width="128" height="89"/>
     </elements>
 </model>

@@ -270,7 +270,7 @@ extension UIViewController{
     }
     
     //MARK: Medicament
-    func saveNewMedicament(title:String,dosage:String,type:String,frequency:String,doctor:Doctor?,visitUUID:String?){
+    func saveNewMedicament(title:String,dosage:String,type:String,frequency:String,doctor:Doctor?,visitUUID:String?,isTaken:Bool,isOver:Bool){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Medicament", in: managedContext)!
@@ -281,6 +281,8 @@ extension UIViewController{
         newMedicament.setValue(frequency, forKey: "frequency")
         newMedicament.setValue(doctor, forKey: "doctor")
         newMedicament.setValue(visitUUID, forKey: "visitUUID")
+        newMedicament.setValue(isTaken, forKey: "isTaken")
+        newMedicament.setValue(isOver, forKey: "isOver")
         do{
             try managedContext.save()
         } catch let error as NSError{
@@ -292,8 +294,8 @@ extension UIViewController{
         let newMedicament = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewPillController") as! NewPillController
         newMedicament.visitUUID = visitUUID
         newMedicament.doAfterEdit = {
-            [self] title,dosage,type,frequency,doctor,visitUUID in
-            saveNewMedicament(title: title, dosage: dosage, type: type, frequency: frequency, doctor: doctor,visitUUID:visitUUID)
+            [self] title,dosage,type,frequency,doctor,visitUUID,isTaken,isOver in
+            saveNewMedicament(title: title, dosage: dosage, type: type, frequency: frequency, doctor: doctor,visitUUID:visitUUID, isTaken: isTaken, isOver: isOver)
             }
         navigationController?.pushViewController(newMedicament, animated: true)
     }
@@ -301,16 +303,26 @@ extension UIViewController{
     func editMedicament(medicament:Medicament){
         let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewPillController") as! NewPillController
         editScreen.navigationItem.title = medicament.title
+        editScreen.medicament = medicament
+        editScreen.isNewMedicament = false
         editScreen.medicamentName = medicament.title!
         editScreen.medicamentDosage = medicament.dosage!
         editScreen.medicamentType = medicament.type!
         editScreen.medicamentFrequency = medicament.frequency!
-        editScreen.doAfterEdit = { [self] title,dosage,type,frequency,doctor,visitUUID in
+        editScreen.isTaken = medicament.isTaken
+        editScreen.isOver = medicament.isOver
+        editScreen.visitUUID = medicament.visitUUID
+        editScreen.doAfterEdit = { [self] title,dosage,type,frequency,doctor,visitUUID,isTaken,isOver in
             
             medicament.setValue(title, forKey: "title")
             medicament.setValue(dosage, forKey: "dosage")
             medicament.setValue(type, forKey: "type")
             medicament.setValue(frequency, forKey: "frequency")
+            medicament.setValue(isTaken, forKey: "isTaken")
+            medicament.setValue(doctor, forKey: "doctor")
+            medicament.setValue(visitUUID, forKey: "visitUUID")
+            medicament.setValue(isTaken, forKey: "isTaken")
+            medicament.setValue(isOver, forKey: "isOver")
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
             let managedContext = appDelegate.persistentContainer.viewContext
             do{
@@ -395,6 +407,7 @@ extension UIViewController{
         newCourse.setValue(medicament, forKey: "medicament")
         newCourse.setValue(section, forKey: "section")
         newCourse.setValue(false, forKey: "itsDrunk")
+        newCourse.setValue(medicament.title, forKey: "medicamentName")
         do{
             try managedContext.save()
         } catch let error as NSError{
@@ -411,6 +424,30 @@ extension UIViewController{
         } catch let error as NSError{
             print("Could not save.\(error),\(error.userInfo)")
         }
+    }
+    
+    func deleteAllCoursesThatHaveThisMedicament(medicament:Medicament){
+        var courses:[NSManagedObject] = []
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<CourseOfMedicament>
+        fetchRequest = CourseOfMedicament.fetchRequest()
+        fetchRequest.predicate = NSPredicate(
+            format: "medicamentName LIKE %@", medicament.title!)
+        do{
+            courses = try managedContext.fetch(fetchRequest)
+        } catch{
+            fatalError()
+        }
+        for course in courses {
+            managedContext.delete(course)
+        }
+        do{
+            try managedContext.save()
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
+        }
+        
     }
     
     func generateCourseOfDay(medicament:Medicament){

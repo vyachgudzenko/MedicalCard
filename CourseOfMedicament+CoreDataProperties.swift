@@ -2,7 +2,7 @@
 //  CourseOfMedicament+CoreDataProperties.swift
 //  MedicalCardVersion2
 //
-//  Created by Вячеслав Гудзенко on 02.07.2022.
+//  Created by Вячеслав Гудзенко on 03.07.2022.
 //
 //
 
@@ -18,6 +18,7 @@ extension CourseOfMedicament {
 
     @NSManaged public var itsDrunk: Bool
     @NSManaged public var section: String?
+    @NSManaged public var medicamentName: String?
     @NSManaged public var medicament: Medicament?
 
 }

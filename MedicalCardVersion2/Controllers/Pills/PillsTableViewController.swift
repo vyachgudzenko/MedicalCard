@@ -151,43 +151,4 @@ class PillsTableViewController: UITableViewController {
         actionSwipeDelete.backgroundColor = .systemGray
         return UISwipeActionsConfiguration(actions: [actionSwipeDelete])
     }*/
-    
-    /*override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentSection = sectionOfDay[indexPath.section]
-        let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewPillController") as! NewPillController
-        let currentMedicament = pills[currentSection]?[indexPath.row].0
-        editScreen.navigationItem.title = currentMedicament?.title
-        editScreen.medicamentName = currentMedicament!.title!
-        editScreen.medicamentDosage = currentMedicament!.dosage!
-        editScreen.medicamentType = currentMedicament!.type!
-        editScreen.medicamentFrequency = currentMedicament!.frequency!
-        editScreen.doAfterEdit = { [self] title,dosage,type,frequency,doctor,visitUUID in
-            
-            coursesOfMedicament[indexPath.row].setValue(title, forKey: "title")
-            coursesOfMedicament[indexPath.row].setValue(dosage, forKey: "dosage")
-            coursesOfMedicament[indexPath.row].setValue(type, forKey: "type")
-            coursesOfMedicament[indexPath.row].setValue(frequency, forKey: "frequency")
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-            let managedContext = appDelegate.persistentContainer.viewContext
-            do{
-                try managedContext.save()
-                tableView.reloadData()
-            } catch let error as NSError{
-                print("Could not save.\(error),\(error.userInfo)")
-            }
-        }
-        self.navigationController?.pushViewController(editScreen, animated: true)
-    }*/
-    
-    //MARK: Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toNewPillScreen"{
-            let destination = segue.destination as! NewPillController
-            destination.doAfterEdit = {
-                [self] title,dosage,type,frequency,doctor,visitUUID in
-                saveNewMedicament(title: title, dosage: dosage, type: type, frequency: frequency, doctor: doctor,visitUUID: visitUUID)
-                tableView.reloadData()
-                }
-            }
-        }
 }
