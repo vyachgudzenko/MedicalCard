@@ -10,7 +10,16 @@ import CoreData
 
 class MyVisitsToDoctorController: UIViewController {
     
-    var visits:[NSManagedObject] = []
+    let headerViewHeight:CGFloat = 50
+    let calendar = Calendar(identifier: .gregorian)
+    
+    var visits:[NSManagedObject] = [] {
+        didSet{
+            sortedVisits = sortedVisitsBySection(visits)
+        }
+    }
+    let sections:[SectionOfMonth] = [.today,.yesterday,.thisWeek,.thisMonth,.earlier]
+    var sortedVisits:[SectionOfMonth:[NSManagedObject]] = [:]
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -29,6 +38,8 @@ class MyVisitsToDoctorController: UIViewController {
         tableView.delegate = self
         let cellNib = UINib(nibName: "VisitCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "VisitCell")
+        let notDataCellNIB = UINib(nibName: "NotDataCell", bundle: nil)
+        tableView.register(notDataCellNIB, forCellReuseIdentifier: "NotDataCell")
         view.addSubview(floatButton)
         floatButton.addTarget(self, action: #selector(floatButtonTapped), for: .touchUpInside)
     }
@@ -42,6 +53,7 @@ class MyVisitsToDoctorController: UIViewController {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "VisitToDoctor")
         do{
             visits = try managedContext.fetch(fetchRequest)
+            sortedVisits = sortedVisitsBySection(visits)
             tableView.reloadData()
         } catch let error as NSError{
             print("Could not save.\(error),\(error.userInfo)")
@@ -57,24 +69,105 @@ class MyVisitsToDoctorController: UIViewController {
     func floatButtonTapped(){
         createNewVisit()
     }
-}
-
-extension MyVisitsToDoctorController:UITableViewDataSource{
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "VisitCell") as! VisitCell
-        cell.setupCell(visit: visits[indexPath.row] as! VisitToDoctor)
-        return cell
+    
+    private func sortedVisitsBySection(_ originVisits:[NSManagedObject]) -> [SectionOfMonth:[VisitToDoctor]]{
+        var sortedArray:[SectionOfMonth:[VisitToDoctor]] = [:]
+        sections.forEach { section in
+            sortedArray[section] = []
+        }
+        
+        for visit in originVisits {
+            let visitToSort = visit as! VisitToDoctor
+            switch whichSectionThisDate(date: visitToSort.date!){
+            case .today:
+                sortedArray[.today]?.append(visitToSort)
+            case .yesterday:
+                sortedArray[.yesterday]?.append(visitToSort)
+            case .thisWeek:
+                sortedArray[.thisWeek]?.append(visitToSort)
+            case .thisMonth:
+                sortedArray[.thisMonth]?.append(visitToSort)
+            case .earlier:
+                sortedArray[.earlier]?.append(visitToSort)
+            }
+        }
+        return sortedArray
     }
     
+    private func whichSectionThisDate(date:Date) -> SectionOfMonth{
+        let today = Date()
+        let yesterday = calendar.date(byAdding: .day, value: -1, to: today)
+        let weekAgo = calendar.date(byAdding: .day, value: -7, to: today)
+        let monthAgo = calendar.date(byAdding: .month, value: -1, to: today)
+        if calendar.isDateInToday(date){
+            return .today
+        } else if calendar.isDateInYesterday(date){
+            return .yesterday
+        } else if date > weekAgo! && date < yesterday!{
+            return .thisWeek
+        } else if date > monthAgo! && date < weekAgo! {
+            return .thisMonth
+        } else {
+            return .earlier
+        }
+    }
+}
+//MARK: TableView DataSource
+extension MyVisitsToDoctorController:UITableViewDataSource{
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return sections.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return visits.count
+        let sectionOfMonth = sections[section]
+        guard let currentArray = sortedVisits[sectionOfMonth] else {
+            return 1
+        }
+        return currentArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return headerViewHeight
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var title:String?
+        switch sections[section]{
+        case .today:
+            title = "Сегодня"
+        case .yesterday:
+            title = "Вчера"
+        case .thisWeek:
+            title = "В течении недели"
+        case  .thisMonth:
+            title = "В течении месяца"
+        default:
+            title = "Ранее"
+        }
+        let headerView = UIView()
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 40 , height: headerViewHeight))
+        titleLabel.text = title
+        titleLabel.textColor = .darkGray
+        titleLabel.textAlignment = .left
+        titleLabel.font = UIFont.systemFont(ofSize: 25,weight: .light)
+        headerView.addSubview(titleLabel)
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let sectionOfMonth = sections[indexPath.section]
+        guard let currentVisit = sortedVisits[sectionOfMonth]?[indexPath.row] else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NotDataCell") as! NotDataCell
+            return cell
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "VisitCell") as! VisitCell
+        cell.setupCell(visit: currentVisit as! VisitToDoctor)
+        return cell
     }
 }
 
+//MARK: TableViewDelegate
 extension MyVisitsToDoctorController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentVisit = visits[indexPath.row] as! VisitToDoctor

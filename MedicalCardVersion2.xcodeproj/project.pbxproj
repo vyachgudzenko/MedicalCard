@@ -64,6 +64,8 @@
 		3E8A4C0628692C3C00440F11 /* WorkWithDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A4C0528692C3C00440F11 /* WorkWithDatabase.swift */; };
 		3E9F8380286FA26500FB5BE5 /* CourseOfMedicament+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9F837E286FA26500FB5BE5 /* CourseOfMedicament+CoreDataClass.swift */; };
 		3E9F8381286FA26500FB5BE5 /* CourseOfMedicament+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9F837F286FA26500FB5BE5 /* CourseOfMedicament+CoreDataProperties.swift */; };
+		3E9F83842873255D00FB5BE5 /* NotDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9F83822873255D00FB5BE5 /* NotDataCell.swift */; };
+		3E9F83852873255D00FB5BE5 /* NotDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E9F83832873255D00FB5BE5 /* NotDataCell.xib */; };
 		3EA0080D2829C74700B15612 /* ProfessionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0080C2829C74700B15612 /* ProfessionsCell.swift */; };
 		3EA008102829CD1F00B15612 /* TypicallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0080E2829CD1F00B15612 /* TypicallCell.swift */; };
 		3EA008112829CD1F00B15612 /* TypicallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0080F2829CD1F00B15612 /* TypicallCell.xib */; };
@@ -129,6 +131,8 @@
 		3E8A4C0528692C3C00440F11 /* WorkWithDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkWithDatabase.swift; sourceTree = "<group>"; };
 		3E9F837E286FA26500FB5BE5 /* CourseOfMedicament+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseOfMedicament+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3E9F837F286FA26500FB5BE5 /* CourseOfMedicament+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseOfMedicament+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3E9F83822873255D00FB5BE5 /* NotDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotDataCell.swift; sourceTree = "<group>"; };
+		3E9F83832873255D00FB5BE5 /* NotDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotDataCell.xib; sourceTree = "<group>"; };
 		3EA0080C2829C74700B15612 /* ProfessionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionsCell.swift; sourceTree = "<group>"; };
 		3EA0080E2829CD1F00B15612 /* TypicallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypicallCell.swift; sourceTree = "<group>"; };
 		3EA0080F2829CD1F00B15612 /* TypicallCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypicallCell.xib; sourceTree = "<group>"; };
@@ -315,6 +319,8 @@
 				3E5F4DCC2869FBC400DDBABE /* VisitCell.xib */,
 				3E3F1859286C943300C00A45 /* MedicamentCell.swift */,
 				3E3F185A286C943300C00A45 /* MedicamentCell.xib */,
+				3E9F83822873255D00FB5BE5 /* NotDataCell.swift */,
+				3E9F83832873255D00FB5BE5 /* NotDataCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -416,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E43DAA728416DCD00B73761 /* DoctorPrototypeCell.xib in Resources */,
+				3E9F83852873255D00FB5BE5 /* NotDataCell.xib in Resources */,
 				3E1E06C92822D24200B5A9D3 /* LaunchScreen.storyboard in Resources */,
 				3E36FB4C2847A5A300F101BC /* AnalysisCell.xib in Resources */,
 				3E8A4BFF28688EEA00440F11 /* DiagnosisCell.xib in Resources */,
@@ -441,6 +448,7 @@
 				3E9F8380286FA26500FB5BE5 /* CourseOfMedicament+CoreDataClass.swift in Sources */,
 				3E43DA78284159B300B73761 /* NewDiagnosisController.swift in Sources */,
 				3E43DAA328416A3F00B73761 /* DoctorsListController.swift in Sources */,
+				3E9F83842873255D00FB5BE5 /* NotDataCell.swift in Sources */,
 				3E3F185B286C943300C00A45 /* MedicamentCell.swift in Sources */,
 				3E17BC0A286888CE00698692 /* DiagnosisPrototypeCell.swift in Sources */,
 				3E3F1855286B30D600C00A45 /* AnalyzesLisController.swift in Sources */,

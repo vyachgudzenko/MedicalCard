@@ -24,3 +24,11 @@ enum TypeOfMedicament:String {
     case injection
     case syrup
 }
+
+enum SectionOfMonth:String{
+    case today
+    case yesterday
+    case thisWeek
+    case thisMonth
+    case earlier
+}

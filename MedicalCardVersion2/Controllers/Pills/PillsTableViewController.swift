@@ -65,10 +65,6 @@ class PillsTableViewController: UITableViewController {
         return sortedArray
     }
     
-    @objc
-    func headerViewButtonTapped(){
-        
-    }
     
     
     
@@ -112,15 +108,6 @@ class PillsTableViewController: UITableViewController {
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.systemFont(ofSize: 25)
         headerView.addSubview(titleLabel)
-        let button = UIButton(type: .system)
-        button.frame = CGRect(x: view.frame.width - 140, y: 5, width: 100, height: 40)
-        button.layer.masksToBounds = true
-        button.layer.cornerRadius = 10
-        button.layer.backgroundColor = UIColor.systemOrange.cgColor
-        button.setTitle("Выпито все", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(headerViewButtonTapped), for: .touchUpInside)
-        headerView.addSubview(button)
         return headerView
     }
     
@@ -134,6 +121,8 @@ class PillsTableViewController: UITableViewController {
             let selectSectionDay = sectionOfDay[indexPath.section]
             let course = pills[selectSectionDay]?[indexPath.row] as! CourseOfMedicament
             changeItsDrunk(course: course)
+            print("section \(indexPath.section)")
+            print("row \(indexPath.row)")
             tableView.reloadSections(IndexSet(arrayLiteral: indexPath.section), with: .automatic)
         }
         actionSwipeEdit.backgroundColor = .systemIndigo
