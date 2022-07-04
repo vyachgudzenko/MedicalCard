@@ -13,9 +13,9 @@
         <relationship name="doctor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Doctor"/>
     </entity>
     <entity name="CourseOfMedicament" representedClassName="CourseOfMedicament" syncable="YES">
-        <attribute name="itsDrunk" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="medicamentName" optional="YES" attributeType="String"/>
         <attribute name="section" optional="YES" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
         <relationship name="medicament" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Medicament"/>
     </entity>
     <entity name="Diagnosis" representedClassName=".Diagnosis" syncable="YES">

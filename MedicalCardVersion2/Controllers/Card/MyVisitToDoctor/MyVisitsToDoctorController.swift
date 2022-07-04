@@ -157,10 +157,7 @@ extension MyVisitsToDoctorController:UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sectionOfMonth = sections[indexPath.section]
-        guard let currentVisit = sortedVisits[sectionOfMonth]?[indexPath.row] else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NotDataCell") as! NotDataCell
-            return cell
-        }
+        let currentVisit = sortedVisits[sectionOfMonth]?[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "VisitCell") as! VisitCell
         cell.setupCell(visit: currentVisit as! VisitToDoctor)
         return cell

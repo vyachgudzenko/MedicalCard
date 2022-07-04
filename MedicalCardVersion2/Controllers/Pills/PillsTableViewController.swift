@@ -79,11 +79,19 @@ class PillsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PillsCell") as! PillsTableViewCell
         let fragmentDay = sectionOfDay[indexPath.section]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PillsCell") as! PillsTableViewCell
+        
         let courseOfMedicament = pills[fragmentDay]?[indexPath.row] as! CourseOfMedicament
-        if courseOfMedicament.itsDrunk == true{
-            cell.accessoryType = .checkmark
+        if courseOfMedicament.status == "itsDrunk"{
+            let imageView = UIImageView(image: UIImage(systemName: "checkmark"))
+            imageView.tintColor = .systemGreen
+            cell.accessoryView = imageView
+        }
+        if courseOfMedicament.status == "forgotten"{
+            let imageView = UIImageView(image: UIImage(systemName: "xmark"))
+            imageView.tintColor = .systemRed
+            cell.accessoryView = imageView
         }
         cell.setupCell(medicament: courseOfMedicament.medicament!)
         return cell
@@ -121,23 +129,21 @@ class PillsTableViewController: UITableViewController {
             let selectSectionDay = sectionOfDay[indexPath.section]
             let course = pills[selectSectionDay]?[indexPath.row] as! CourseOfMedicament
             changeItsDrunk(course: course)
-            print("section \(indexPath.section)")
-            print("row \(indexPath.row)")
+            
             tableView.reloadSections(IndexSet(arrayLiteral: indexPath.section), with: .automatic)
         }
         actionSwipeEdit.backgroundColor = .systemIndigo
         return UISwipeActionsConfiguration(actions: [actionSwipeEdit])
     }
     
-    /*override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
-        let currentSection = sectionOfDay[indexPath.section]
-        let actionSwipeDelete = UIContextualAction(style: .normal, title: "Удалить") { [self] _, _, _ in
-            deleteMedicament(medicament: coursesOfMedicament[indexPath.row] as! Medicament)
-            coursesOfMedicament.remove(at: indexPath.row)
-            tableView.reloadData()
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let actionSwipeDelete = UIContextualAction(style: .normal, title: "Забыли выпить") { [self] _, _, _ in
+            let currentSection = sectionOfDay[indexPath.section]
+            let course = pills[currentSection]?[indexPath.row]
+            changeItsForgotten(course: course!)
+            tableView.reloadSections(IndexSet(arrayLiteral: indexPath.section), with: .automatic)
         }
         actionSwipeDelete.backgroundColor = .systemGray
         return UISwipeActionsConfiguration(actions: [actionSwipeDelete])
-    }*/
+    }
 }

@@ -377,7 +377,7 @@ extension UIViewController{
         let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewVisitController") as! NewVisitController
         editScreen.navigationItem.title = visit.doctorFullName
         editScreen.complaint = visit.complaint
-        editScreen.date = visit.date
+        editScreen.date = visit.date!
         editScreen.diagnosis = visit.diagnosis
         editScreen.doctor = visit.doctor
         editScreen.uuid = visit.uuid
@@ -406,7 +406,7 @@ extension UIViewController{
         let newCourse = NSManagedObject(entity: entity, insertInto: managedContext)
         newCourse.setValue(medicament, forKey: "medicament")
         newCourse.setValue(section, forKey: "section")
-        newCourse.setValue(false, forKey: "itsDrunk")
+        newCourse.setValue("expect", forKey: "status")
         newCourse.setValue(medicament.title, forKey: "medicamentName")
         do{
             try managedContext.save()
@@ -416,7 +416,18 @@ extension UIViewController{
     }
     
     func changeItsDrunk(course:CourseOfMedicament){
-        course.itsDrunk = true
+        course.status = "itsDrunk"
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        let managedContext = appDelegate.persistentContainer.viewContext
+        do{
+            try managedContext.save()
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
+        }
+    }
+    
+    func changeItsForgotten(course:CourseOfMedicament){
+        course.status = "forgotten"
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
         do{

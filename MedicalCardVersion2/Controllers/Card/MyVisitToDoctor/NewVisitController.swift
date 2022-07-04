@@ -10,7 +10,7 @@ import UIKit
 class NewVisitController: UITableViewController {
 
     var complaint:String? = ""
-    var date:Date?
+    var date:Date = Date()
     var doctor:Doctor?
     var diagnosis:Diagnosis?
     var uuid:UUID?
@@ -41,6 +41,7 @@ class NewVisitController: UITableViewController {
         diagnosisLabel.text = diagnosis?.title ?? "Выберите диагноз"
         countOfAnalysisLAbel.text = "0 шт."
         countOfMedicamentLabel.text = "0 шт."
+        datePiecker.date = date
         if uuid == nil{
             uuid = UUID()
         }
