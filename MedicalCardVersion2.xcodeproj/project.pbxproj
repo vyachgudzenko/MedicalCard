@@ -70,6 +70,8 @@
 		3EA008102829CD1F00B15612 /* TypicallCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0080E2829CD1F00B15612 /* TypicallCell.swift */; };
 		3EA008112829CD1F00B15612 /* TypicallCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0080F2829CD1F00B15612 /* TypicallCell.xib */; };
 		3EA013872873BB8B00D1D100 /* UploadFileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA013862873BB8B00D1D100 /* UploadFileController.swift */; };
+		3EA0138A2873BDE500D1D100 /* UploadFile+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA013882873BDE500D1D100 /* UploadFile+CoreDataClass.swift */; };
+		3EA0138B2873BDE500D1D100 /* UploadFile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA013892873BDE500D1D100 /* UploadFile+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +140,8 @@
 		3EA0080E2829CD1F00B15612 /* TypicallCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypicallCell.swift; sourceTree = "<group>"; };
 		3EA0080F2829CD1F00B15612 /* TypicallCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypicallCell.xib; sourceTree = "<group>"; };
 		3EA013862873BB8B00D1D100 /* UploadFileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileController.swift; sourceTree = "<group>"; };
+		3EA013882873BDE500D1D100 /* UploadFile+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UploadFile+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3EA013892873BDE500D1D100 /* UploadFile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UploadFile+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +158,8 @@
 		3E1E06B02822D24100B5A9D3 = {
 			isa = PBXGroup;
 			children = (
+				3EA013882873BDE500D1D100 /* UploadFile+CoreDataClass.swift */,
+				3EA013892873BDE500D1D100 /* UploadFile+CoreDataProperties.swift */,
 				3E9F837E286FA26500FB5BE5 /* CourseOfMedicament+CoreDataClass.swift */,
 				3E9F837F286FA26500FB5BE5 /* CourseOfMedicament+CoreDataProperties.swift */,
 				3E8A4C0028692AD800440F11 /* VisitToDoctor+CoreDataClass.swift */,
@@ -449,6 +455,7 @@
 				3E2D3F9D28231998000D0944 /* FraquencyCell.swift in Sources */,
 				3E8A4C0328692AD800440F11 /* VisitToDoctor+CoreDataProperties.swift in Sources */,
 				3E9F8380286FA26500FB5BE5 /* CourseOfMedicament+CoreDataClass.swift in Sources */,
+				3EA0138B2873BDE500D1D100 /* UploadFile+CoreDataProperties.swift in Sources */,
 				3E43DA78284159B300B73761 /* NewDiagnosisController.swift in Sources */,
 				3E43DAA328416A3F00B73761 /* DoctorsListController.swift in Sources */,
 				3E9F83842873255D00FB5BE5 /* NotDataCell.swift in Sources */,
@@ -488,6 +495,7 @@
 				3E8A4C0228692AD800440F11 /* VisitToDoctor+CoreDataClass.swift in Sources */,
 				3E3F1858286C92C300C00A45 /* MyMedicamentController.swift in Sources */,
 				3E8A4BFE28688EEA00440F11 /* DiagnosisCell.swift in Sources */,
+				3EA0138A2873BDE500D1D100 /* UploadFile+CoreDataClass.swift in Sources */,
 				3E1E06BF2822D24100B5A9D3 /* SceneDelegate.swift in Sources */,
 				3E50447D284432210095A304 /* Analysis+CoreDataClass.swift in Sources */,
 				3E2C5101282854BF00855FB9 /* NewDoctorController.swift in Sources */,
