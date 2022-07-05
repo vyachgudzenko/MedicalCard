@@ -16,7 +16,7 @@ class PillsTableViewCell: UITableViewCell {
     func setupCell(medicament:Medicament){
         titleLabel.text = medicament.title
         dosageLabel.text = medicament.dosage
-        pic.image = getCurrentImageForPillsList(medicament: medicament)
+        pic.image = getCurrentImageForPillsList(medicament: medicament).withRenderingMode(.alwaysTemplate)
     }
     
     func getCurrentImageForPillsList(medicament:Medicament) -> UIImage{
