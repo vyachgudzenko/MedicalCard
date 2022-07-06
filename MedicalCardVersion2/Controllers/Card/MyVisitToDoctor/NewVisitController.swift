@@ -39,12 +39,15 @@ class NewVisitController: UITableViewController {
         complaintTextField.text = complaint
         doctorLabel.text = doctor?.getFullName() ?? "Выберите врача"
         diagnosisLabel.text = diagnosis?.title ?? "Выберите диагноз"
-        countOfAnalysisLAbel.text = "0 шт."
-        countOfMedicamentLabel.text = "0 шт."
         datePiecker.date = date
         if uuid == nil{
             uuid = UUID()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        countOfAnalysisLAbel.text = "\(countAnalysisHasThisVisit(uuid: uuid!.uuidString))"
+        countOfMedicamentLabel.text = "\(countMedicamentHasThisVisit(uuid: uuid!.uuidString))"
     }
 
     // MARK: - Table view data source

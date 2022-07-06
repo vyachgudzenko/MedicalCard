@@ -63,10 +63,14 @@ class NewAnalysisController: UITableViewController {
         datePiecker.date = dateAnalysis
         doctorLabel.text = doctorLabelText
         diagnosisLabel.text = diagnosisLabelText
-        countOfFilesLabel.text = "\(countOfFiles) шт."
         if uuid == nil{
             uuid = UUID()
         }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        countOfFilesLabel.text = "\(countOfUploadFiles(uuid: uuid!.uuidString)) шт."
     }
     
     //MARK: IBAction

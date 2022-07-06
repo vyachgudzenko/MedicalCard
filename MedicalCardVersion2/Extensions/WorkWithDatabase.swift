@@ -260,6 +260,23 @@ extension UIViewController{
         navigationController?.pushViewController(editScreen, animated: true)
     }
     
+    func countOfUploadFiles(uuid:String) -> Int{
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<UploadFile>
+        fetchRequest = UploadFile.fetchRequest()
+        fetchRequest.predicate = NSPredicate(
+            format: "analysisUUID LIKE %@", uuid)
+        do{
+            let object = try managedContext.fetch(fetchRequest)
+            let count = object.count
+            return count
+        }
+        catch{
+            fatalError()
+        }
+    }
+    
     func deleteAnalysis(analysis:Analysis){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -399,6 +416,42 @@ extension UIViewController{
         }
         navigationController?.pushViewController(editScreen, animated: true)
     }
+    
+    func countAnalysisHasThisVisit(uuid:String) -> Int {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<Analysis>
+        fetchRequest = Analysis.fetchRequest()
+        fetchRequest.predicate = NSPredicate(
+            format: "visitUUID LIKE %@", uuid)
+        do{
+            let object = try managedContext.fetch(fetchRequest)
+            let count = object.count
+            return count
+        }
+        catch{
+            fatalError()
+        }
+    }
+    
+    func countMedicamentHasThisVisit(uuid:String) -> Int {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<Medicament>
+        fetchRequest = Medicament.fetchRequest()
+        fetchRequest.predicate = NSPredicate(
+            format: "visitUUID LIKE %@", uuid)
+        do{
+            let object = try managedContext.fetch(fetchRequest)
+            let count = object.count
+            return count
+        }
+        catch{
+            fatalError()
+        }
+    }
+    
+    
     
     //MARK: CourseMedicament
     func saveNewCourse(medicament:Medicament,section:String){
