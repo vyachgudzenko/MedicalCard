@@ -195,7 +195,7 @@ extension UIViewController{
     }
     
     //MARK: Analizes
-    func saveAnalysis(title:String,descriptionofAnalysis:String,result:String,date:Date,doctor:Doctor,diagnosis:Diagnosis,visitUUID:String?){
+    func saveAnalysis(title:String,descriptionofAnalysis:String,result:String,date:Date,doctor:Doctor,diagnosis:Diagnosis,visitUUID:String?,uuid:UUID){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Analysis", in: managedContext)!
@@ -209,6 +209,7 @@ extension UIViewController{
         newAnalysis.setValue(diagnosis, forKey: "diagnosis")
         newAnalysis.setValue(diagnosis.title, forKey: "diagnosisTitle")
         newAnalysis.setValue(visitUUID, forKey: "visitUUID")
+        newAnalysis.setValue(uuid, forKey: "uuid")
         do{
             try managedContext.save()
         } catch let error as NSError{
@@ -220,8 +221,8 @@ extension UIViewController{
         let newAnalisys = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewAnalysisController") as! NewAnalysisController
         newAnalisys.visitUUID = uuid
         newAnalisys.doAfterCreate = { [self]
-            titleOfAnalysis,descriptionOfAnalysis,result,date,doctor,diagnosis,visitUUID in
-            saveAnalysis(title: titleOfAnalysis, descriptionofAnalysis: descriptionOfAnalysis, result: result, date: date, doctor: doctor, diagnosis: diagnosis,visitUUID: visitUUID)
+            titleOfAnalysis,descriptionOfAnalysis,result,date,doctor,diagnosis,visitUUID,uuid in
+            saveAnalysis(title: titleOfAnalysis, descriptionofAnalysis: descriptionOfAnalysis, result: result, date: date, doctor: doctor, diagnosis: diagnosis,visitUUID: visitUUID,uuid: uuid!)
         }
         navigationController?.pushViewController(newAnalisys, animated: true)
     }
@@ -229,6 +230,7 @@ extension UIViewController{
     func editAnalysis(analysis:Analysis){
         let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewAnalysisController") as! NewAnalysisController
         editScreen.navigationItem.title = analysis.title
+        editScreen.uuid = analysis.uuid
         editScreen.titleText = analysis.title!
         editScreen.descriptionText = analysis.descriptionOfAnalysis ?? ""
         editScreen.resultText = analysis.result!
@@ -238,7 +240,7 @@ extension UIViewController{
         editScreen.diagnosis = analysis.diagnosis
         editScreen.diagnosisLabelText = analysis.diagnosisTitle!
         editScreen.doAfterCreate = {
-            titleOfAnalysis,descriptionOfAnalysis,result,date,doctor,diagnosis,visitUUID in
+            titleOfAnalysis,descriptionOfAnalysis,result,date,doctor,diagnosis,visitUUID,uuid in
             analysis.title = titleOfAnalysis
             analysis.descriptionOfAnalysis = descriptionOfAnalysis
             analysis.result = result
@@ -474,6 +476,22 @@ extension UIViewController{
             saveNewCourse(medicament: medicament, section: "evening")
         default:
             break
+        }
+    }
+    
+    //MARK: UploadFile
+    func saveUploadFile(analysisUUID:String,file:Data){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "UploadFile", in: managedContext)!
+        let uploadFile = NSManagedObject(entity: entity, insertInto: managedContext)
+        uploadFile.setValue(analysisUUID, forKey: "analysisUUID")
+        uploadFile.setValue(file, forKey: "file")
+        uploadFile.setValue(Date(), forKey: "date")
+        do{
+            try managedContext.save()
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
         }
     }
 }

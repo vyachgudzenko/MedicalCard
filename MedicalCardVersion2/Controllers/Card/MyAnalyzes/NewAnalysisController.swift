@@ -9,7 +9,7 @@ import UIKit
 
 class NewAnalysisController: UITableViewController {
     
-    
+    var countOfFiles:Int = 0
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
@@ -17,7 +17,15 @@ class NewAnalysisController: UITableViewController {
     @IBOutlet weak var datePiecker: UIDatePicker!
     @IBOutlet weak var doctorLabel: UILabel!
     @IBOutlet weak var diagnosisLabel: UILabel!
+    @IBOutlet weak var countOfFilesLabel: UILabel!
     @IBOutlet weak var uploadButton: UIButton!
+    
+    
+    @IBAction func uploadButtonTapped(_ sender: UIButton) {
+        let uploadFileScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UploadFileController") as! UploadFileController
+        uploadFileScreen.analysisUUID = uuid
+        navigationController?.pushViewController(uploadFileScreen, animated: true)
+    }
     
     var titleText:String = ""
     var descriptionText:String = ""
@@ -26,10 +34,11 @@ class NewAnalysisController: UITableViewController {
     var doctor:Doctor?
     var diagnosis:Diagnosis?
     var visitUUID:UUID?
+    var uuid:UUID?
     var doctorLabelText = "Выберите врача"
     var diagnosisLabelText = "Выберите диагноз"
     
-    var doAfterCreate:((String,String,String,Date,Doctor,Diagnosis,String?) -> Void)?
+    var doAfterCreate:((String,String,String,Date,Doctor,Diagnosis,String?,UUID?) -> Void)?
     
     var alert:MedicalAlert?
     
@@ -54,6 +63,10 @@ class NewAnalysisController: UITableViewController {
         datePiecker.date = dateAnalysis
         doctorLabel.text = doctorLabelText
         diagnosisLabel.text = diagnosisLabelText
+        countOfFilesLabel.text = "\(countOfFiles) шт."
+        if uuid == nil{
+            uuid = UUID()
+        }
     }
     
     //MARK: IBAction
@@ -65,7 +78,7 @@ class NewAnalysisController: UITableViewController {
             let description = descriptionTextField.text!
             let result = resultTextField.text!
             let date = datePiecker.date
-            doAfterCreate?(title,description,result,date,doctor!,diagnosis!,visitUUID?.uuidString)
+            doAfterCreate?(title,description,result,date,doctor!,diagnosis!,visitUUID?.uuidString,uuid)
             navigationController?.popViewController(animated: true)
         }
         
@@ -77,7 +90,7 @@ class NewAnalysisController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 8
     }
     
     // MARK: - Navigation
@@ -97,6 +110,10 @@ class NewAnalysisController: UITableViewController {
                 self.diagnosis = selectedDiagnosis
                 self.diagnosisLabel.text = selectedDiagnosis.title
             }
+        }
+        if segue.identifier == "toUploadFileList"{
+            let destination = segue.destination as! UploadFileListController
+            destination.analysisUUID = uuid?.uuidString
         }
     }
     

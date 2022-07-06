@@ -2,7 +2,7 @@
 //  Analysis+CoreDataProperties.swift
 //  MedicalCardVersion2
 //
-//  Created by Вячеслав Гудзенко on 28.06.2022.
+//  Created by Вячеслав Гудзенко on 05.07.2022.
 //
 //
 
@@ -24,6 +24,7 @@ extension Analysis {
     @NSManaged public var result: String?
     @NSManaged public var title: String?
     @NSManaged public var visitUUID: String?
+    @NSManaged public var uuid: UUID?
     @NSManaged public var diagnosis: Diagnosis?
     @NSManaged public var doctor: Doctor?
 
