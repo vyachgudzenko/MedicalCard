@@ -9,11 +9,14 @@ import UIKit
 
 class NewDoctorController: UITableViewController {
     
+    //MARK: Outlets
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var clinicTextField: UITextField!
     @IBOutlet weak var numberPhoneTextField: UITextField!
     @IBOutlet weak var professionLabel: UILabel!
+    @IBOutlet weak var specializationLabel: UILabel!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var firstName:String = ""
     var lastName:String = ""
@@ -31,11 +34,19 @@ class NewDoctorController: UITableViewController {
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = NSLocalizedString("title_NewDoctor", comment: "")
+        saveButton.title = NSLocalizedString("buttonSave", comment: "")
+        firstNameTextField.placeholder = NSLocalizedString("placeholder_FirstName", comment: "")
+        lastNameTextField.placeholder = NSLocalizedString("placeholder_LastName", comment: "")
+        clinicTextField.placeholder = NSLocalizedString("placeholder_Job", comment: "")
+        numberPhoneTextField.placeholder = NSLocalizedString("placeholder_PhoneNumber", comment: "")
+        specializationLabel.text = NSLocalizedString("specialization_Label", comment: "")
         firstNameTextField.text = firstName
         lastNameTextField.text = lastName
         clinicTextField.text = clinic
         numberPhoneTextField.text = phoneNumber
         professionLabel.text = profession
+        
     }
     
     //MARK: Other function
@@ -81,6 +92,10 @@ class NewDoctorController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return NSLocalizedString("table_Header", comment: "")
     }
     
     //MARK: Navigation

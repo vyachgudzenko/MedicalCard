@@ -326,8 +326,8 @@ extension UIViewController{
         editScreen.isNewMedicament = false
         editScreen.medicamentName = medicament.title!
         editScreen.medicamentDosage = medicament.dosage!
-        editScreen.medicamentType = medicament.type!
-        editScreen.medicamentFrequency = medicament.frequency!
+        editScreen.medicamentType = medicament.medicamentTypeEnum
+        editScreen.medicamentFrequency = medicament.frequencyEnum
         editScreen.isTaken = medicament.isTaken
         editScreen.isOver = medicament.isOver
         editScreen.visitUUID = medicament.visitUUID

@@ -15,3 +15,16 @@
 "analysisDescription" = "Храните данные о Ваших анализах и исследования в одном месте";
 "medicaments" = "Мои лекарства";
 "medicamentsDescription" = "Здесь хранятся все данные о Ваших назначенных лекарствах";
+
+//MARK: DoctorsTableViewControler
+"title_DoctorsTableViewController" = "Мои доктора";
+
+//MARK: NewDoctorController
+"title_NewDoctor" = "Новый доктор";
+"table_Header" = "Введите данные";
+"buttonSave" = "Cохранить";
+"placeholder_FirstName" = "Имя";
+"placeholder_LastName" = "Last name";
+"placeholder_Job" = "Место работы";
+"placeholder_PhoneNumber" = "Номер телефона";
+"specialization_Label" = "Специализация";

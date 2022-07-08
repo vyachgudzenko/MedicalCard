@@ -10,19 +10,19 @@ import UIKit
 class PillsTypeTableViewController: UITableViewController {
     
     struct TypeCellDescription{
-        var type:String
+        var type:TypeOfMedicament
         var title:String
         var description:String
     }
     
     private var medicamentTypeInformation: [TypeCellDescription] = [
-        (TypeCellDescription(type: "injection",title: "Уколы", description: "Внутривенные,подкожные,внутримышечные иньекции, которые Вы делаете самостоятельно или же это делает мед. персонал")),
-        (TypeCellDescription(type: "pill",title: "Таблетки", description: "Препараты в форме таблеток. Возможен прием как перед, так и после еды")),
-        (TypeCellDescription(type: "syrup", title: "Сироп/Суспензия", description: "Препараты в виде сиропа или суспензии. Возможен прием как перед, так и после еды."))]
+        (TypeCellDescription(type: .injection,title: "Уколы", description: "Внутривенные,подкожные,внутримышечные иньекции, которые Вы делаете самостоятельно или же это делает мед. персонал")),
+        (TypeCellDescription(type: .pill,title: "Таблетки", description: "Препараты в форме таблеток. Возможен прием как перед, так и после еды")),
+        (TypeCellDescription(type: .syrup, title: "Сироп/Суспензия", description: "Препараты в виде сиропа или суспензии. Возможен прием как перед, так и после еды."))]
     
-    var selectedType:String = "pill"
+    var selectedType:TypeOfMedicament = .pill
     
-    var doAfterTypeSelected:((String) -> Void)?
+    var doAfterTypeSelected:((TypeOfMedicament) -> Void)?
 
     //MARK: Life cycle
     override func viewDidLoad() {

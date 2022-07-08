@@ -20,18 +20,18 @@ class NewPillController: UITableViewController {
     var isOver:Bool = false
     var medicamentName = ""
     var medicamentDosage:String = "0"
-    var medicamentType:String = "pill"
-    var medicamentFrequency:String = "twiceADay"
+    var medicamentType:TypeOfMedicament = .pill
+    var medicamentFrequency:Frequency = .twiceADay
     
-    private var titlesType:[String:String] = [
-        "pill":"Таблетки",
-        "injection":"Уколы",
-        "syrup":"Cироп"]
+    private var titlesType:[TypeOfMedicament:String] = [
+        .pill:"Таблетки",
+        .injection:"Уколы",
+        .syrup:"Cироп"]
     
-    private var titlesFrequency:[String:String] = [
-        "onceADay":"Один раз",
-        "twiceADay":"Дважды",
-        "threeTimeADay":"Трижды"]
+    private var titlesFrequency:[Frequency:String] = [
+        .onceADay:"Один раз",
+        .twiceADay:"Дважды",
+        .threeTimeADay:"Трижды"]
     
     var doAfterEdit:((String,String,String,String,Doctor?,String?,Bool,Bool) -> Void)?
     
@@ -85,7 +85,7 @@ class NewPillController: UITableViewController {
         let dosage = medicamentDosageTextField.text ?? "0"
         let type = medicamentType
         let frequency = medicamentFrequency
-        doAfterEdit?(title,dosage,type,frequency,doctor,visitUUID,isTaken,isOver)
+        doAfterEdit?(title,dosage,type.rawValue,frequency.rawValue,doctor,visitUUID,isTaken,isOver)
     }
     
     // MARK: - Table view data source

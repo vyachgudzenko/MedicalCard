@@ -10,18 +10,18 @@ import UIKit
 class PillsFrequencyController: UITableViewController {
     
     struct FraquencyCellDescription{
-        var fraquency:String
+        var fraquency:Frequency
         var title:String
     }
     
-    var selectedFraquency:String = "threeTimeADay"
+    var selectedFraquency:Frequency = .twiceADay
     
     var medicamentFraquencyInformation:[FraquencyCellDescription] = [
-        (FraquencyCellDescription(fraquency: "onceADay", title: "Один раз в день")),
-         (FraquencyCellDescription(fraquency: "twiceADay", title: "Два раза в день")),
-          (FraquencyCellDescription(fraquency: "threeTimeADay", title: "Три раза в день"))]
+        (FraquencyCellDescription(fraquency: .onceADay, title: "Один раз в день")),
+        (FraquencyCellDescription(fraquency: .twiceADay, title: "Два раза в день")),
+        (FraquencyCellDescription(fraquency: .threeTimeADay, title: "Три раза в день"))]
     
-    var doAfterFrequencySelected:((String) -> Void)?
+    var doAfterFrequencySelected:((Frequency) -> Void)?
 
     //MARK: Life cycle
     override func viewDidLoad() {

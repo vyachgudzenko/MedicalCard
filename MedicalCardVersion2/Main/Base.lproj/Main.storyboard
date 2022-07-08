@@ -294,6 +294,8 @@
                         <outlet property="lastNameTextField" destination="ABI-7M-OyU" id="QJ8-sq-Fbo"/>
                         <outlet property="numberPhoneTextField" destination="gHs-a6-Ym0" id="PMB-pe-Uxp"/>
                         <outlet property="professionLabel" destination="OyM-vm-27S" id="Gg1-u8-zxX"/>
+                        <outlet property="saveButton" destination="dvB-E8-azj" id="qGY-Ri-MiD"/>
+                        <outlet property="specializationLabel" destination="ScY-9P-muA" id="xjL-g4-EXl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XWn-do-q4S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -32,5 +32,23 @@ extension Medicament {
 }
 
 extension Medicament : Identifiable {
-
+    var frequencyEnum: Frequency {
+        get{
+            return Frequency(rawValue: self.frequency!)!
+        }
+        set{
+            self.frequency = newValue.rawValue
+        }
+    }
+    
+    var medicamentTypeEnum:TypeOfMedicament {
+        get{
+            return TypeOfMedicament(rawValue: self.type!)!
+        }
+        set{
+            self.type = newValue.rawValue
+        }
+    }
+    
+    
 }

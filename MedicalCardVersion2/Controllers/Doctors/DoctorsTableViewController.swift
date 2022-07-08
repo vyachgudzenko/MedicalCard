@@ -36,6 +36,7 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
         tableView.register(cellNib, forCellReuseIdentifier: "DoctorPrototypeCell")
         view.addSubview(floatButton)
         floatButton.addTarget(self, action: #selector(addBarButtonTapped), for: .touchUpInside)
+        navigationItem.title = NSLocalizedString("title_DoctorsTableViewController", comment: "")
     }
     
     override func viewWillAppear(_ animated: Bool) {

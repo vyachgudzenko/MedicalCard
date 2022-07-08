@@ -20,9 +20,9 @@ enum Frequency:String{
 }
 
 enum TypeOfMedicament:String {
-    case pill
-    case injection
-    case syrup
+    case pill = "pill"
+    case injection = "injection"
+    case syrup = "syrup"
 }
 
 enum SectionOfMonth:String{

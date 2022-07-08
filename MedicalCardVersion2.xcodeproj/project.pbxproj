@@ -252,8 +252,6 @@
 			children = (
 				3E1E06DE2822D77900B5A9D3 /* PillsTableViewController.swift */,
 				3E1E06E82822D9C300B5A9D3 /* PillsTableViewCell.swift */,
-				3E3B41052823029000531423 /* PillsTypeTableViewController.swift */,
-				3E3B41072823031600531423 /* PillsFrequencyController.swift */,
 				3E2D3F9C28231998000D0944 /* FraquencyCell.swift */,
 			);
 			path = Pills;
@@ -312,6 +310,8 @@
 			children = (
 				3E3F1857286C92C300C00A45 /* MyMedicamentController.swift */,
 				3E3B41032822FC9800531423 /* NewPillController.swift */,
+				3E3B41052823029000531423 /* PillsTypeTableViewController.swift */,
+				3E3B41072823031600531423 /* PillsFrequencyController.swift */,
 			);
 			path = MyMedicament;
 			sourceTree = "<group>";

@@ -14,10 +14,10 @@ class MedicamentCell: UITableViewCell {
         "injection":"Уколы",
         "syrup":"Cироп"]
     
-    private var titlesFrequency:[String:String] = [
-        "onceADay":"Один раз в день",
-        "twiceADay":"Дважды в день",
-        "threeTimeADay":"Трижды в день"]
+    private var titlesFrequency:[Frequency:String] = [
+        .onceADay:"Один раз в день",
+        .twiceADay:"Дважды в день",
+        .threeTimeADay:"Трижды в день"]
     
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -31,7 +31,7 @@ class MedicamentCell: UITableViewCell {
     func setupCell(medicament:Medicament){
         titleLabel.text = medicament.title
         typeLabel.text = titlesType[medicament.type!]!
-        frequencyLabel.text = titlesFrequency[medicament.frequency!]!
+        frequencyLabel.text = titlesFrequency[medicament.frequencyEnum]!
         doctorLabel.text = medicament.doctor?.getFullName() ?? "Не указан"
         if medicament.isTaken{
             statusLabel.text = "Принимается"
