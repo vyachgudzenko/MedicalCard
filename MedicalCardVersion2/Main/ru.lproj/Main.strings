@@ -1,0 +1,279 @@
+
+/* Class = "UILabel"; text = "1 шт."; ObjectID = "0Kx-Tw-iFx"; */
+"0Kx-Tw-iFx.text" = "1 шт.";
+
+/* Class = "UILabel"; text = "Загружено файлов"; ObjectID = "0Lk-7S-fun"; */
+"0Lk-7S-fun.text" = "Загружено файлов";
+
+/* Class = "UINavigationItem"; title = "Анализы/Исследования"; ObjectID = "1DX-sK-hGQ"; */
+"1DX-sK-hGQ.title" = "Анализы/Исследования";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "1Gg-h7-6sv"; */
+"1Gg-h7-6sv.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Посещение врача"; ObjectID = "1TO-BC-lYa"; */
+"1TO-BC-lYa.title" = "Посещение врача";
+
+/* Class = "UINavigationItem"; title = "Новый доктор"; ObjectID = "2gm-f3-e1H"; */
+"2gm-f3-e1H.title" = "Новый доктор";
+
+/* Class = "UIBarButtonItem"; title = "Сохранить"; ObjectID = "2hV-tF-gGb"; */
+"2hV-tF-gGb.title" = "Сохранить";
+
+/* Class = "UINavigationItem"; title = "Мои диагнозы"; ObjectID = "2pz-Ss-O2j"; */
+"2pz-Ss-O2j.title" = "Мои диагнозы";
+
+/* Class = "UITableViewSection"; headerTitle = "Введите данные"; ObjectID = "3TV-dB-M5l"; */
+"3TV-dB-M5l.headerTitle" = "Введите данные";
+
+/* Class = "UILabel"; text = "Диагноз"; ObjectID = "4bE-4h-xih"; */
+"4bE-4h-xih.text" = "Диагноз";
+
+/* Class = "UILabel"; text = "Врач"; ObjectID = "517-3t-npA"; */
+"517-3t-npA.text" = "Врач";
+
+/* Class = "UILabel"; text = "Посещения врача"; ObjectID = "5BV-Md-t3A"; */
+"5BV-Md-t3A.text" = "Посещения врача";
+
+/* Class = "UILabel"; text = "Информация о том,когда и с какой жалобой Вы посещали врача"; ObjectID = "6YV-Tu-WFs"; */
+"6YV-Tu-WFs.text" = "Информация о том,когда и с какой жалобой Вы посещали врача";
+
+/* Class = "UITextField"; placeholder = "Жалобы"; ObjectID = "8SV-Ws-78x"; */
+"8SV-Ws-78x.placeholder" = "Жалобы";
+
+/* Class = "UINavigationItem"; title = "Список файлов"; ObjectID = "8TB-IB-YBJ"; */
+"8TB-IB-YBJ.title" = "Список файлов";
+
+/* Class = "UINavigationItem"; title = "Настройки"; ObjectID = "9Fo-dl-kuT"; */
+"9Fo-dl-kuT.title" = "Настройки";
+
+/* Class = "UITextField"; placeholder = "Фамилия"; ObjectID = "ABI-7M-OyU"; */
+"ABI-7M-OyU.placeholder" = "Фамилия";
+
+/* Class = "UILabel"; text = "Дата посещения:"; ObjectID = "AtF-qI-t7s"; */
+"AtF-qI-t7s.text" = "Дата посещения:";
+
+/* Class = "UITextField"; placeholder = "Имя"; ObjectID = "BUA-dC-WJN"; */
+"BUA-dC-WJN.placeholder" = "Имя";
+
+/* Class = "UINavigationItem"; title = "Новое посещение"; ObjectID = "F8S-02-kCY"; */
+"F8S-02-kCY.title" = "Новое посещение";
+
+/* Class = "UILabel"; text = "Вид препарата"; ObjectID = "Fj9-d9-QCL"; */
+"Fj9-d9-QCL.text" = "Вид препарата";
+
+/* Class = "UIButton"; configuration.title = "Загрузить файлы"; ObjectID = "HAi-eb-9ey"; */
+"HAi-eb-9ey.configuration.title" = "Загрузить файлы";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "HAi-eb-9ey"; */
+"HAi-eb-9ey.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "HDH-jv-gSF"; */
+"HDH-jv-gSF.text" = "Label";
+
+/* Class = "UILabel"; text = "2 шт."; ObjectID = "J4o-yn-ZdU"; */
+"J4o-yn-ZdU.text" = "2 шт.";
+
+/* Class = "UITextField"; placeholder = "Название препарата"; ObjectID = "JAv-9i-Yl2"; */
+"JAv-9i-Yl2.placeholder" = "Название препарата";
+
+/* Class = "UITextField"; placeholder = "Место работы"; ObjectID = "JfX-UB-OZn"; */
+"JfX-UB-OZn.placeholder" = "Место работы";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "MAn-UA-gOi"; */
+"MAn-UA-gOi.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Новый диагноз"; ObjectID = "MY3-Mh-99W"; */
+"MY3-Mh-99W.title" = "Новый диагноз";
+
+/* Class = "UILabel"; text = "Анализы/Иследования"; ObjectID = "OHM-OS-7OE"; */
+"OHM-OS-7OE.text" = "Анализы/Иследования";
+
+/* Class = "UITextField"; placeholder = "Название диагноза"; ObjectID = "OhK-Ox-umv"; */
+"OhK-Ox-umv.placeholder" = "Название диагноза";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "OyM-vm-27S"; */
+"OyM-vm-27S.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "PiR-Ry-NOd"; */
+"PiR-Ry-NOd.text" = "Label";
+
+/* Class = "UILabel"; text = "Количество дней"; ObjectID = "Q4D-se-xxo"; */
+"Q4D-se-xxo.text" = "Количество дней";
+
+/* Class = "UILabel"; text = "Частота приема в день"; ObjectID = "Q4T-wY-hzC"; */
+"Q4T-wY-hzC.text" = "Частота приема в день";
+
+/* Class = "UILabel"; text = "Врач"; ObjectID = "QaJ-Ki-Bxk"; */
+"QaJ-Ki-Bxk.text" = "Врач";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "QuS-EZ-iNl"; */
+"QuS-EZ-iNl.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Назначенные анализы"; ObjectID = "Qyn-VT-nNl"; */
+"Qyn-VT-nNl.title" = "Назначенные анализы";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "RrO-Bt-LYd"; */
+"RrO-Bt-LYd.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "S5j-NS-L8S"; */
+"S5j-NS-L8S.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "Введите данные"; ObjectID = "SMQ-xr-OGR"; */
+"SMQ-xr-OGR.headerTitle" = "Введите данные";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "SNE-sC-qIK"; */
+"SNE-sC-qIK.text" = "Label";
+
+/* Class = "UILabel"; text = "Специализация"; ObjectID = "ScY-9P-muA"; */
+"ScY-9P-muA.text" = "Специализация";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Sdt-Wz-Hee"; */
+"Sdt-Wz-Hee.text" = "Label";
+
+/* Class = "UILabel"; text = "Врач"; ObjectID = "Uag-u4-snS"; */
+"Uag-u4-snS.text" = "Врач";
+
+/* Class = "UIBarButtonItem"; title = "Сохранить"; ObjectID = "WFh-vd-2G1"; */
+"WFh-vd-2G1.title" = "Сохранить";
+
+/* Class = "UILabel"; text = "Диагноз"; ObjectID = "WSx-Cm-oKr"; */
+"WSx-Cm-oKr.text" = "Диагноз";
+
+/* Class = "UILabel"; text = "Врач"; ObjectID = "X9i-vb-5wm"; */
+"X9i-vb-5wm.text" = "Врач";
+
+/* Class = "UILabel"; text = "Мои лекарства"; ObjectID = "XGe-Wt-ORh"; */
+"XGe-Wt-ORh.text" = "Мои лекарства";
+
+/* Class = "UIButton"; configuration.title = "Загрузить"; ObjectID = "YJT-ud-CH0"; */
+"YJT-ud-CH0.configuration.title" = "Загрузить";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "YJT-ud-CH0"; */
+"YJT-ud-CH0.normalTitle" = "Button";
+
+/* Class = "UINavigationItem"; title = "Новый анализ"; ObjectID = "Ybj-3C-xSM"; */
+"Ybj-3C-xSM.title" = "Новый анализ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Z9e-3E-zvr"; */
+"Z9e-3E-zvr.text" = "Label";
+
+/* Class = "UILabel"; text = "Курс окончен"; ObjectID = "ZnO-7k-4DQ"; */
+"ZnO-7k-4DQ.text" = "Курс окончен";
+
+/* Class = "UITextField"; placeholder = "Результат"; ObjectID = "aBb-kq-TOm"; */
+"aBb-kq-TOm.placeholder" = "Результат";
+
+/* Class = "UINavigationItem"; title = "Мои доктора"; ObjectID = "aud-cG-x1y"; */
+"aud-cG-x1y.title" = "Мои доктора";
+
+/* Class = "UILabel"; text = "Файл"; ObjectID = "c77-Px-hUq"; */
+"c77-Px-hUq.text" = "Файл";
+
+/* Class = "UIBarButtonItem"; title = "Сохранить"; ObjectID = "dvB-E8-azj"; */
+"dvB-E8-azj.title" = "Сохранить";
+
+/* Class = "UINavigationItem"; title = "Загрузить файлы"; ObjectID = "eId-Kq-U6z"; */
+"eId-Kq-U6z.title" = "Загрузить файлы";
+
+/* Class = "UINavigationItem"; title = "Назначенные медикаменты"; ObjectID = "eSR-2u-blV"; */
+"eSR-2u-blV.title" = "Назначенные медикаменты";
+
+/* Class = "UITextField"; placeholder = "Номер телефона"; ObjectID = "gHs-a6-Ym0"; */
+"gHs-a6-Ym0.placeholder" = "Номер телефона";
+
+/* Class = "UILabel"; text = "Выберите доктора"; ObjectID = "h3r-nc-8fP"; */
+"h3r-nc-8fP.text" = "Выберите доктора";
+
+/* Class = "UILabel"; text = "Дата"; ObjectID = "hAp-sw-oaO"; */
+"hAp-sw-oaO.text" = "Дата";
+
+/* Class = "UILabel"; text = "Храните данные о Ваших анализах и исследования в одном месте"; ObjectID = "hT6-Lm-A0c"; */
+"hT6-Lm-A0c.text" = "Храните данные о Ваших анализах и исследования в одном месте";
+
+/* Class = "UILabel"; text = "Здесь хранятся все данные о Ваших назначенных лекарствах"; ObjectID = "hTc-gU-Kvx"; */
+"hTc-gU-Kvx.text" = "Здесь хранятся все данные о Ваших назначенных лекарствах";
+
+/* Class = "UINavigationItem"; title = "Медицинская карта"; ObjectID = "hiN-MC-4yU"; */
+"hiN-MC-4yU.title" = "Медицинская карта";
+
+/* Class = "UITextField"; placeholder = "Дозировка"; ObjectID = "il0-Jf-G8Q"; */
+"il0-Jf-G8Q.placeholder" = "Дозировка";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "jME-MF-BZY"; */
+"jME-MF-BZY.text" = "Label";
+
+/* Class = "UILabel"; text = "Диагнозы"; ObjectID = "jQz-ua-6Te"; */
+"jQz-ua-6Te.text" = "Диагнозы";
+
+/* Class = "UINavigationItem"; title = "Мои лекарства"; ObjectID = "je1-z4-ewn"; */
+"je1-z4-ewn.title" = "Мои лекарства";
+
+/* Class = "UILabel"; text = "Дата начала"; ObjectID = "lwS-nS-Pid"; */
+"lwS-nS-Pid.text" = "Дата начала";
+
+/* Class = "UITableViewSection"; headerTitle = "Введите данные"; ObjectID = "mCq-tT-1pn"; */
+"mCq-tT-1pn.headerTitle" = "Введите данные";
+
+/* Class = "UITextField"; placeholder = "Описание"; ObjectID = "mIH-dj-HN9"; */
+"mIH-dj-HN9.placeholder" = "Описание";
+
+/* Class = "UITextField"; placeholder = "Название"; ObjectID = "n2p-Oi-dd1"; */
+"n2p-Oi-dd1.placeholder" = "Название";
+
+/* Class = "UILabel"; text = "Дата"; ObjectID = "oU6-1s-a9b"; */
+"oU6-1s-a9b.text" = "Дата";
+
+/* Class = "UILabel"; text = "Медикаменты"; ObjectID = "pbf-jM-PPu"; */
+"pbf-jM-PPu.text" = "Медикаменты";
+
+/* Class = "UILabel"; text = "Анализы и исследования"; ObjectID = "rNK-X2-Ojr"; */
+"rNK-X2-Ojr.text" = "Анализы и исследования";
+
+/* Class = "UIBarButtonItem"; title = "Сохранить"; ObjectID = "rcP-nT-4Fx"; */
+"rcP-nT-4Fx.title" = "Сохранить";
+
+/* Class = "UINavigationItem"; title = "Мои доктора"; ObjectID = "rvw-y3-iKj"; */
+"rvw-y3-iKj.title" = "Мои доктора";
+
+/* Class = "UIBarButtonItem"; title = "Сохранить"; ObjectID = "s5W-Br-U0m"; */
+"s5W-Br-U0m.title" = "Сохранить";
+
+/* Class = "UINavigationItem"; title = "Частота приема"; ObjectID = "scM-hy-FaA"; */
+"scM-hy-FaA.title" = "Частота приема";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "sfm-xB-pwi"; */
+"sfm-xB-pwi.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "tda-Ej-o4M"; */
+"tda-Ej-o4M.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "tsE-sG-IbO"; */
+"tsE-sG-IbO.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "Описание"; ObjectID = "uzV-46-feU"; */
+"uzV-46-feU.placeholder" = "Описание";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "vQ3-7t-zh1"; */
+"vQ3-7t-zh1.text" = "Label";
+
+/* Class = "UIButton"; configuration.title = "Загрузить фото"; ObjectID = "vyO-fJ-JRh"; */
+"vyO-fJ-JRh.configuration.title" = "Загрузить фото";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "vyO-fJ-JRh"; */
+"vyO-fJ-JRh.normalTitle" = "Button";
+
+/* Class = "UINavigationItem"; title = "Принимаемые лекарства"; ObjectID = "wRI-UO-uQo"; */
+"wRI-UO-uQo.title" = "Принимаемые лекарства";
+
+/* Class = "UILabel"; text = "Здесь хранятся все данные о всех Ваших установленных  диагнозах"; ObjectID = "wVW-kL-lo1"; */
+"wVW-kL-lo1.text" = "Здесь хранятся все данные о всех Ваших установленных  диагнозах";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "xIJ-Gy-lHX"; */
+"xIJ-Gy-lHX.title" = "Item";
+
+/* Class = "UINavigationItem"; title = "Вид препарата"; ObjectID = "ylK-0C-OmP"; */
+"ylK-0C-OmP.title" = "Вид препарата";
+
+/* Class = "UINavigationItem"; title = "Новое лекарство"; ObjectID = "zHu-Gt-iZT"; */
+"zHu-Gt-iZT.title" = "Новое лекарство";

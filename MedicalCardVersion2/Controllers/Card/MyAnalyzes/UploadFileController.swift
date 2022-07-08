@@ -47,7 +47,6 @@ extension UploadFileController:PHPickerViewControllerDelegate{
                         return
                     }
                     saveUploadFile(analysisUUID: self.analysisUUID!.uuidString, file: (image.jpegData(compressionQuality: 1) as? Data)!)
-                    
                 }
                 
             }

@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  MedicalCardVersion2
+
+  Created by Вячеслав Гудзенко on 08.07.2022.
+  
+*/
+
+//MARK: CardTableViewController
+"title_medicalCard" = "Medical Card";
+"diagnosis" = "Діагнози";
+"diagnosisDescription" = "Здесь хранятся все данные о всех Ваших установленных  диагнозах";
+"visits" = "Посещения врача";
+"visitsDescription" = "Информация о том,когда и с какой жалобой Вы посещали врача";
+"analysis" = "Анализы и исследования";
+"analysisDescription" = "Храните данные о Ваших анализах и исследования в одном месте";
+"medicaments" = "Мои лекарства";
+"medicamentsDescription" = "Здесь хранятся все данные о Ваших назначенных лекарствах";
+

@@ -58,6 +58,7 @@
 		3E504483284448EB0095A304 /* DiagnosesListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E504482284448EB0095A304 /* DiagnosesListController.swift */; };
 		3E5F4DCD2869FBC400DDBABE /* VisitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F4DCB2869FBC400DDBABE /* VisitCell.swift */; };
 		3E5F4DCE2869FBC400DDBABE /* VisitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5F4DCC2869FBC400DDBABE /* VisitCell.xib */; };
+		3E6905CA28787739007E73EA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E6905CC28787739007E73EA /* Localizable.strings */; };
 		3E7AC4A02865FC6B00FF41E5 /* RedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AC49F2865FC6B00FF41E5 /* RedButton.swift */; };
 		3E7AC4A32866775B00FF41E5 /* MedicalAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7AC4A22866775B00FF41E5 /* MedicalAlert.swift */; };
 		3E8A4BFE28688EEA00440F11 /* DiagnosisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A4BFC28688EEA00440F11 /* DiagnosisCell.swift */; };
@@ -131,6 +132,13 @@
 		3E504482284448EB0095A304 /* DiagnosesListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosesListController.swift; sourceTree = "<group>"; };
 		3E5F4DCB2869FBC400DDBABE /* VisitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitCell.swift; sourceTree = "<group>"; };
 		3E5F4DCC2869FBC400DDBABE /* VisitCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisitCell.xib; sourceTree = "<group>"; };
+		3E6905C6287876A9007E73EA /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		3E6905C7287876A9007E73EA /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		3E6905C8287876B1007E73EA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Main.strings; sourceTree = "<group>"; };
+		3E6905C9287876DF007E73EA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		3E6905CB28787739007E73EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3E6905CD2878773D007E73EA /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3E6905CE2878773E007E73EA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3E7AC49F2865FC6B00FF41E5 /* RedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedButton.swift; sourceTree = "<group>"; };
 		3E7AC4A22866775B00FF41E5 /* MedicalAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalAlert.swift; sourceTree = "<group>"; };
 		3E8A4BFC28688EEA00440F11 /* DiagnosisCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisCell.swift; sourceTree = "<group>"; };
@@ -203,6 +211,7 @@
 				3E1E06C52822D24200B5A9D3 /* Assets.xcassets */,
 				3E1E06CA2822D24200B5A9D3 /* Info.plist */,
 				3E36CBD9284180F8009556A1 /* MedicalCardVersion2.xcdatamodeld */,
+				3E6905CC28787739007E73EA /* Localizable.strings */,
 			);
 			path = MedicalCardVersion2;
 			sourceTree = "<group>";
@@ -423,6 +432,8 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
+				uk,
 			);
 			mainGroup = 3E1E06B02822D24100B5A9D3;
 			productRefGroup = 3E1E06BA2822D24100B5A9D3 /* Products */;
@@ -440,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E43DAA728416DCD00B73761 /* DoctorPrototypeCell.xib in Resources */,
+				3E6905CA28787739007E73EA /* Localizable.strings in Resources */,
 				3E9F83852873255D00FB5BE5 /* NotDataCell.xib in Resources */,
 				3E1E06C92822D24200B5A9D3 /* LaunchScreen.storyboard in Resources */,
 				3E372C8C28744A2B00F4ADC7 /* UploadFileCell.xib in Resources */,
@@ -527,6 +539,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				3E1E06C32822D24100B5A9D3 /* Base */,
+				3E6905C6287876A9007E73EA /* ru */,
+				3E6905C8287876B1007E73EA /* uk */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -535,8 +549,20 @@
 			isa = PBXVariantGroup;
 			children = (
 				3E1E06C82822D24200B5A9D3 /* Base */,
+				3E6905C7287876A9007E73EA /* ru */,
+				3E6905C9287876DF007E73EA /* uk */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		3E6905CC28787739007E73EA /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E6905CB28787739007E73EA /* en */,
+				3E6905CD2878773D007E73EA /* ru */,
+				3E6905CE2878773E007E73EA /* uk */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -546,6 +572,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -606,6 +633,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
