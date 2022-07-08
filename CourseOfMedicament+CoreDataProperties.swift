@@ -24,5 +24,21 @@ extension CourseOfMedicament {
 }
 
 extension CourseOfMedicament : Identifiable {
-
+    var statusEnum:AcceptanceStatus {
+        get{
+            return AcceptanceStatus(rawValue: self.status!)!
+        }
+        set{
+            self.status = newValue.rawValue
+        }
+    }
+    
+    var sectionEnum:PeriodOfTheDay {
+        get{
+            return PeriodOfTheDay(rawValue: self.section!)!
+        }
+        set{
+            self.section = newValue.rawValue
+        }
+    }
 }

@@ -454,13 +454,13 @@ extension UIViewController{
     
     
     //MARK: CourseMedicament
-    func saveNewCourse(medicament:Medicament,section:String){
+    func saveNewCourse(medicament:Medicament,section:PeriodOfTheDay){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "CourseOfMedicament", in: managedContext)!
         let newCourse = NSManagedObject(entity: entity, insertInto: managedContext)
         newCourse.setValue(medicament, forKey: "medicament")
-        newCourse.setValue(section, forKey: "section")
+        newCourse.setValue(section.rawValue, forKey: "section")
         newCourse.setValue("expect", forKey: "status")
         newCourse.setValue(medicament.title, forKey: "medicamentName")
         do{
@@ -517,18 +517,16 @@ extension UIViewController{
     }
     
     func generateCourseOfDay(medicament:Medicament){
-        switch medicament.frequency{
-        case "onceADay":
-            saveNewCourse(medicament: medicament, section: "morning")
-        case "twiceADay":
-            saveNewCourse(medicament: medicament, section: "morning")
-            saveNewCourse(medicament: medicament, section: "evening")
-        case "threeTimeADay":
-            saveNewCourse(medicament: medicament, section: "morning")
-            saveNewCourse(medicament: medicament, section: "dinner")
-            saveNewCourse(medicament: medicament, section: "evening")
-        default:
-            break
+        switch medicament.frequencyEnum{
+        case .onceADay:
+            saveNewCourse(medicament: medicament, section: .morning)
+        case .twiceADay:
+            saveNewCourse(medicament: medicament, section: .morning)
+            saveNewCourse(medicament: medicament, section: .evening)
+        case .threeTimeADay:
+            saveNewCourse(medicament: medicament, section: .morning)
+            saveNewCourse(medicament: medicament, section: .dinner)
+            saveNewCourse(medicament: medicament, section: .evening)
         }
     }
     

@@ -8,9 +8,9 @@
 import Foundation
 
 enum PeriodOfTheDay:String{
-    case morning
-    case dinner
-    case evening
+    case morning = "morning"
+    case dinner = "dinner"
+    case evening = "evening"
 }
 
 enum Frequency:String{
@@ -32,3 +32,10 @@ enum SectionOfMonth:String{
     case thisMonth
     case earlier
 }
+
+enum AcceptanceStatus:String{
+    case itsDrunk = "itsDrunk"
+    case forgotten = "forgotten"
+    case expect = "expect"
+}
+
