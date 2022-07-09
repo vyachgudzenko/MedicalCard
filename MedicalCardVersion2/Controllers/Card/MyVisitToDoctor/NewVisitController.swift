@@ -20,12 +20,18 @@ class NewVisitController: UITableViewController {
     
     
     @IBOutlet weak var complaintTextField: UITextField!
-    
     @IBOutlet weak var datePiecker: UIDatePicker!
     @IBOutlet weak var doctorLabel: UILabel!
     @IBOutlet weak var diagnosisLabel: UILabel!
     @IBOutlet weak var countOfAnalysisLAbel: UILabel!
     @IBOutlet weak var countOfMedicamentLabel: UILabel!
+    //Localization outlets
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var dateLabelLocaliztion: UILabel!
+    @IBOutlet weak var doctorLabelLocalization: UILabel!
+    @IBOutlet weak var diagnosisLabelLocalization: UILabel!
+    @IBOutlet weak var analysisLabelLocalization: UILabel!
+    @IBOutlet weak var medicamentLabelLocalization: UILabel!
     
     @IBAction func saveButtonTapped(_ sender:UIBarButtonItem){
         complaint = complaintTextField.text ?? ""
@@ -36,9 +42,17 @@ class NewVisitController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = NSLocalizedString("navigation_title_NewVisit", comment: "")
         complaintTextField.text = complaint
-        doctorLabel.text = doctor?.getFullName() ?? "Выберите врача"
-        diagnosisLabel.text = diagnosis?.title ?? "Выберите диагноз"
+        complaintTextField.placeholder = NSLocalizedString("complaintPlaceholder_NewVisit", comment: "")
+        dateLabelLocaliztion.text = NSLocalizedString("date_NewVisit", comment: "")
+        dateLabelLocaliztion.text = NSLocalizedString("doctor_NewVisit", comment: "")
+        doctorLabel.text = doctor?.getFullName() ?? NSLocalizedString("doctor_Unknown", comment: "")
+        diagnosisLabelLocalization.text = NSLocalizedString("diagnosis_NewVisit", comment: "")
+        diagnosisLabel.text = diagnosis?.title ?? NSLocalizedString("diagnosis_unknown", comment: "")
+        saveButton.title = NSLocalizedString("buttonSave", comment: "")
+        analysisLabelLocalization.text = NSLocalizedString("analysis_NewVisit", comment: "")
+        medicamentLabelLocalization.text = NSLocalizedString("medicaments_NewVisit", comment: "")
         datePiecker.date = date
         if uuid == nil{
             uuid = UUID()
@@ -53,28 +67,17 @@ class NewVisitController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 6
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-   
-
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return NSLocalizedString("table_Header", comment: "")
+    }
+
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "fromVisitToDoctors"{

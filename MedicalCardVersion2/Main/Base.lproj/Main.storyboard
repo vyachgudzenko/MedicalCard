@@ -1265,7 +1265,7 @@
                         <outlet property="datePiecker" destination="1Sj-t9-pnF" id="SEB-vU-IW9"/>
                         <outlet property="descriptionTextField" destination="mIH-dj-HN9" id="7bX-kb-9G0"/>
                         <outlet property="doctorLabel" destination="h3r-nc-8fP" id="Qgz-np-son"/>
-                        <outlet property="saveButton" destination="rcP-nT-4Fx" id="k9I-gC-T6u"/>
+                        <outlet property="saveButton" destination="rcP-nT-4Fx" id="8pf-47-DNj"/>
                         <outlet property="titleTextField" destination="OhK-Ox-umv" id="4jO-z8-WKc"/>
                     </connections>
                 </tableViewController>
@@ -1312,8 +1312,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="53.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата посещения:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AtF-qI-t7s">
-                                                    <rect key="frame" x="20" y="16.5" width="137.5" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата посещения" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AtF-qI-t7s">
+                                                    <rect key="frame" x="20" y="16.5" width="132.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1475,12 +1475,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="analysisLabelLocalization" destination="OHM-OS-7OE" id="amB-ct-BO3"/>
                         <outlet property="complaintTextField" destination="8SV-Ws-78x" id="fEV-u1-QWV"/>
                         <outlet property="countOfAnalysisLAbel" destination="0Kx-Tw-iFx" id="IDU-OB-kIW"/>
                         <outlet property="countOfMedicamentLabel" destination="J4o-yn-ZdU" id="3PR-UK-0aB"/>
+                        <outlet property="dateLabelLocaliztion" destination="AtF-qI-t7s" id="iL1-le-ws3"/>
                         <outlet property="datePiecker" destination="yhu-W5-zxB" id="nRM-0s-s90"/>
                         <outlet property="diagnosisLabel" destination="SNE-sC-qIK" id="WpJ-0w-fiG"/>
+                        <outlet property="diagnosisLabelLocalization" destination="WSx-Cm-oKr" id="8JV-To-Oxe"/>
                         <outlet property="doctorLabel" destination="tda-Ej-o4M" id="VpE-bt-aYA"/>
+                        <outlet property="doctorLabelLocalization" destination="Uag-u4-snS" id="20C-Db-0uX"/>
+                        <outlet property="medicamentLabelLocalization" destination="pbf-jM-PPu" id="UTl-ZH-MHc"/>
+                        <outlet property="saveButton" destination="s5W-Br-U0m" id="m8C-fz-vx1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SPL-dK-sT9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2101,8 +2107,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="mch-Gr-6ZW"/>
-        <segue reference="ZW2-Q1-nJD"/>
+        <segue reference="oG2-Vb-6vg"/>
+        <segue reference="thE-Oa-bXi"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="cough-syrup" width="32" height="32"/>

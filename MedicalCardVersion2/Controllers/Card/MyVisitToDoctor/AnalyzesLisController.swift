@@ -28,6 +28,7 @@ class AnalyzesLisController: UIViewController {
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = NSLocalizedString("navigation_title_AnalyzList", comment: "")
         tableView.dataSource = self
         tableView.delegate = self
         let cellNib = UINib(nibName: "AnalysisCell", bundle: nil)

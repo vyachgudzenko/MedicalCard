@@ -8,7 +8,7 @@
 
 //MARK: CardTableViewController
 "title_medicalCard" = "Medical Card";
-"diagnosis" = "Діагнози";
+"diagnosis" = "Диагнози";
 "diagnosisDescription" = "Здесь хранятся все данные о всех Ваших установленных  диагнозах";
 "visits" = "Посещения врача";
 "visitsDescription" = "Информация о том,когда и с какой жалобой Вы посещали врача";
@@ -59,6 +59,35 @@
 "section_morning" = "Утро";
 "section_dinner" = "Обед";
 "section_evenning" = "Ужин";
+
+//MARK: MyVisits
+"navigation_title_MyVisits" = "Посещения врача";
+"sectionOfMonth_today" = "Cегодня";
+"sectionOfMonth_yesterday" = "Вчера";
+"sectionOfMonth_thisWeek" = "В течении недели";
+"sectionOfMonth_thisMonth" = "В течении месяца";
+"sectionOfMonth_earlie" = "Ранее";
+
+//MARK: NewVisit
+"navigation_title_NewVisit" = "Новое посещение";
+"complaintPlaceholder_NewVisit" = "Жалобы";
+"date_NewVisit" = "Дата посещения";
+"doctor_NewVisit" = "Доктор";
+"diagnosis_NewVisit" = "Диагноз";
+"diagnosis_unknown" = "Выберите диагноз";
+"analysis_NewVisit" = "Анализы/Иследования";
+"medicaments_NewVisit" = "Медикаменты";
+
+//MARK: AnalyzesListController
+"navigation_title_AnalyzList" = "Назначенные анализы";
+
+//MARK: MedicamentListController
+"navigation_title_MedicamentList" = "Медикаменты";
+
+
+
+
+
 
 
 

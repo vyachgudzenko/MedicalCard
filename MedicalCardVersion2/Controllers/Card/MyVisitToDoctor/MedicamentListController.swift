@@ -25,6 +25,7 @@ class MedicamentListController: UIViewController {
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = NSLocalizedString("navigation_title_MedicamentList", comment: "")
         tableView.dataSource = self
         tableView.delegate = self
         let cellNIB  = UINib(nibName: "MedicamentCell", bundle: nil)

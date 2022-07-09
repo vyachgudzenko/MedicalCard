@@ -34,6 +34,7 @@ class MyVisitsToDoctorController: UIViewController {
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = NSLocalizedString("navigation_title_MyVisits", comment: "")
         tableView.dataSource = self
         tableView.delegate = self
         let cellNib = UINib(nibName: "VisitCell", bundle: nil)
@@ -135,15 +136,15 @@ extension MyVisitsToDoctorController:UITableViewDataSource{
         var title:String?
         switch sections[section]{
         case .today:
-            title = "Сегодня"
+            title = NSLocalizedString("sectionOfMonth_today", comment: "")
         case .yesterday:
-            title = "Вчера"
+            title = NSLocalizedString("sectionOfMonth_yesterday", comment: "")
         case .thisWeek:
-            title = "В течении недели"
+            title = NSLocalizedString("sectionOfMonth_thisWeek", comment: "")
         case  .thisMonth:
-            title = "В течении месяца"
+            title = NSLocalizedString("sectionOfMonth_thisMonth", comment: "")
         default:
-            title = "Ранее"
+            title = NSLocalizedString("sectionOfMonth_earlie", comment: "")
         }
         let headerView = UIView()
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 40 , height: headerViewHeight))
