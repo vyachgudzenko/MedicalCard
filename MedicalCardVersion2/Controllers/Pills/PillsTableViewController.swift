@@ -28,6 +28,7 @@ class PillsTableViewController: UITableViewController {
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = NSLocalizedString("navigation_title_PillsTable", comment: "")
         headerViewButtons = getButtonsForHeaderView()
     }
     
@@ -72,7 +73,7 @@ class PillsTableViewController: UITableViewController {
         var buttons:[UIButton] = []
         sectionOfDay.forEach { _ in
             let button = UIButton(frame: CGRect(x: view.frame.width - 140, y: 5, width: 100, height: 40))
-            button.setTitle("Выпито все", for: .normal)
+            button.setTitle(NSLocalizedString("Выпить все", comment: ""), for: .normal)
             button.layer.masksToBounds = true
             button.layer.cornerRadius = 10
             button.layer.backgroundColor = UIColor.systemOrange.cgColor
@@ -92,20 +93,14 @@ class PillsTableViewController: UITableViewController {
     @objc
     func buttonTapped(button:UIButton){
         for (btnIndex,btn) in headerViewButtons.enumerated(){
-            print("До совпадения \(btnIndex)")
             if btn == button{
-                print("Совпало \(btnIndex)")
                 let currentSection = sectionOfDay[btnIndex]
-                print(currentSection)
                 guard let courses = pills[currentSection] else {
-                    print("error")
                     return
                 }
-                print(courses)
                 drinkAllMedicamentnInSection(courses: courses)
                 tableView.reloadSections(IndexSet(arrayLiteral: btnIndex), with: .automatic)
-                button.setTitle("Выпито", for: .normal)
-                
+                button.setTitle(NSLocalizedString("Выпито", comment: ""), for: .normal)
             }
         }
     }
@@ -148,11 +143,11 @@ class PillsTableViewController: UITableViewController {
         var title:String?
         switch sectionOfDay[section]{
         case .morning:
-            title = "Утро"
+            title = NSLocalizedString("section_morning", comment: "")
         case .dinner:
-            title = "Обед"
+            title = NSLocalizedString("section_dinner", comment: "")
         case .evening:
-            title = "Ужин"
+            title = NSLocalizedString("section_evenning", comment: "")
         }
         
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100 , height: 50))
@@ -176,7 +171,6 @@ class PillsTableViewController: UITableViewController {
             let selectSectionDay = sectionOfDay[indexPath.section]
             let course = pills[selectSectionDay]?[indexPath.row]
             changeItsDrunk(course: course!)
-            
             tableView.reloadSections(IndexSet(arrayLiteral: indexPath.section), with: .automatic)
         }
         actionSwipeEdit.backgroundColor = .systemIndigo

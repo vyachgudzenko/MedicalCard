@@ -32,7 +32,7 @@
 "specialization_Label" = "Специализация";
 
 //MARK: DoctorProfessionController
-"navigation_title_DoctorProfession" = "Cпециализация"
+"navigation_title_DoctorProfession" = "Cпециализация";
 
 //MARK: MyDiagnosisController
 "navigation_title_MyDiagnosis" = "Мои диагнозы";
@@ -50,6 +50,18 @@
 
 //MARK: DoctorListController
 "navigation_title_DoctorList" = "Мои доктора";
+
+
+//MARK: PillsTableViewController
+"navigation_title_PillsTable" = "Принимаемые лекарства";
+"buttonText_allDrink_PillsTable" = "Выпить все";
+"buttonText_allDrinkCompleted_PillsTable" = "Выпито";
+"section_morning" = "Утро";
+"section_dinner" = "Обед";
+"section_evenning" = "Ужин";
+
+
+
 
 
 
