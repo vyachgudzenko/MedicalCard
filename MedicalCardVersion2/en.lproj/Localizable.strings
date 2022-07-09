@@ -20,6 +20,7 @@
 //MARK: DoctorsTableViewControler
 "title_DoctorsTableViewController" = "Мои доктора";
 
+
 //MARK: NewDoctorController
 "title_NewDoctor" = "Новый доктор";
 "table_Header" = "Введите данные";

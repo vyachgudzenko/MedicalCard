@@ -10,13 +10,13 @@ import UIKit
 class DoctorsProfessionsController: UITableViewController {
 
     var professionsDescription:[ProfesionsDescription] = [
-        ProfesionsDescription(title: "Терапевт", description: "Занимается общим лечением и установкой диагнозов"),
-        ProfesionsDescription(title: "Травматолог", description: "Занимается опорно-двигательным аппаратом.Также травмы, ушибы и растяжение"),
-        ProfesionsDescription(title: "Невропатолог", description: "Занимается нервной системой,неврологическими расстройствами")]
+        ProfesionsDescription(profession: .therapist, title: "Терапевт", description: "Занимается общим лечением и установкой диагнозов"),
+        ProfesionsDescription(profession: .traumatologist, title: "Травматолог", description: "Занимается опорно-двигательным аппаратом.Также травмы, ушибы и растяжение"),
+        ProfesionsDescription(profession: .neuropathologist, title: "Невропатолог", description: "Занимается нервной системой,неврологическими расстройствами")]
     
-    var selectedProfession:String = "Терапевт"
+    var selectedProfession:Profession = .therapist
     
-    var doAfterSelected:((String) -> Void)?
+    var doAfterSelected:((Profession) -> Void)?
     
     //MARK: Life cycle
     override func viewDidLoad() {
@@ -41,7 +41,7 @@ class DoctorsProfessionsController: UITableViewController {
         let professionDescription = professionsDescription[indexPath.row]
         cell.titleLabel.text = professionDescription.title
         cell.descriptionLabel.text = professionDescription.description
-        if selectedProfession == professionDescription.title{
+        if selectedProfession == professionDescription.profession{
             cell.accessoryType = .checkmark
         } else{
             cell.accessoryType = .none
@@ -51,7 +51,7 @@ class DoctorsProfessionsController: UITableViewController {
     
     //MARK: TableView delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedProfession = professionsDescription[indexPath.row].title
+        selectedProfession = professionsDescription[indexPath.row].profession
         doAfterSelected?(selectedProfession)
         navigationController?.popViewController(animated: true)
     }

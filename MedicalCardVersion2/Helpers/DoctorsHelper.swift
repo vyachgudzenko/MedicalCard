@@ -7,7 +7,14 @@
 
 import Foundation
 
+enum Profession:String{
+    case therapist = "therapist"
+    case neuropathologist = "neuropathologist"
+    case traumatologist = "traumatologist"
+}
+
 struct ProfesionsDescription{
+    var profession:Profession
     var title:String
     var description:String
 }

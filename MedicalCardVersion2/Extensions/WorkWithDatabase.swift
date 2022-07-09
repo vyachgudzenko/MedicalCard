@@ -81,7 +81,7 @@ extension UIViewController{
         editScreen.lastName = doctor.lastName!
         editScreen.clinic = doctor.clinic!
         editScreen.phoneNumber = doctor.phoneNumber!
-        editScreen.profession = doctor.profession!
+        editScreen.profession = doctor.professionEnum
         editScreen.doAfterCreate = {
              firstName,lastName,clinic,numberPhone,profession in
             doctor.firstName = firstName

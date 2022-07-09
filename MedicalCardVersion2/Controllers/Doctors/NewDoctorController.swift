@@ -22,12 +22,12 @@ class NewDoctorController: UITableViewController {
     var lastName:String = ""
     var clinic:String = ""
     var phoneNumber:String = ""
-    var profession:String = "Терапевт"
+    var profession:Profession = .therapist
     
     var doAfterCreate:((String,String,String,String,String) ->Void)?
     
-    var professionTitles:[String] = [
-        "Терапевт","Невропатолог","Травматолог"]
+    var professionTitles:[Profession:String] = [
+        .therapist:"Терапевт",.neuropathologist:"Невропатолог",.traumatologist:"Травматолог"]
     
     var alert:MedicalAlert?
 
@@ -45,8 +45,11 @@ class NewDoctorController: UITableViewController {
         lastNameTextField.text = lastName
         clinicTextField.text = clinic
         numberPhoneTextField.text = phoneNumber
-        professionLabel.text = profession
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        professionLabel.text = professionTitles[profession]
     }
     
     //MARK: Other function
@@ -77,7 +80,7 @@ class NewDoctorController: UITableViewController {
             showAlertFieldISEmpty()
         } else {
             if validatedPhoneNumber(phoneStr: numberPhone) == true {
-                doAfterCreate?(firstName,lastName,clinic,numberPhone,profession)
+                doAfterCreate?(firstName,lastName,clinic,numberPhone,profession.rawValue)
                 navigationController?.popViewController(animated: true)
             } else {
                 showAlertPhoneNumberValidation()
@@ -106,7 +109,7 @@ class NewDoctorController: UITableViewController {
             destination.doAfterSelected = {
                 [self] selectedProfession in
                 self.profession = selectedProfession
-                self.professionLabel.text = profession
+                self.professionLabel.text = profession.rawValue
             }
         }
     }

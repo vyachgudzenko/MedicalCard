@@ -8,6 +8,8 @@
 import UIKit
 
 class DoctorPrototypeCell: UITableViewCell {
+    
+    let professionDescription = DoctorsProfessionsController().professionsDescription
 
     @IBOutlet weak var doctorFullName: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
@@ -23,11 +25,17 @@ class DoctorPrototypeCell: UITableViewCell {
         doctorFullName.text = doctor.getFullName()
         phoneNumberLabel.text = doctor.phoneNumber
         clininNameLabel.text = doctor.clinic
-        professionLabel.text = doctor.profession
+        professionLabel.text = getStringDescribeOfProfession(profession: doctor.professionEnum)
         phoneImage.image = UIImage(systemName: "phone")?.withRenderingMode(.alwaysTemplate)
         workImage.image = UIImage(named: "hospitalImage")?.withRenderingMode(.alwaysTemplate)
         doctorImage.image = UIImage(named: "doctor")?.withRenderingMode(.alwaysTemplate)
         
+    }
+    
+    private func getStringDescribeOfProfession(profession:Profession) -> String {
+        let findProfession = professionDescription.first { $0.profession == profession
+        }
+        return findProfession!.title
     }
     
     override func awakeFromNib() {

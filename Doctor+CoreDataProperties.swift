@@ -25,5 +25,12 @@ extension Doctor {
 }
 
 extension Doctor : Identifiable {
-
+    var professionEnum:Profession {
+        get{
+            return Profession(rawValue: self.profession!)!
+        }
+        set{
+            self.profession = newValue.rawValue
+        }
+    }
 }
