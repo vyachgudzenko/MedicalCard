@@ -31,3 +31,25 @@
 "placeholder_PhoneNumber" = "Номер телефона";
 "specialization_Label" = "Специализация";
 
+//MARK: DoctorProfessionController
+"navigation_title_DoctorProfession" = "Cпециализация"
+
+//MARK: MyDiagnosisController
+"navigation_title_MyDiagnosis" = "Мои диагнозы";
+"alert_Title_MyDiagnosis" = "Упс...";
+"alert_Message_MyDiagnosis" = "Невозможно удалить эту карточку данных - есть связаные данные";
+
+//MARK: NewDiagnosis
+"navigation_title_NewDiagnosis" = "Новый диагноз";
+"doctor_Unknown" = "Выберите врача";
+"alert_Titile_NewDiagnosis" = "Не заполнены поля";
+"alert_Message_NewDiagnosis" = "Заполните пожалуйста все поля, что бы можно было корректно сохранить информацию";
+"newDiagnosis_titlePlaceholder_text" = "Название диагноза";
+"newDiagnosis_descriptionPlaceholder_text" = "Описание";
+"saveButton_NewDiagnosis" = "Cохранить";
+
+//MARK: DoctorListController
+"navigation_title_DoctorList" = "Мои доктора";
+
+
+

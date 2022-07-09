@@ -21,6 +21,7 @@ class DoctorsProfessionsController: UITableViewController {
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = NSLocalizedString("navigation_title_DoctorProfession", comment: "")
         let cellNib = UINib(nibName: "TypicallCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "TypicallCell")
     }

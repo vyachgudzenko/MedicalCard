@@ -16,20 +16,26 @@ class NewDiagnosisController: UITableViewController {
     var titleFirst:String = ""
     var descriptionFirst:String = ""
     var dateFirst:Date = Date()
-    var doctorLabelText = "Выберите врача"
+    var doctorLabelText = NSLocalizedString("doctor_Unknown", comment: "")
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var datePiecker: UIDatePicker!
     @IBOutlet weak var doctorLabel: UILabel!
-   
+    
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = NSLocalizedString("navigation_title_NewDiagnosis", comment: "")
         titleTextField.text = titleFirst
+        titleTextField.placeholder = NSLocalizedString("newDiagnosis_titlePlaceholder_text", comment: "")
         descriptionTextField.text = descriptionFirst
+        descriptionTextField.placeholder = NSLocalizedString("newDiagnosis_descriptionPlaceholder_text", comment: "")
         datePiecker.date = dateFirst
         doctorLabel.text = doctorLabelText
+        saveButton.title = NSLocalizedString("saveButton_NewDiagnosis", comment: "")
     }
     
     var doAfterCreate:((String,String,Date,Doctor) -> Void)?
@@ -84,7 +90,7 @@ class NewDiagnosisController: UITableViewController {
     //MARK: AlertControllers
     func showAlertFieldISEmpty(){
         alert = MedicalAlert()
-        alert?.showAlert(title: "Не заполнены поля", message: "Заполните пожалуйста все поля, что бы можно было корректно сохранить информацию", viewController: self)
+        alert?.showAlert(title: NSLocalizedString("alert_Titile_NewDiagnosis", comment: ""), message: NSLocalizedString("alert_Message_NewDiagnosis", comment: ""), viewController: self)
     }
 
 }

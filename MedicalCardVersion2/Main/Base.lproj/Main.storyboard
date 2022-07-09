@@ -1265,6 +1265,7 @@
                         <outlet property="datePiecker" destination="1Sj-t9-pnF" id="SEB-vU-IW9"/>
                         <outlet property="descriptionTextField" destination="mIH-dj-HN9" id="7bX-kb-9G0"/>
                         <outlet property="doctorLabel" destination="h3r-nc-8fP" id="Qgz-np-son"/>
+                        <outlet property="saveButton" destination="rcP-nT-4Fx" id="k9I-gC-T6u"/>
                         <outlet property="titleTextField" destination="OhK-Ox-umv" id="4jO-z8-WKc"/>
                     </connections>
                 </tableViewController>
@@ -2100,7 +2101,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hHr-Nn-ruT"/>
+        <segue reference="mch-Gr-6ZW"/>
         <segue reference="ZW2-Q1-nJD"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -26,6 +26,7 @@ class MyDiagnosesController: UIViewController {
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = NSLocalizedString("navigation_title_MyDiagnosis", comment: "")
         tableView.dataSource = self
         tableView.delegate = self
         let cellNib = UINib(nibName: "DiagnosisCell", bundle: nil)
@@ -92,7 +93,7 @@ extension MyDiagnosesController:UITableViewDataSource{
     //MARK: AlertController
     private func showAlert(){
         alert = MedicalAlert()
-        alert?.showAlert(title: "Упс...", message: "Невозможно удалить эту карточку данных - есть связаные данные", viewController: self)
+        alert?.showAlert(title: NSLocalizedString("alert_Title_MyDiagnosis", comment: ""), message: NSLocalizedString("alert_Message_MyDiagnosis", comment: ""), viewController: self)
     }
 
 }
