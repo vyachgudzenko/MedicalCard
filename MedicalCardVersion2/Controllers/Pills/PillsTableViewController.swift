@@ -74,6 +74,7 @@ class PillsTableViewController: UITableViewController {
         sectionOfDay.forEach { _ in
             let button = UIButton(frame: CGRect(x: view.frame.width - 140, y: 5, width: 100, height: 40))
             button.setTitle(NSLocalizedString("Выпить все", comment: ""), for: .normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
             button.layer.masksToBounds = true
             button.layer.cornerRadius = 10
             button.layer.backgroundColor = UIColor.systemOrange.cgColor
