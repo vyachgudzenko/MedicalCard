@@ -471,7 +471,7 @@ extension UIViewController{
     }
     
     func changeItsDrunk(course:CourseOfMedicament){
-        course.status = "itsDrunk"
+        course.statusEnum = .itsDrunk
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
         do{
@@ -482,7 +482,7 @@ extension UIViewController{
     }
     
     func changeItsForgotten(course:CourseOfMedicament){
-        course.status = "forgotten"
+        course.statusEnum = .forgotten
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
         do{

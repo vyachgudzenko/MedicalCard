@@ -9,6 +9,9 @@ import UIKit
 import CoreData
 
 class PillsTableViewController: UITableViewController {
+    
+    var headerViewButtons:[UIButton] = []
+    var canAddButton:Bool = true
 
     var visitUUID:String?
     
@@ -25,6 +28,7 @@ class PillsTableViewController: UITableViewController {
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerViewButtons = getButtonsForHeaderView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,19 +56,59 @@ class PillsTableViewController: UITableViewController {
         
         arrayOfMedicament.forEach { course  in
             let courseOfMedicament = course as! CourseOfMedicament
-            switch courseOfMedicament.section{
-            case "morning":
+            switch courseOfMedicament.sectionEnum{
+            case .morning:
                 sortedArray[.morning]?.append(courseOfMedicament)
-            case "dinner":
+            case .dinner:
                 sortedArray[.dinner]?.append(courseOfMedicament)
-            case "evening":
+            case .evening:
                 sortedArray[.evening]?.append(courseOfMedicament)
-            default: break
             }
         }
         return sortedArray
     }
     
+    private func getButtonsForHeaderView() -> [UIButton]{
+        var buttons:[UIButton] = []
+        sectionOfDay.forEach { _ in
+            let button = UIButton(frame: CGRect(x: view.frame.width - 140, y: 5, width: 100, height: 40))
+            button.setTitle("Выпито все", for: .normal)
+            button.layer.masksToBounds = true
+            button.layer.cornerRadius = 10
+            button.layer.backgroundColor = UIColor.systemOrange.cgColor
+            button.addTarget(self, action: #selector(buttonTapped(button:)), for: .touchUpInside)
+            buttons.append(button)
+        }
+        return buttons
+    }
+    
+    private func drinkAllMedicamentnInSection(courses:[CourseOfMedicament]){
+        for course in courses {
+            changeItsDrunk(course: course)
+        }
+        
+    }
+    
+    @objc
+    func buttonTapped(button:UIButton){
+        for (btnIndex,btn) in headerViewButtons.enumerated(){
+            print("До совпадения \(btnIndex)")
+            if btn == button{
+                print("Совпало \(btnIndex)")
+                let currentSection = sectionOfDay[btnIndex]
+                print(currentSection)
+                guard let courses = pills[currentSection] else {
+                    print("error")
+                    return
+                }
+                print(courses)
+                drinkAllMedicamentnInSection(courses: courses)
+                tableView.reloadSections(IndexSet(arrayLiteral: btnIndex), with: .automatic)
+                button.setTitle("Выпито", for: .normal)
+                
+            }
+        }
+    }
     
     
     
@@ -82,18 +126,18 @@ class PillsTableViewController: UITableViewController {
         let fragmentDay = sectionOfDay[indexPath.section]
         let cell = tableView.dequeueReusableCell(withIdentifier: "PillsCell") as! PillsTableViewCell
         
-        let courseOfMedicament = pills[fragmentDay]?[indexPath.row] as! CourseOfMedicament
-        if courseOfMedicament.status == "itsDrunk"{
+        let courseOfMedicament = pills[fragmentDay]?[indexPath.row]
+        if courseOfMedicament!.statusEnum == .itsDrunk{
             let imageView = UIImageView(image: UIImage(systemName: "checkmark"))
             imageView.tintColor = .systemGreen
             cell.accessoryView = imageView
         }
-        if courseOfMedicament.status == "forgotten"{
+        if courseOfMedicament!.statusEnum == .forgotten{
             let imageView = UIImageView(image: UIImage(systemName: "xmark"))
             imageView.tintColor = .systemRed
             cell.accessoryView = imageView
         }
-        cell.setupCell(medicament: courseOfMedicament.medicament!)
+        cell.setupCell(medicament: courseOfMedicament!.medicament!)
         return cell
     }
     
@@ -110,12 +154,15 @@ class PillsTableViewController: UITableViewController {
         case .evening:
             title = "Ужин"
         }
+        
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100 , height: 50))
         titleLabel.text = title
         titleLabel.textColor = .black
         titleLabel.textAlignment = .left
         titleLabel.font = UIFont.systemFont(ofSize: 25)
         headerView.addSubview(titleLabel)
+        let button = headerViewButtons[section]
+        headerView.addSubview(button)
         return headerView
     }
     
@@ -127,8 +174,8 @@ class PillsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionSwipeEdit = UIContextualAction(style: .normal, title: "Принято") { [self] _, _, _ in
             let selectSectionDay = sectionOfDay[indexPath.section]
-            let course = pills[selectSectionDay]?[indexPath.row] as! CourseOfMedicament
-            changeItsDrunk(course: course)
+            let course = pills[selectSectionDay]?[indexPath.row]
+            changeItsDrunk(course: course!)
             
             tableView.reloadSections(IndexSet(arrayLiteral: indexPath.section), with: .automatic)
         }
