@@ -27,7 +27,7 @@ class AnalysisCell: UITableViewCell {
         let formatedDate = dataFormater.string(from: analysis.date!)
         dateLabel.text = formatedDate
         doctorFullName.text = analysis.doctor!.getFullName()
-        fileNameLabel.text = "Нет файла"
+        fileNameLabel.text = NSLocalizedString("notFile", comment: "")
         doctorImageView.image = UIImage(named: "doctor")?.withRenderingMode(.alwaysTemplate)
     }
     

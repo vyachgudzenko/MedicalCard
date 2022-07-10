@@ -138,6 +138,24 @@
 "type_title_syrup" = "Сироп/Суспензия";
 "type_description" = "Препараты в виде сиропа или суспензии. Возможен прием как перед, так и после еды.";
 
+//MARK: MyAnalyzesController
+"navigation_title_MyAnalyzes" = "Анализы/Исследования";
+
+//MARK: NewAnalisis
+"navigation_title_NewAnalysis" = "Новый анализ";
+"titleTextField_placeholder_NewAnalysis" = "Название";
+"descriptionTextField_placeholder_NewAnalysis" = "Описание";
+"resultTextField_placeholder_NewAnalysis" = "Результат";
+"date_NewAnalysis" = "Дата";
+"doctorLocalization" = "Врач";
+"countOfFiles" = "Загружено файлов";
+"file" = "Файл";
+"uploadFileButton" = "Загрузить";
+
+//MARK: AnalysisCell
+"notFile" = "Нет файла";
+
+
 
 
 

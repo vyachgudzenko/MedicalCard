@@ -26,6 +26,7 @@ class MyAnalyzesController: UIViewController {
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = NSLocalizedString("navigation_title_MyAnalyzes", comment: "")
         tableView.dataSource = self
         tableView.delegate = self
         let cellNib = UINib(nibName: "AnalysisCell", bundle: nil)
@@ -81,7 +82,7 @@ extension MyAnalyzesController:UITableViewDataSource{
 //MARK: TableView Delegate
 extension MyAnalyzesController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let actionSwipe = UIContextualAction(style: .normal, title: "Удалить") { [self] _, _, _ in
+        let actionSwipe = UIContextualAction(style: .normal, title: NSLocalizedString("deleteItem", comment: "")) { [self] _, _, _ in
             deleteAnalysis(analysis: analyzes[indexPath.row] as! Analysis)
             tableView.reloadData()
             analyzes.remove(at: indexPath.row)

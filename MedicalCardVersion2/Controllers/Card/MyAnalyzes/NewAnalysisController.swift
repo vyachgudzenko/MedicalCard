@@ -18,8 +18,18 @@ class NewAnalysisController: UITableViewController {
     @IBOutlet weak var doctorLabel: UILabel!
     @IBOutlet weak var diagnosisLabel: UILabel!
     @IBOutlet weak var countOfFilesLabel: UILabel!
-    @IBOutlet weak var uploadButton: UIButton!
+
     
+    
+    @IBOutlet weak var dateLocalization: UILabel!
+    @IBOutlet weak var doctorLocalization: UILabel!
+    @IBOutlet weak var diagnosisLocalization: UILabel!
+    @IBOutlet weak var countOfUploadFiles: UILabel!
+    @IBOutlet weak var fileLocalization: UILabel!
+    
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
+    @IBOutlet weak var uploadFileButton: UIButton!
     
     @IBAction func uploadButtonTapped(_ sender: UIButton) {
         let uploadFileScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UploadFileController") as! UploadFileController
@@ -35,8 +45,8 @@ class NewAnalysisController: UITableViewController {
     var diagnosis:Diagnosis?
     var visitUUID:UUID?
     var uuid:UUID?
-    var doctorLabelText = "Выберите врача"
-    var diagnosisLabelText = "Выберите диагноз"
+    var doctorLabelText = NSLocalizedString("doctor_Unknown", comment: "")
+    var diagnosisLabelText = NSLocalizedString("diagnosis_unknown", comment: "")
     
     var doAfterCreate:((String,String,String,Date,Doctor,Diagnosis,String?,UUID?) -> Void)?
     
@@ -58,8 +68,18 @@ class NewAnalysisController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         titleTextField.text = titleText
+        titleTextField.placeholder = NSLocalizedString("titleTextField_placeholder_NewAnalysis", comment: "")
         descriptionTextField.text = descriptionText
+        descriptionTextField.placeholder = NSLocalizedString("descriptionTextField_placeholder_NewAnalysis", comment: "")
         resultTextField.text = resultText
+        resultTextField.placeholder = NSLocalizedString("resultTextField_placeholder_NewAnalysis", comment: "")
+        dateLocalization.text = NSLocalizedString("date_NewAnalysis", comment: "")
+        doctorLocalization.text = NSLocalizedString("doctorLocalization", comment: "")
+        diagnosisLocalization.text = NSLocalizedString("diagnosis_NewVisit", comment: "")
+        countOfFilesLabel.text = NSLocalizedString("countOfFiles", comment: "")
+        fileLocalization.text = NSLocalizedString("file", comment: "")
+        saveButton.title = NSLocalizedString("buttonSave", comment: "")
+        uploadFileButton.setTitle(NSLocalizedString("uploadFileButton", comment: ""), for: .normal)
         datePiecker.date = dateAnalysis
         doctorLabel.text = doctorLabelText
         diagnosisLabel.text = diagnosisLabelText
