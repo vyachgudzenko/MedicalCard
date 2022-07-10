@@ -554,13 +554,20 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="countOfDayLabel" destination="Q4D-se-xxo" id="va7-rY-xyF"/>
+                        <outlet property="countOfDayTextField" destination="ncS-FO-I5o" id="ewX-Ug-4Lg"/>
+                        <outlet property="courseIsOverLabel" destination="ZnO-7k-4DQ" id="rR6-z7-pmc"/>
                         <outlet property="doctorLabel" destination="tsE-sG-IbO" id="kO3-Xx-DRz"/>
+                        <outlet property="doctorLocalization" destination="X9i-vb-5wm" id="IVY-h8-Fwq"/>
+                        <outlet property="freguencyLocalization" destination="Q4T-wY-hzC" id="pDN-Af-ibj"/>
                         <outlet property="isOverSwitch" destination="Bny-Jj-ahT" id="bJe-la-eSR"/>
                         <outlet property="medicamentDosageTextField" destination="il0-Jf-G8Q" id="IGe-Lc-9ed"/>
                         <outlet property="medicamentFrequencyLabel" destination="Sdt-Wz-Hee" id="yea-Uu-Tar"/>
                         <outlet property="medicamentNameTextField" destination="JAv-9i-Yl2" id="hra-Ol-pRV"/>
                         <outlet property="medicamentTypeLabel" destination="QuS-EZ-iNl" id="sxs-tc-eI9"/>
+                        <outlet property="startDateLocalization" destination="lwS-nS-Pid" id="vbK-HL-eEE"/>
                         <outlet property="startDatePiecker" destination="7Nn-VL-seH" id="1wp-9r-2bn"/>
+                        <outlet property="typeMedicamentLocalization" destination="Fj9-d9-QCL" id="R0F-zf-n6E"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYI-0w-n1x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2107,7 +2114,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="oG2-Vb-6vg"/>
+        <segue reference="Erz-CU-oNC"/>
         <segue reference="thE-Oa-bXi"/>
     </inferredMetricsTieBreakers>
     <resources>

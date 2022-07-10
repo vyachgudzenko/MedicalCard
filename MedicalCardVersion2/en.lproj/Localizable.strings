@@ -19,6 +19,8 @@
 
 //MARK: DoctorsTableViewControler
 "title_DoctorsTableViewController" = "Мои доктора";
+"addToContacts_MyDoctors" = "Добавить в контакты";
+"deleteItem" = "Удалить";
 
 
 //MARK: NewDoctorController
@@ -83,6 +85,65 @@
 
 //MARK: MedicamentListController
 "navigation_title_MedicamentList" = "Медикаменты";
+
+//MARK: MyMedicamentController
+"navigation_title_MyMedicament" = "Мои лекарства";
+"startCourse_MyMedicament" = "Начать прием";
+"alert_title_Add_MyMedicament" = "Добавление к принимаемым лекарствам";
+"alert_message_Add_MyMedicament" = "Вы добавили новый медикамент в список принимаемых лекарств.";
+"alert_delete_title_MyMedicament" = "Невозможно удалить этот препарат";
+"alert_delete_message_MyMedicament" = "Вы принимаете этот препарат, поэтому невозможно его удалить. Окончите прием или поменяйте статус";
+
+//MARK: MedicamentCell
+"doctor_NotSelect" = "Не указан";
+"isTaken_MedicamentCell" = "Принимается";
+"notTaken_newMedicament" = "Не принимается";
+"titleType_pill" = "Таблетки";
+"titleType_injection" = "Уколы";
+"titleType_syrup" = "Cироп";
+"titlesFrequency_onceADay" = "Один раз в день";
+"titlesFrequency_twiceADay" = "Дважды в день";
+"titlesFrequency_threeTimeADay" = "Трижды в день";
+
+
+//MARK: NewMedicament
+"navigation_title_NewMedicament" = "Новое лекарство";
+"medicamentNamePlaceholder_NewMedicament" = "Название препарата";
+"medicamentDosagePlaceholder_NewMedicament" = "Дозировка";
+"countOfDay_NewMedicament" = "Количество дней";
+"freguencyLabel_NewMedicament" = "Частота приема в день";
+"typeOfMedicament_NewMedicament" = "Вид препарата";
+"doctor_NewMedicament" = "Врач";
+"startDate_NewMedicament" = "Дата начала";
+"courseIsOver_NewMedicament" = "Курс окончен";
+"alert_title_NotAddedMedicament" = "Не добавлен медикамент";
+"alert_message_NotAddedMedicament" = "Вы не сможете закончить курс, пока не сохраните препарат";
+"alert_title_MedicamentIsNotInCourse" = "Препарат не принимается";
+"alert_message_MedicamentIsNotInCourse" = "На данный момент Вы не принимаете этот препарат и не можете закончить курс";
+"alert_title_CourseIsOver" = "Вы закончили курс";
+"alert_message_CourseIsOver" = "Не забудьте сохранить изменения, нажав кнопку Сохранить";
+
+//MARK: PillsFrequencyController
+"navigation_title_PillsFrequency" = "Частота приема";
+"fraquency_once" = "Один раз в день";
+"fraquency_twice" = "Два раза в день";
+"fraquency_three" = "Три раза в день";
+
+//MARK: PillsTypeController
+"navigation_title_PillsType" = "Вид препарата";
+"type_title_injection" = "Уколы";
+"type_description_injection" = "Внутривенные,подкожные,внутримышечные иньекции, которые Вы делаете самостоятельно или же это делает мед. персонал";
+"type_title_pill" = "Таблетки";
+"type_description_pill" = "Препараты в форме таблеток. Возможен прием как перед, так и после еды";
+"type_title_syrup" = "Сироп/Суспензия";
+"type_description" = "Препараты в виде сиропа или суспензии. Возможен прием как перед, так и после еды.";
+
+
+
+
+
+
+
 
 
 

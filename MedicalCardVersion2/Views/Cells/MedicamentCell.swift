@@ -9,10 +9,10 @@ import UIKit
 
 class MedicamentCell: UITableViewCell {
     
-    private var titlesType:[String:String] = [
-        "pill":"Таблетки",
-        "injection":"Уколы",
-        "syrup":"Cироп"]
+    private var titlesType:[TypeOfMedicament:String] = [
+        .pill:NSLocalizedString("titleType_pill", comment: ""),
+        .injection:NSLocalizedString("titleType_injection", comment: ""),
+        .syrup:NSLocalizedString("titleType_syrup", comment: "")]
     
     private var titlesFrequency:[Frequency:String] = [
         .onceADay:"Один раз в день",
@@ -30,13 +30,13 @@ class MedicamentCell: UITableViewCell {
     
     func setupCell(medicament:Medicament){
         titleLabel.text = medicament.title
-        typeLabel.text = titlesType[medicament.type!]!
+        typeLabel.text = titlesType[medicament.medicamentTypeEnum]!
         frequencyLabel.text = titlesFrequency[medicament.frequencyEnum]!
-        doctorLabel.text = medicament.doctor?.getFullName() ?? "Не указан"
+        doctorLabel.text = medicament.doctor?.getFullName() ?? NSLocalizedString("doctor_NotSelect", comment: "")
         if medicament.isTaken{
-            statusLabel.text = "Принимается"
+            statusLabel.text = NSLocalizedString("isTaken_MedicamentCell", comment: "")
         } else{
-            statusLabel.text = "Не принимается"
+            statusLabel.text = NSLocalizedString("notTaken_newMedicament", comment: "")
         }
         typeImageView.image = getCurrentImageForPillsList(medicament: medicament).withRenderingMode(.alwaysTemplate)
         doctorImageView.image = UIImage(named: "doctor")?.withRenderingMode(.alwaysTemplate)

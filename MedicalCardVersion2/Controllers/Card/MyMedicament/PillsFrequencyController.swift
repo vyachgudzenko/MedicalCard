@@ -17,15 +17,16 @@ class PillsFrequencyController: UITableViewController {
     var selectedFraquency:Frequency = .twiceADay
     
     var medicamentFraquencyInformation:[FraquencyCellDescription] = [
-        (FraquencyCellDescription(fraquency: .onceADay, title: "Один раз в день")),
-        (FraquencyCellDescription(fraquency: .twiceADay, title: "Два раза в день")),
-        (FraquencyCellDescription(fraquency: .threeTimeADay, title: "Три раза в день"))]
+        (FraquencyCellDescription(fraquency: .onceADay, title: NSLocalizedString("fraquency_once", comment: ""))),
+        (FraquencyCellDescription(fraquency: .twiceADay, title: NSLocalizedString("Два раза в день", comment: ""))),
+        (FraquencyCellDescription(fraquency: .threeTimeADay, title: NSLocalizedString("Три раза в день", comment: "")))]
     
     var doAfterFrequencySelected:((Frequency) -> Void)?
 
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = NSLocalizedString("navigation_title_PillsFrequency", comment: "")
     }
 
     // MARK: - Table view data source

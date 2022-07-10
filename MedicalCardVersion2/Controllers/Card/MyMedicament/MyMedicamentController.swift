@@ -27,6 +27,7 @@ class MyMedicamentController: UIViewController {
     //MARK: Life cicle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = NSLocalizedString("navigation_title_MyMedicament", comment: "")
         tableView.dataSource = self
         tableView.delegate = self
         let cellNIB  = UINib(nibName: "MedicamentCell", bundle: nil)
@@ -82,7 +83,7 @@ extension MyMedicamentController:UITableViewDataSource{
 //MARK: TableView Delegate
 extension MyMedicamentController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let actionSwipe = UIContextualAction(style: .normal, title: "Начать прием") { [self] _, _, _ in
+        let actionSwipe = UIContextualAction(style: .normal, title: NSLocalizedString("startCourse_MyMedicament", comment: "")) { [self] _, _, _ in
             let currentMedicament = medicaments[indexPath.row] as! Medicament
             generateCourseOfDay(medicament: currentMedicament)
             currentMedicament.isTaken = true
@@ -95,18 +96,18 @@ extension MyMedicamentController:UITableViewDelegate{
             }
             tableView.reloadData()
             alert = MedicalAlert()
-            alert?.showAlert(title: "Добавление к принимаемым лекарствам", message: "Вы добавили новый медикамент в список принимаемых лекарств.", viewController: self)
+            alert?.showAlert(title: NSLocalizedString("alert_title_Add_MyMedicament", comment: ""), message: NSLocalizedString("alert_message_Add_MyMedicament", comment: ""), viewController: self)
         }
         actionSwipe.backgroundColor = .systemGreen
         return UISwipeActionsConfiguration(actions: [actionSwipe])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let actionSwipe = UIContextualAction(style: .normal, title: "Удалить") {[self] _, _, _ in
+        let actionSwipe = UIContextualAction(style: .normal, title: NSLocalizedString("deleteItem", comment: "")) {[self] _, _, _ in
             let currentMedicament = medicaments[indexPath.row] as! Medicament
             if currentMedicament.isTaken{
                 alert = MedicalAlert()
-                alert?.showAlert(title: "Невозможно удалить этот препарат", message: "Вы принимаете этот препарат, поэтому невозможно его удалить. Окончите прием или поменяйте статус", viewController: self)
+                alert?.showAlert(title: NSLocalizedString("alert_delete_title_MyMedicament" , comment: ""), message: NSLocalizedString("alert_delete_message_MyMedicament", comment: ""), viewController: self)
             }else{
                 deleteMedicament(medicament: currentMedicament)
                 medicaments.remove(at: indexPath.row)

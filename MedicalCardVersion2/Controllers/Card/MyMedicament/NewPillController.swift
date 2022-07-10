@@ -42,16 +42,24 @@ class NewPillController: UITableViewController {
     @IBOutlet weak var doctorLabel: UILabel!
     @IBOutlet weak var startDatePiecker: UIDatePicker!
     @IBOutlet weak var isOverSwitch: UISwitch!
+    @IBOutlet weak var countOfDayTextField: UITextField!
+    
+    @IBOutlet weak var countOfDayLabel: UILabel!
+    @IBOutlet weak var freguencyLocalization: UILabel!
+    @IBOutlet weak var startDateLocalization: UILabel!
+    @IBOutlet weak var doctorLocalization: UILabel!
+    @IBOutlet weak var typeMedicamentLocalization: UILabel!
+    @IBOutlet weak var courseIsOverLabel: UILabel!
     
     @IBAction func isOverChanged(_ sender: UISwitch) {
         if isNewMedicament{
             alert = MedicalAlert()
-            alert!.showAlert(title: "Не добавлен медикамент", message: "Вы не сможете закончить курс, пока не сохраните препарат", viewController: self)
+            alert!.showAlert(title: NSLocalizedString("alert_title_NotAddedMedicament", comment: ""), message: NSLocalizedString("alert_message_NotAddedMedicament", comment: ""), viewController: self)
             isOverSwitch.setOn(false, animated: true)
             }
         if isTaken == false && isNewMedicament == false {
             alert = MedicalAlert()
-            alert!.showAlert(title: "Препарат не принимается", message: "На данный момент Вы не принимаете этот препарат и не можете закончить курс", viewController: self)
+            alert!.showAlert(title: NSLocalizedString("alert_title_MedicamentIsNotInCourse", comment: ""), message: NSLocalizedString("alert_message_MedicamentIsNotInCourse", comment: ""), viewController: self)
             isOverSwitch.setOn(false, animated: true)
         }
         if medicament != nil && isTaken == true{
@@ -59,7 +67,7 @@ class NewPillController: UITableViewController {
             isOver = true
             isTaken = false
             alert = MedicalAlert()
-            alert?.showAlert(title: "Вы закончили курс \(medicamentName)", message: "Не забудьте сохранить изменения, нажав кнопку Сохранить", viewController: self)
+            alert?.showAlert(title: NSLocalizedString("alert_title_CourseIsOver", comment: "") + "\(medicamentName)", message: NSLocalizedString("alert_message_CourseIsOver", comment: ""), viewController: self)
         }
     }
     
@@ -71,12 +79,21 @@ class NewPillController: UITableViewController {
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = NSLocalizedString("navigation_title_NewMedicament", comment: "")
         medicamentNameTextField.text = medicamentName
+        medicamentNameTextField.placeholder = NSLocalizedString("medicamentNamePlaceholder_NewMedicament", comment: "")
         medicamentDosageTextField.text = medicamentDosage
+        medicamentDosageTextField.placeholder = NSLocalizedString("medicamentDosagePlaceholder_NewMedicament", comment: "")
         medicamentTypeLabel.text = titlesType[medicamentType]
         medicamentFrequencyLabel.text = titlesFrequency[medicamentFrequency]
-        doctorLabel.text = doctor?.getFullName() ?? "Выберите врача"
+        doctorLabel.text = doctor?.getFullName() ?? NSLocalizedString("doctor_Unknown", comment: "")
         isOverSwitch.isOn = isOver
+        countOfDayLabel.text = NSLocalizedString("countOfDay_NewMedicament", comment: "")
+        freguencyLocalization.text = NSLocalizedString("freguencyLabel_NewMedicament", comment: "")
+        typeMedicamentLocalization.text = NSLocalizedString("typeOfMedicament_NewMedicament", comment: "")
+        doctorLocalization.text = NSLocalizedString("doctor_NewMedicament", comment: "")
+        startDateLocalization.text = NSLocalizedString("startDate_NewMedicament", comment: "")
+        courseIsOverLabel.text = NSLocalizedString("courseIsOver_NewMedicament", comment: "")
     }
     
     //MARK: Other function
@@ -90,13 +107,15 @@ class NewPillController: UITableViewController {
     
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 8
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return NSLocalizedString("table_Header", comment: "")
     }
     
     //MARK: Navigation

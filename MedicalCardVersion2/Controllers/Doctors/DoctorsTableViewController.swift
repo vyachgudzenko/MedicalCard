@@ -103,7 +103,7 @@ extension DoctorsTableViewController:UITableViewDataSource{
 //MARK: TableViewDelegate
 extension DoctorsTableViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let actionSwipe = UIContextualAction(style: .normal, title: "Добавить в контакты") { [self]  _, _, _ in
+        let actionSwipe = UIContextualAction(style: .normal, title: NSLocalizedString("addToContacts_MyDoctors", comment: "")) { [self]  _, _, _ in
             let doctor = doctors[indexPath.row]
             let newContact = CNMutableContact()
             newContact.givenName = doctor.value(forKey: "firstName") as! String
@@ -121,7 +121,7 @@ extension DoctorsTableViewController:UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let actionSwipe = UIContextualAction(style: .normal, title: "Удалить") { [self] _, _, _ in
+        let actionSwipe = UIContextualAction(style: .normal, title: NSLocalizedString(NSLocalizedString("deleteItem", comment: ""), comment: "")) { [self] _, _, _ in
             if canBeDeleteDoctor(doctor: doctors[indexPath.row] as! Doctor){
                 deleteDoctor(doctor: doctors[indexPath.row] as! Doctor)
                 doctors.remove(at: indexPath.row)

@@ -16,9 +16,9 @@ class PillsTypeTableViewController: UITableViewController {
     }
     
     private var medicamentTypeInformation: [TypeCellDescription] = [
-        (TypeCellDescription(type: .injection,title: "Уколы", description: "Внутривенные,подкожные,внутримышечные иньекции, которые Вы делаете самостоятельно или же это делает мед. персонал")),
-        (TypeCellDescription(type: .pill,title: "Таблетки", description: "Препараты в форме таблеток. Возможен прием как перед, так и после еды")),
-        (TypeCellDescription(type: .syrup, title: "Сироп/Суспензия", description: "Препараты в виде сиропа или суспензии. Возможен прием как перед, так и после еды."))]
+        (TypeCellDescription(type: .injection,title: NSLocalizedString("type_title_injection", comment: ""), description: NSLocalizedString("type_description_injection", comment: ""))),
+        (TypeCellDescription(type: .pill,title: NSLocalizedString("type_title_pill", comment: ""), description: NSLocalizedString("type_description_pill", comment: ""))),
+        (TypeCellDescription(type: .syrup, title: NSLocalizedString("type_title_syrup", comment: ""), description: NSLocalizedString("type_description", comment: "")))]
     
     var selectedType:TypeOfMedicament = .pill
     
@@ -27,6 +27,7 @@ class PillsTypeTableViewController: UITableViewController {
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = NSLocalizedString("navigation_title_PillsType", comment: "")
         let cellNib = UINib(nibName: "TypicallCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "TypicallCell")
         
