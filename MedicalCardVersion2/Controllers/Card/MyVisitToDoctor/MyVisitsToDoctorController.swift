@@ -26,7 +26,7 @@ class MyVisitsToDoctorController: UIViewController {
     @IBAction func addBurButtonTapped(_ sender: UIBarButtonItem) {
         createNewVisit()
     }
-    var alert:MedicalAlert?
+    var alert:NewMedicalAlert?
     var floatButton:RedButton! = {
         let button = RedButton()
         return button

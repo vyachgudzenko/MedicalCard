@@ -11,7 +11,7 @@ import CoreData
 class MyMedicamentController: UIViewController {
     
     var medicaments:[NSManagedObject] = []
-    var alert:MedicalAlert?
+    var alert:NewMedicalAlert?
     
     var floatButton:RedButton = {
         let button = RedButton()
@@ -99,8 +99,8 @@ extension MyMedicamentController:UITableViewDelegate{
                 print("Could not save.\(error),\(error.userInfo)")
             }
             tableView.reloadData()
-            alert = MedicalAlert()
-            alert?.showAlert(title: NSLocalizedString("alert_title_Add_MyMedicament", comment: ""), message: NSLocalizedString("alert_message_Add_MyMedicament", comment: ""), viewController: self)
+            alert = NewMedicalAlert()
+            alert?.showAlert(title: NSLocalizedString("alert_title_Add_MyMedicament", comment: ""), message: NSLocalizedString("alert_message_Add_MyMedicament", comment: ""))
         }
         actionSwipe.backgroundColor = .systemGreen
         return UISwipeActionsConfiguration(actions: [actionSwipe])
@@ -110,8 +110,8 @@ extension MyMedicamentController:UITableViewDelegate{
         let actionSwipe = UIContextualAction(style: .normal, title: NSLocalizedString("deleteItem", comment: "")) {[self] _, _, _ in
             let currentMedicament = medicaments[indexPath.row] as! Medicament
             if currentMedicament.isTaken{
-                alert = MedicalAlert()
-                alert?.showAlert(title: NSLocalizedString("alert_delete_title_MyMedicament" , comment: ""), message: NSLocalizedString("alert_delete_message_MyMedicament", comment: ""), viewController: self)
+                alert = NewMedicalAlert()
+                alert?.showAlert(title: NSLocalizedString("alert_delete_title_MyMedicament" , comment: ""), message: NSLocalizedString("alert_delete_message_MyMedicament", comment: ""))
             }else{
                 deleteMedicament(medicament: currentMedicament)
                 medicaments.remove(at: indexPath.row)

@@ -50,7 +50,7 @@ class NewAnalysisController: UITableViewController {
     
     var doAfterCreate:((String,String,String,Date,Doctor,Diagnosis,String?,UUID?) -> Void)?
     
-    var alert:MedicalAlert?
+    var alert:NewMedicalAlert?
     
     //MARK: Other function
     func fieldsIsEmpty() -> Bool {
@@ -143,8 +143,8 @@ class NewAnalysisController: UITableViewController {
     
     //MARK: AlertControllers
     func showAlertFieldISEmpty(){
-        alert = MedicalAlert()
-        alert?.showAlert(title: "Не заполнены поля", message: "Заполните пожалуйста все поля, что бы можно было корректно сохранить информацию", viewController: self)
+        alert = NewMedicalAlert()
+        alert?.showAlert(title: "Не заполнены поля", message: "Заполните пожалуйста все поля, что бы можно было корректно сохранить информацию")
     }
 
 }

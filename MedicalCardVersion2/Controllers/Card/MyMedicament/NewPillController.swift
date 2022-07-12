@@ -11,7 +11,7 @@ class NewPillController: UITableViewController {
     
     var popOver:PopOverController?
     
-    var alert:MedicalAlert?
+    var alert:NewMedicalAlert?
     var medicament:Medicament?
     var isNewMedicament:Bool = true
     var doctor:Doctor?
@@ -55,21 +55,21 @@ class NewPillController: UITableViewController {
     
     @IBAction func isOverChanged(_ sender: UISwitch) {
         if isNewMedicament{
-            alert = MedicalAlert()
-            alert!.showAlert(title: NSLocalizedString("alert_title_NotAddedMedicament", comment: ""), message: NSLocalizedString("alert_message_NotAddedMedicament", comment: ""), viewController: self)
+            alert = NewMedicalAlert()
+            alert!.showAlert(title: NSLocalizedString("alert_title_NotAddedMedicament", comment: ""), message: NSLocalizedString("alert_message_NotAddedMedicament", comment: ""))
             isOverSwitch.setOn(false, animated: true)
             }
         if isTaken == false && isNewMedicament == false {
-            alert = MedicalAlert()
-            alert!.showAlert(title: NSLocalizedString("alert_title_MedicamentIsNotInCourse", comment: ""), message: NSLocalizedString("alert_message_MedicamentIsNotInCourse", comment: ""), viewController: self)
+            alert = NewMedicalAlert()
+            alert!.showAlert(title: NSLocalizedString("alert_title_MedicamentIsNotInCourse", comment: ""), message: NSLocalizedString("alert_message_MedicamentIsNotInCourse", comment: ""))
             isOverSwitch.setOn(false, animated: true)
         }
         if medicament != nil && isTaken == true{
             deleteAllCoursesThatHaveThisMedicament(medicament: medicament!)
             isOver = true
             isTaken = false
-            alert = MedicalAlert()
-            alert?.showAlert(title: NSLocalizedString("alert_title_CourseIsOver", comment: "") + "\(medicamentName)", message: NSLocalizedString("alert_message_CourseIsOver", comment: ""), viewController: self)
+            alert = NewMedicalAlert()
+            alert?.showAlert(title: NSLocalizedString("alert_title_CourseIsOver", comment: "") + "\(medicamentName)", message: NSLocalizedString("alert_message_CourseIsOver", comment: ""))
         }
     }
     
@@ -125,22 +125,6 @@ class NewPillController: UITableViewController {
     //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "toTypeScreen"{
-            let destination = segue.destination as! PillsTypeTableViewController
-            destination.selectedType = medicamentType
-            destination.doAfterTypeSelected = { [self] selectedType in
-                self.medicamentType = selectedType
-                self.medicamentTypeLabel?.text = self.titlesType[medicamentType]
-            }
-        }
-        if segue.identifier ==  "toFrequencyScreen"{
-            let destination = segue.destination as! PillsFrequencyController
-            destination.selectedFraquency = medicamentFrequency
-            destination.doAfterFrequencySelected = { [self] selectedFraquency in
-                self.medicamentFrequency = selectedFraquency
-                self.medicamentFrequencyLabel?.text = titlesFrequency[medicamentFrequency]
-            }
-        }
         if segue.identifier == "fromNewPillToDoctorList"{
             let destination = segue.destination as! DoctorsListController
             destination.doAfterSelected = {

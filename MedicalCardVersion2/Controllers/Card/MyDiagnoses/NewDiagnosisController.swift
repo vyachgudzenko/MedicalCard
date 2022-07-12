@@ -11,7 +11,7 @@ class NewDiagnosisController: UITableViewController {
     
     var doctor:Doctor?
     
-    var alert:MedicalAlert?
+    var alert:NewMedicalAlert?
     
     var titleFirst:String = ""
     var descriptionFirst:String = ""
@@ -89,8 +89,8 @@ class NewDiagnosisController: UITableViewController {
     
     //MARK: AlertControllers
     func showAlertFieldISEmpty(){
-        alert = MedicalAlert()
-        alert?.showAlert(title: NSLocalizedString("alert_Titile_NewDiagnosis", comment: ""), message: NSLocalizedString("alert_Message_NewDiagnosis", comment: ""), viewController: self)
+        alert = NewMedicalAlert()
+        alert?.showAlert(title: NSLocalizedString("alert_Titile_NewDiagnosis", comment: ""), message: NSLocalizedString("alert_Message_NewDiagnosis", comment: ""))
     }
 
 }

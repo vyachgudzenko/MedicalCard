@@ -39,8 +39,6 @@
 		3E38BD3B284263E2001A2D51 /* Diagnosis+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E38BD39284263E2001A2D51 /* Diagnosis+CoreDataClass.swift */; };
 		3E38BD3C284263E2001A2D51 /* Diagnosis+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E38BD3A284263E2001A2D51 /* Diagnosis+CoreDataProperties.swift */; };
 		3E3B41042822FC9800531423 /* NewPillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B41032822FC9800531423 /* NewPillController.swift */; };
-		3E3B41062823029000531423 /* PillsTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B41052823029000531423 /* PillsTypeTableViewController.swift */; };
-		3E3B41082823031600531423 /* PillsFrequencyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B41072823031600531423 /* PillsFrequencyController.swift */; };
 		3E3F1855286B30D600C00A45 /* AnalyzesLisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F1854286B30D600C00A45 /* AnalyzesLisController.swift */; };
 		3E3F1858286C92C300C00A45 /* MyMedicamentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F1857286C92C300C00A45 /* MyMedicamentController.swift */; };
 		3E3F185B286C943300C00A45 /* MedicamentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3F1859286C943300C00A45 /* MedicamentCell.swift */; };
@@ -121,8 +119,6 @@
 		3E38BD39284263E2001A2D51 /* Diagnosis+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Diagnosis+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3E38BD3A284263E2001A2D51 /* Diagnosis+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Diagnosis+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3E3B41032822FC9800531423 /* NewPillController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPillController.swift; sourceTree = "<group>"; };
-		3E3B41052823029000531423 /* PillsTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsTypeTableViewController.swift; sourceTree = "<group>"; };
-		3E3B41072823031600531423 /* PillsFrequencyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillsFrequencyController.swift; sourceTree = "<group>"; };
 		3E3F1854286B30D600C00A45 /* AnalyzesLisController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzesLisController.swift; sourceTree = "<group>"; };
 		3E3F1857286C92C300C00A45 /* MyMedicamentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMedicamentController.swift; sourceTree = "<group>"; };
 		3E3F1859286C943300C00A45 /* MedicamentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicamentCell.swift; sourceTree = "<group>"; };
@@ -326,8 +322,6 @@
 			children = (
 				3E3F1857286C92C300C00A45 /* MyMedicamentController.swift */,
 				3E3B41032822FC9800531423 /* NewPillController.swift */,
-				3E3B41052823029000531423 /* PillsTypeTableViewController.swift */,
-				3E3B41072823031600531423 /* PillsFrequencyController.swift */,
 			);
 			path = MyMedicament;
 			sourceTree = "<group>";
@@ -509,7 +503,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E36CBF92841896C009556A1 /* Doctor+CoreDataProperties.swift in Sources */,
-				3E3B41082823031600531423 /* PillsFrequencyController.swift in Sources */,
 				3E2D3F9D28231998000D0944 /* FraquencyCell.swift in Sources */,
 				3E8A4C0328692AD800440F11 /* VisitToDoctor+CoreDataProperties.swift in Sources */,
 				3E9F8380286FA26500FB5BE5 /* CourseOfMedicament+CoreDataClass.swift in Sources */,
@@ -525,7 +518,6 @@
 				3E8A4C0628692C3C00440F11 /* WorkWithDatabase.swift in Sources */,
 				3E372C8B28744A2B00F4ADC7 /* UploadFileCell.swift in Sources */,
 				3E1E06DF2822D77900B5A9D3 /* PillsTableViewController.swift in Sources */,
-				3E3B41062823029000531423 /* PillsTypeTableViewController.swift in Sources */,
 				3E1E06DB2822D75800B5A9D3 /* SettingsTableViewController.swift in Sources */,
 				3E7AC4A32866775B00FF41E5 /* MedicalAlert.swift in Sources */,
 				3E36CBFB2841896C009556A1 /* Medicament+CoreDataProperties.swift in Sources */,

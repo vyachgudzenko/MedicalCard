@@ -10,7 +10,7 @@ import CoreData
 
 class MyDiagnosesController: UIViewController {
     var diagnoses:[NSManagedObject] = []
-    var alert:MedicalAlert?
+    var alert:NewMedicalAlert?
     
     @IBOutlet weak var tableView: UITableView!
     var floatButton:RedButton! = {
@@ -92,8 +92,8 @@ extension MyDiagnosesController:UITableViewDataSource{
     
     //MARK: AlertController
     private func showAlert(){
-        alert = MedicalAlert()
-        alert?.showAlert(title: NSLocalizedString("alert_Title_MyDiagnosis", comment: ""), message: NSLocalizedString("alert_Message_MyDiagnosis", comment: ""), viewController: self)
+        alert = NewMedicalAlert()
+        alert?.showAlert(title: NSLocalizedString("alert_Title_MyDiagnosis", comment: ""), message: NSLocalizedString("alert_Message_MyDiagnosis", comment: ""))
     }
 
 }

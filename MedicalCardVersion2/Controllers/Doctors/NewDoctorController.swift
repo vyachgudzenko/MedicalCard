@@ -29,8 +29,7 @@ class NewDoctorController: UITableViewController {
     var professionTitles:[Profession:String] = [
         .therapist:"Терапевт",.neuropathologist:"Невропатолог",.traumatologist:"Травматолог"]
     
-    var alert:MedicalAlert?
-
+    var alert:NewMedicalAlert?
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,12 +115,12 @@ class NewDoctorController: UITableViewController {
     
     //MARK: AlertControllers
     func showAlertPhoneNumberValidation(){
-        alert = MedicalAlert()
-        alert?.showAlert(title: "Некорректный номер телефона", message: "Введите номер телефона в формате 0991234567", viewController: self)
+        alert = NewMedicalAlert()
+        alert?.showAlert(title: "Некорректный номер телефона", message: "Введите номер телефона в формате 0991234567")
     }
     
     func showAlertFieldISEmpty(){
-        alert = MedicalAlert()
-        alert?.showAlert(title: "Не заполнены поля", message: "Заполните пожалуйста все поля, что бы можно было корректно сохранить информацию", viewController: self)
+        alert = NewMedicalAlert()
+        alert?.showAlert(title: "Не заполнены поля", message: "Заполните пожалуйста все поля, что бы можно было корректно сохранить информацию")
     }
 }
