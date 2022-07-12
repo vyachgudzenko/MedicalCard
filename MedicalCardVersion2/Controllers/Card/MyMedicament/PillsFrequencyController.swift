@@ -9,10 +9,7 @@ import UIKit
 
 class PillsFrequencyController: UITableViewController {
     
-    struct FraquencyCellDescription{
-        var fraquency:Frequency
-        var title:String
-    }
+    
     
     var selectedFraquency:Frequency = .twiceADay
     

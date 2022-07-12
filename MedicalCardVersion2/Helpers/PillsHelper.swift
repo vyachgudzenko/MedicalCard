@@ -45,3 +45,8 @@ struct TypeCellDescription{
     var description:String
 }
 
+struct FraquencyCellDescription{
+    var fraquency:Frequency
+    var title:String
+}
+

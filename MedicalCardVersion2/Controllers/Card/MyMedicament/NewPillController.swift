@@ -9,7 +9,7 @@ import UIKit
 
 class NewPillController: UITableViewController {
     
-    var popOverType:PopOverController?
+    var popOver:PopOverController?
     
     var alert:MedicalAlert?
     var medicament:Medicament?
@@ -97,6 +97,7 @@ class NewPillController: UITableViewController {
         startDateLocalization.text = NSLocalizedString("startDate_NewMedicament", comment: "")
         courseIsOverLabel.text = NSLocalizedString("courseIsOver_NewMedicament", comment: "")
         
+        
     }
     
     //MARK: Other function
@@ -152,11 +153,19 @@ class NewPillController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row{
+        case 3:
+            popOver = PopOverController()
+            popOver?.delegate = self
+            popOver?.setupPopOver(cellType: .medicamentFraquency)
+            popOver?.showPopOver(fraquency: medicamentFrequency)
+            didCellSelected(popOver!)
         case 4:
-            popOverType = PopOverController()
-            popOverType?.delegate = self
-            popOverType?.showPopOver(type: medicamentType)
-            didCellSelected(popOverType!)
+            popOver = PopOverController()
+            popOver?.delegate = self
+            popOver?.setupPopOver(cellType: .medicamentType)
+            popOver?.showPopOver(type: medicamentType)
+            didCellSelected(popOver!)
+        
         default:break
             
         }
@@ -165,8 +174,14 @@ class NewPillController: UITableViewController {
 
 extension NewPillController:PopOverDelegate{
     func didCellSelected(_ popOver: PopOverController) {
-        medicamentType = popOver.selectedType
-        medicamentTypeLabel.text = titlesType[medicamentType]
+        switch popOver.cellType{
+        case .medicamentType:
+            medicamentType = popOver.selectedType!
+            medicamentTypeLabel.text = titlesType[medicamentType]
+        case .medicamentFraquency:
+            medicamentFrequency = popOver.selectedFraquency!
+            medicamentFrequencyLabel.text = titlesFrequency[medicamentFrequency]
+        }
     }
     
     

@@ -82,6 +82,8 @@
 		3EA013872873BB8B00D1D100 /* UploadFileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA013862873BB8B00D1D100 /* UploadFileController.swift */; };
 		3EA0138A2873BDE500D1D100 /* UploadFile+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA013882873BDE500D1D100 /* UploadFile+CoreDataClass.swift */; };
 		3EA0138B2873BDE500D1D100 /* UploadFile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA013892873BDE500D1D100 /* UploadFile+CoreDataProperties.swift */; };
+		3EBD473E287E24F40075140B /* PopOverFraquencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD473C287E24F40075140B /* PopOverFraquencyCell.swift */; };
+		3EBD473F287E24F40075140B /* PopOverFraquencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EBD473D287E24F40075140B /* PopOverFraquencyCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -168,6 +170,8 @@
 		3EA013862873BB8B00D1D100 /* UploadFileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileController.swift; sourceTree = "<group>"; };
 		3EA013882873BDE500D1D100 /* UploadFile+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UploadFile+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3EA013892873BDE500D1D100 /* UploadFile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UploadFile+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3EBD473C287E24F40075140B /* PopOverFraquencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverFraquencyCell.swift; sourceTree = "<group>"; };
+		3EBD473D287E24F40075140B /* PopOverFraquencyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopOverFraquencyCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,6 +349,8 @@
 				3E4489AF287DAE25009531E4 /* PupoverController.xib */,
 				3E4489B2287DB147009531E4 /* PopoverMedicamentCell.swift */,
 				3E4489B3287DB147009531E4 /* PopoverMedicamentCell.xib */,
+				3EBD473C287E24F40075140B /* PopOverFraquencyCell.swift */,
+				3EBD473D287E24F40075140B /* PopOverFraquencyCell.xib */,
 			);
 			path = Popover;
 			sourceTree = "<group>";
@@ -478,6 +484,7 @@
 			files = (
 				3E43DAA728416DCD00B73761 /* DoctorPrototypeCell.xib in Resources */,
 				3E6905CA28787739007E73EA /* Localizable.strings in Resources */,
+				3EBD473F287E24F40075140B /* PopOverFraquencyCell.xib in Resources */,
 				3E9F83852873255D00FB5BE5 /* NotDataCell.xib in Resources */,
 				3E1E06C92822D24200B5A9D3 /* LaunchScreen.storyboard in Resources */,
 				3E4489AC287CD461009531E4 /* NewMedicalAlert.xib in Resources */,
@@ -539,6 +546,7 @@
 				3E36CBF82841896C009556A1 /* Doctor+CoreDataClass.swift in Sources */,
 				3E4489B0287DAE25009531E4 /* PopOverController.swift in Sources */,
 				3EA008102829CD1F00B15612 /* TypicallCell.swift in Sources */,
+				3EBD473E287E24F40075140B /* PopOverFraquencyCell.swift in Sources */,
 				3E5044812844387A0095A304 /* NewAnalysisController.swift in Sources */,
 				3E1E06DD2822D76A00B5A9D3 /* DoctorsTableViewController.swift in Sources */,
 				3E1E06E92822D9C300B5A9D3 /* PillsTableViewCell.swift in Sources */,
