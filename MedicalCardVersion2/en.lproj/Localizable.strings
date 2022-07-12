@@ -155,6 +155,14 @@
 //MARK: AnalysisCell
 "notFile" = "Нет файла";
 
+//MARK: UploadFileController
+"navigation_title_UploadFile" = "Загрузить файлы";
+"uploadImages" = "Загрузить фото";
+"uploadFiles" = "Загрузить файлы";
+
+//MARK: UploadListController
+"navigation_title_UploadList" = "Список файлов";
+
 
 
 

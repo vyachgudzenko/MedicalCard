@@ -25,7 +25,7 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
         return button
     }()
     
-    var medicalAlert:MedicalAlert!
+    var medicalAlert:NewMedicalAlert!
 
     //MARK: Life cycle
     override func viewDidLoad() {
@@ -76,8 +76,8 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
     
     //MARK: AlertControllers
     func showAlertCanBeDeletedDoctor(){
-        medicalAlert = MedicalAlert()
-        medicalAlert.showAlert(title: "Упс...", message: "Невозможно удалить эту карточку данных - есть связаные данные", viewController: self)
+        medicalAlert = NewMedicalAlert()
+        medicalAlert.showAlert(title: "Упс...", message: "Невозможно удалить эту карточку данных - есть связаные данные")
     }
 }
 //MARK: TableViewDataSource
@@ -127,7 +127,7 @@ extension DoctorsTableViewController:UITableViewDelegate{
                 doctors.remove(at: indexPath.row)
                 tableView.reloadData()
                 
-        } else{
+            }else{
                 showAlertCanBeDeletedDoctor()
             }
         }

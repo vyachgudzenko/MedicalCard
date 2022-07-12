@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopOverController" customModule="MedicalCardVersion2" customModuleProvider="target">
+            <connections>
+                <outlet property="popoverView" destination="hWe-HK-bmH" id="Ljk-Gu-NnC"/>
+                <outlet property="tableView" destination="OYN-js-mfq" id="3ms-cG-bFf"/>
+                <outlet property="titleLabel" destination="XjM-qg-h2N" id="SvC-4e-0XP"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a97-Gj-xgq">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWe-HK-bmH">
+                    <rect key="frame" x="0.0" y="572" width="414" height="300"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Тип Лекарства" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XjM-qg-h2N">
+                            <rect key="frame" x="20" y="8" width="374" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="OYN-js-mfq">
+                            <rect key="frame" x="0.0" y="42" width="414" height="268"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="3nK-mk-F2g"/>
+                        <constraint firstItem="XjM-qg-h2N" firstAttribute="leading" secondItem="hWe-HK-bmH" secondAttribute="leading" constant="20" id="4Cv-iK-jCg"/>
+                        <constraint firstAttribute="trailing" secondItem="OYN-js-mfq" secondAttribute="trailing" id="HA9-PC-XiU"/>
+                        <constraint firstItem="XjM-qg-h2N" firstAttribute="top" secondItem="hWe-HK-bmH" secondAttribute="top" constant="8" id="JLq-WU-ybZ"/>
+                        <constraint firstItem="OYN-js-mfq" firstAttribute="leading" secondItem="hWe-HK-bmH" secondAttribute="leading" id="WQi-zy-vro"/>
+                        <constraint firstAttribute="bottom" secondItem="OYN-js-mfq" secondAttribute="bottom" constant="-10" id="dZ3-Fw-Pds"/>
+                        <constraint firstAttribute="height" constant="300" id="efg-LA-8PI"/>
+                        <constraint firstAttribute="trailing" secondItem="XjM-qg-h2N" secondAttribute="trailing" constant="20" id="qP0-r4-UBz"/>
+                        <constraint firstItem="OYN-js-mfq" firstAttribute="top" secondItem="XjM-qg-h2N" secondAttribute="bottom" constant="10" id="yPe-7t-L1h"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="hWe-HK-bmH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="5P8-K4-IKh"/>
+                <constraint firstItem="hWe-HK-bmH" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="7Qo-n8-09S"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="a97-Gj-xgq" secondAttribute="bottom" id="Cfd-Rn-25b"/>
+                <constraint firstItem="a97-Gj-xgq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Cq7-6m-vca"/>
+                <constraint firstItem="a97-Gj-xgq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="EAY-Kn-pdt"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="hWe-HK-bmH" secondAttribute="bottom" constant="-10" id="bSt-Ve-YM4"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="a97-Gj-xgq" secondAttribute="trailing" id="rcP-yQ-dBX"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="79.6875"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

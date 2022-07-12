@@ -444,9 +444,6 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="QuS-EZ-iNl" secondAttribute="trailing" id="gav-eY-U4A"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="lEc-RU-HEP" kind="show" identifier="toTypeScreen" id="J8E-Qu-H53"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Os4-lZ-kv7">
                                         <rect key="frame" x="0.0" y="301" width="414" height="43.5"/>
@@ -940,6 +937,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Загрузить файлы" id="eId-Kq-U6z"/>
+                    <connections>
+                        <outlet property="uploadFile" destination="HAi-eb-9ey" id="VwL-sH-ahK"/>
+                        <outlet property="uploadImages" destination="vyO-fJ-JRh" id="JvX-wn-t7D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N3k-cb-P0F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1053,7 +1054,7 @@
             <objects>
                 <tableViewController id="lEc-RU-HEP" customClass="PillsTypeTableViewController" customModule="MedicalCardVersion2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="lF7-Kl-8UW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -1678,7 +1679,11 @@
                                     <action selector="addButtonTapped:" destination="3UB-MV-d7R" id="gbR-Pq-oqK"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="line.horizontal.3.decrease" catalog="system" id="LmU-l2-QPS"/>
+                            <barButtonItem image="line.horizontal.3.decrease" catalog="system" id="LmU-l2-QPS">
+                                <connections>
+                                    <action selector="filterBarButtonPressed:" destination="3UB-MV-d7R" id="czj-o9-83q"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -2120,7 +2125,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hHr-Nn-ruT"/>
+        <segue reference="Erz-CU-oNC"/>
         <segue reference="ZW2-Q1-nJD"/>
     </inferredMetricsTieBreakers>
     <resources>

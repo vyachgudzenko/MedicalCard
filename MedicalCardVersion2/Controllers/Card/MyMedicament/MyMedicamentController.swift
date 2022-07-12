@@ -24,6 +24,10 @@ class MyMedicamentController: UIViewController {
         createNewMedicament(visitUUID: nil  )
     }
     
+    
+    @IBAction func filterBarButtonPressed(_ sender: UIBarButtonItem) {
+    }
+    
     //MARK: Life cicle
     override func viewDidLoad() {
         super.viewDidLoad()

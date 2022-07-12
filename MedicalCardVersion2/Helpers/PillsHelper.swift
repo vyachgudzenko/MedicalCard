@@ -39,3 +39,9 @@ enum AcceptanceStatus:String{
     case expect = "expect"
 }
 
+struct TypeCellDescription{
+    var type:TypeOfMedicament
+    var title:String
+    var description:String
+}
+

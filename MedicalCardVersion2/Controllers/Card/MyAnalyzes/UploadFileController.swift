@@ -16,6 +16,10 @@ class UploadFileController: UIViewController {
     var analysisUUID:UUID?
     
     
+    @IBOutlet weak var uploadImages: UIButton!
+   
+    @IBOutlet weak var uploadFile: UIButton!
+    
     @IBAction func uploadImagesTapped(_ sender: UIButton) {
         var config = PHPickerConfiguration(photoLibrary: .shared())
         config.selectionLimit = 5
@@ -33,6 +37,9 @@ class UploadFileController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = NSLocalizedString("navigation_title_UploadFile", comment: "")
+        uploadImages.setTitle(NSLocalizedString("uploadImages", comment: ""), for: .normal)
+        uploadFile.setTitle(NSLocalizedString("uploadFiles", comment: ""), for: .normal)
     }
 }
 

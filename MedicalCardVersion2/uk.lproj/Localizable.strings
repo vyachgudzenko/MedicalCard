@@ -7,25 +7,158 @@
 */
 
 //MARK: CardTableViewController
-"title_medicalCard" = "Медична картка";
-"diagnosis" = "Діагнози";
-"diagnosisDescription" = "Тут зберігаються усі дані про Ваші встановлені діагнози";
-"visits" = "Відвідування лікаря";
-"visitsDescription" = "Інформація про те, коли і з якою скаргою Ви відвідували лікаря";
-"analysis" = "Аналізи та дослідження";
-"analysisDescription" = "Зберігайте дані про Ваші аналізи та дослідження в одному місці";
-"medicaments" = "Мої ліки";
-"medicamentsDescription" = "Тут зберігаються дані про ліки, які Ви приймаєте";
+"title_medicalCard" = "Medical Card";
+"diagnosis" = "Диагнози";
+"diagnosisDescription" = "Здесь хранятся все данные о всех Ваших установленных  диагнозах";
+"visits" = "Посещения врача";
+"visitsDescription" = "Информация о том,когда и с какой жалобой Вы посещали врача";
+"analysis" = "Анализы и исследования";
+"analysisDescription" = "Храните данные о Ваших анализах и исследования в одном месте";
+"medicaments" = "Мои лекарства";
+"medicamentsDescription" = "Здесь хранятся все данные о Ваших назначенных лекарствах";
 
 //MARK: DoctorsTableViewControler
-"title_DoctorsTableViewController" = "Мої лікарі";
+"title_DoctorsTableViewController" = "Мои доктора";
+"addToContacts_MyDoctors" = "Добавить в контакты";
+"deleteItem" = "Удалить";
+
 
 //MARK: NewDoctorController
-"title_NewDoctor" = "Новий лікар";
-"table_Header" = "Введіть дані";
-"buttonSave" = "Зберегти";
-"placeholder_FirstName" = "Ім'я";
-"placeholder_LastName" = "Прізвище";
-"placeholder_Job" = "Місце роботи";
-"placeholder_PhoneNumber" = "Номер телефону";
-"specialization_Label" = "Спеціалізація";
+"title_NewDoctor" = "Новый доктор";
+"table_Header" = "Введите данные";
+"buttonSave" = "Save";
+"placeholder_FirstName" = "First name";
+"placeholder_LastName" = "Last name";
+"placeholder_Job" = "Место работы";
+"placeholder_PhoneNumber" = "Номер телефона";
+"specialization_Label" = "Специализация";
+
+//MARK: DoctorProfessionController
+"navigation_title_DoctorProfession" = "Cпециализация";
+
+//MARK: MyDiagnosisController
+"navigation_title_MyDiagnosis" = "Мои диагнозы";
+"alert_Title_MyDiagnosis" = "Упс...";
+"alert_Message_MyDiagnosis" = "Невозможно удалить эту карточку данных - есть связаные данные";
+
+//MARK: NewDiagnosis
+"navigation_title_NewDiagnosis" = "Новый диагноз";
+"doctor_Unknown" = "Выберите врача";
+"alert_Titile_NewDiagnosis" = "Не заполнены поля";
+"alert_Message_NewDiagnosis" = "Заполните пожалуйста все поля, что бы можно было корректно сохранить информацию";
+"newDiagnosis_titlePlaceholder_text" = "Название диагноза";
+"newDiagnosis_descriptionPlaceholder_text" = "Описание";
+"saveButton_NewDiagnosis" = "Cохранить";
+
+//MARK: DoctorListController
+"navigation_title_DoctorList" = "Мои доктора";
+
+
+//MARK: PillsTableViewController
+"navigation_title_PillsTable" = "Принимаемые лекарства";
+"buttonText_allDrink_PillsTable" = "Выпить все";
+"buttonText_allDrinkCompleted_PillsTable" = "Выпито";
+"section_morning" = "Утро";
+"section_dinner" = "Обед";
+"section_evenning" = "Ужин";
+
+//MARK: MyVisits
+"navigation_title_MyVisits" = "Посещения врача";
+"sectionOfMonth_today" = "Cегодня";
+"sectionOfMonth_yesterday" = "Вчера";
+"sectionOfMonth_thisWeek" = "В течении недели";
+"sectionOfMonth_thisMonth" = "В течении месяца";
+"sectionOfMonth_earlie" = "Ранее";
+
+//MARK: NewVisit
+"navigation_title_NewVisit" = "Новое посещение";
+"complaintPlaceholder_NewVisit" = "Жалобы";
+"date_NewVisit" = "Дата посещения";
+"doctor_NewVisit" = "Доктор";
+"diagnosis_NewVisit" = "Диагноз";
+"diagnosis_unknown" = "Выберите диагноз";
+"analysis_NewVisit" = "Анализы/Иследования";
+"medicaments_NewVisit" = "Медикаменты";
+
+//MARK: AnalyzesListController
+"navigation_title_AnalyzList" = "Назначенные анализы";
+
+//MARK: MedicamentListController
+"navigation_title_MedicamentList" = "Медикаменты";
+
+//MARK: MyMedicamentController
+"navigation_title_MyMedicament" = "Мои лекарства";
+"startCourse_MyMedicament" = "Начать прием";
+"alert_title_Add_MyMedicament" = "Добавление к принимаемым лекарствам";
+"alert_message_Add_MyMedicament" = "Вы добавили новый медикамент в список принимаемых лекарств.";
+"alert_delete_title_MyMedicament" = "Невозможно удалить этот препарат";
+"alert_delete_message_MyMedicament" = "Вы принимаете этот препарат, поэтому невозможно его удалить. Окончите прием или поменяйте статус";
+
+//MARK: MedicamentCell
+"doctor_NotSelect" = "Не указан";
+"isTaken_MedicamentCell" = "Принимается";
+"notTaken_newMedicament" = "Не принимается";
+"titleType_pill" = "Таблетки";
+"titleType_injection" = "Уколы";
+"titleType_syrup" = "Cироп";
+"titlesFrequency_onceADay" = "Один раз в день";
+"titlesFrequency_twiceADay" = "Дважды в день";
+"titlesFrequency_threeTimeADay" = "Трижды в день";
+
+
+//MARK: NewMedicament
+"navigation_title_NewMedicament" = "Новое лекарство";
+"medicamentNamePlaceholder_NewMedicament" = "Название препарата";
+"medicamentDosagePlaceholder_NewMedicament" = "Дозировка";
+"countOfDay_NewMedicament" = "Количество дней";
+"freguencyLabel_NewMedicament" = "Частота приема в день";
+"typeOfMedicament_NewMedicament" = "Вид препарата";
+"doctor_NewMedicament" = "Врач";
+"startDate_NewMedicament" = "Дата начала";
+"courseIsOver_NewMedicament" = "Курс окончен";
+"alert_title_NotAddedMedicament" = "Не добавлен медикамент";
+"alert_message_NotAddedMedicament" = "Вы не сможете закончить курс, пока не сохраните препарат";
+"alert_title_MedicamentIsNotInCourse" = "Препарат не принимается";
+"alert_message_MedicamentIsNotInCourse" = "На данный момент Вы не принимаете этот препарат и не можете закончить курс";
+"alert_title_CourseIsOver" = "Вы закончили курс";
+"alert_message_CourseIsOver" = "Не забудьте сохранить изменения, нажав кнопку Сохранить";
+
+//MARK: PillsFrequencyController
+"navigation_title_PillsFrequency" = "Частота приема";
+"fraquency_once" = "Один раз в день";
+"fraquency_twice" = "Два раза в день";
+"fraquency_three" = "Три раза в день";
+
+//MARK: PillsTypeController
+"navigation_title_PillsType" = "Вид препарата";
+"type_title_injection" = "Уколы";
+"type_description_injection" = "Внутривенные,подкожные,внутримышечные иньекции, которые Вы делаете самостоятельно или же это делает мед. персонал";
+"type_title_pill" = "Таблетки";
+"type_description_pill" = "Препараты в форме таблеток. Возможен прием как перед, так и после еды";
+"type_title_syrup" = "Сироп/Суспензия";
+"type_description" = "Препараты в виде сиропа или суспензии. Возможен прием как перед, так и после еды.";
+
+//MARK: MyAnalyzesController
+"navigation_title_MyAnalyzes" = "Анализы/Исследования";
+
+//MARK: NewAnalisis
+"navigation_title_NewAnalysis" = "Новый анализ";
+"titleTextField_placeholder_NewAnalysis" = "Название";
+"descriptionTextField_placeholder_NewAnalysis" = "Описание";
+"resultTextField_placeholder_NewAnalysis" = "Результат";
+"date_NewAnalysis" = "Дата";
+"doctorLocalization" = "Врач";
+"countOfFiles" = "Загружено файлов";
+"file" = "Файл";
+"uploadFileButton" = "Загрузить";
+
+//MARK: AnalysisCell
+"notFile" = "Нет файла";
+
+//MARK: UploadFileController
+"navigation_title_UploadFile" = "Загрузить файлы";
+"uploadImages" = "Загрузить фото";
+"uploadFiles" = "Загрузить файлы";
+
+//MARK: UploadListController
+"navigation_title_UploadList" = "Список файлов";

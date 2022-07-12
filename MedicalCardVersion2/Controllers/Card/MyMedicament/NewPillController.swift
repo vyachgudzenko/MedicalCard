@@ -9,6 +9,8 @@ import UIKit
 
 class NewPillController: UITableViewController {
     
+    var popOverType:PopOverController?
+    
     var alert:MedicalAlert?
     var medicament:Medicament?
     var isNewMedicament:Bool = true
@@ -94,6 +96,7 @@ class NewPillController: UITableViewController {
         doctorLocalization.text = NSLocalizedString("doctor_NewMedicament", comment: "")
         startDateLocalization.text = NSLocalizedString("startDate_NewMedicament", comment: "")
         courseIsOverLabel.text = NSLocalizedString("courseIsOver_NewMedicament", comment: "")
+        
     }
     
     //MARK: Other function
@@ -146,4 +149,25 @@ class NewPillController: UITableViewController {
             }
         }
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row{
+        case 4:
+            popOverType = PopOverController()
+            popOverType?.delegate = self
+            popOverType?.showPopOver(type: medicamentType)
+            didCellSelected(popOverType!)
+        default:break
+            
+        }
+    }
+}
+
+extension NewPillController:PopOverDelegate{
+    func didCellSelected(_ popOver: PopOverController) {
+        medicamentType = popOver.selectedType
+        medicamentTypeLabel.text = titlesType[medicamentType]
+    }
+    
+    
 }
