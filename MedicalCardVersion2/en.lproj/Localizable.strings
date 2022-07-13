@@ -93,6 +93,8 @@
 "alert_message_Add_MyMedicament" = "Вы добавили новый медикамент в список принимаемых лекарств.";
 "alert_delete_title_MyMedicament" = "Невозможно удалить этот препарат";
 "alert_delete_message_MyMedicament" = "Вы принимаете этот препарат, поэтому невозможно его удалить. Окончите прием или поменяйте статус";
+"alert_impossibleAdd_title" = "Вы уже принимаете этот препарат";
+"alert_impossibleAdd_message" = "Невозможно повторно начать курс приема препарата, так как Вы его принимаете в данный момент";
 
 //MARK: MedicamentCell
 "doctor_NotSelect" = "Не указан";

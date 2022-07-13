@@ -89,18 +89,23 @@ extension MyMedicamentController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionSwipe = UIContextualAction(style: .normal, title: NSLocalizedString("startCourse_MyMedicament", comment: "")) { [self] _, _, _ in
             let currentMedicament = medicaments[indexPath.row] as! Medicament
-            generateCourseOfDay(medicament: currentMedicament)
-            currentMedicament.isTaken = true
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-            let managedContext = appDelegate.persistentContainer.viewContext
-            do{
-                try managedContext.save()
-            } catch let error as NSError{
-                print("Could not save.\(error),\(error.userInfo)")
+            if currentMedicament.isTaken == false{
+                generateCourseOfDay(medicament: currentMedicament)
+                currentMedicament.isTaken = true
+                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+                let managedContext = appDelegate.persistentContainer.viewContext
+                do{
+                    try managedContext.save()
+                } catch let error as NSError{
+                    print("Could not save.\(error),\(error.userInfo)")
+                }
+                tableView.reloadData()
+                alert = NewMedicalAlert()
+                alert?.showAlert(title: NSLocalizedString("alert_title_Add_MyMedicament", comment: ""), message: NSLocalizedString("alert_message_Add_MyMedicament", comment: ""))
+            } else {
+                alert = NewMedicalAlert()
+                alert?.showAlert(title: NSLocalizedString("alert_impossibleAdd_title", comment: ""), message: NSLocalizedString("alert_impossibleAdd_message", comment: ""))
             }
-            tableView.reloadData()
-            alert = NewMedicalAlert()
-            alert?.showAlert(title: NSLocalizedString("alert_title_Add_MyMedicament", comment: ""), message: NSLocalizedString("alert_message_Add_MyMedicament", comment: ""))
         }
         actionSwipe.backgroundColor = .systemGreen
         return UISwipeActionsConfiguration(actions: [actionSwipe])
