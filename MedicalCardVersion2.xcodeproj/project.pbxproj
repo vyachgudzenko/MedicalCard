@@ -82,6 +82,8 @@
 		3EA0138B2873BDE500D1D100 /* UploadFile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA013892873BDE500D1D100 /* UploadFile+CoreDataProperties.swift */; };
 		3EBD473E287E24F40075140B /* PopOverFraquencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD473C287E24F40075140B /* PopOverFraquencyCell.swift */; };
 		3EBD473F287E24F40075140B /* PopOverFraquencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EBD473D287E24F40075140B /* PopOverFraquencyCell.xib */; };
+		3EBD4742287E37B50075140B /* MedicalCardCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD4740287E37B50075140B /* MedicalCardCollectionCell.swift */; };
+		3EBD4743287E37B50075140B /* MedicalCardCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EBD4741287E37B50075140B /* MedicalCardCollectionCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -168,6 +170,8 @@
 		3EA013892873BDE500D1D100 /* UploadFile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UploadFile+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3EBD473C287E24F40075140B /* PopOverFraquencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverFraquencyCell.swift; sourceTree = "<group>"; };
 		3EBD473D287E24F40075140B /* PopOverFraquencyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopOverFraquencyCell.xib; sourceTree = "<group>"; };
+		3EBD4740287E37B50075140B /* MedicalCardCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalCardCollectionCell.swift; sourceTree = "<group>"; };
+		3EBD4741287E37B50075140B /* MedicalCardCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MedicalCardCollectionCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -369,6 +373,8 @@
 				3E9F83832873255D00FB5BE5 /* NotDataCell.xib */,
 				3E372C8928744A2B00F4ADC7 /* UploadFileCell.swift */,
 				3E372C8A28744A2B00F4ADC7 /* UploadFileCell.xib */,
+				3EBD4740287E37B50075140B /* MedicalCardCollectionCell.swift */,
+				3EBD4741287E37B50075140B /* MedicalCardCollectionCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -476,6 +482,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EBD4743287E37B50075140B /* MedicalCardCollectionCell.xib in Resources */,
 				3E43DAA728416DCD00B73761 /* DoctorPrototypeCell.xib in Resources */,
 				3E6905CA28787739007E73EA /* Localizable.strings in Resources */,
 				3EBD473F287E24F40075140B /* PopOverFraquencyCell.xib in Resources */,
@@ -525,6 +532,7 @@
 				3E1E06D12822D4BE00B5A9D3 /* TabbarController.swift in Sources */,
 				3E43DA6228414F3C00B73761 /* MyDiagnosesController.swift in Sources */,
 				3E372C88287441A500F4ADC7 /* UploadFileListController.swift in Sources */,
+				3EBD4742287E37B50075140B /* MedicalCardCollectionCell.swift in Sources */,
 				3E1E06BD2822D24100B5A9D3 /* AppDelegate.swift in Sources */,
 				3E43DAA628416DCD00B73761 /* DoctorPrototypeCell.swift in Sources */,
 				3E36CBFA2841896C009556A1 /* Medicament+CoreDataClass.swift in Sources */,

@@ -7,39 +7,70 @@
 
 import UIKit
 
-class CardTableViewController: UITableViewController {
+struct CollectionStruct{
+    var title:String
+    var imageName:String
+    var viewController:String
+}
+
+class CardTableViewController: UIViewController {
+    
+    var collectionStruct:[CollectionStruct] = [
+        CollectionStruct(title: NSLocalizedString("diagnosis", comment: ""), imageName: "diagnosisColor", viewController: "MyDiagnosesController"),
+        CollectionStruct(title: NSLocalizedString("visits", comment: ""), imageName: "hospital-building", viewController: "MyVisitsToDoctorController"),
+        CollectionStruct(title: NSLocalizedString("analysis", comment: ""), imageName: "flask", viewController: "MyAnalyzesController"),
+        CollectionStruct(title: NSLocalizedString("medicaments", comment: ""), imageName: "medicine (1)", viewController: "MyMedicamentController")
+    ]
+    
+    let cellsCount:CGFloat = 2
     
     //MARK: Outlets
-    @IBOutlet weak var diagnosisLabel: UILabel!
-    @IBOutlet weak var diagnosisDescriptionLabel: UILabel!
-    @IBOutlet weak var visitLabel: UILabel!
-    @IBOutlet weak var visitDescriptionLabel: UILabel!
-    @IBOutlet weak var analysisLabel: UILabel!
-    @IBOutlet weak var analysisDescriptionLAbel: UILabel!
-    @IBOutlet weak var medicamentLabel: UILabel!
-    @IBOutlet weak var medicamentDescriptionLsbel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = NSLocalizedString("title_medicalCard", comment: "")
-        diagnosisLabel.text = NSLocalizedString("diagnosis", comment: "")
-        diagnosisDescriptionLabel.text = NSLocalizedString("diagnosisDescription", comment: "")
-        visitLabel.text = NSLocalizedString("visits", comment: "")
-        visitDescriptionLabel.text = NSLocalizedString("visitsDescription", comment: "")
-        analysisLabel.text = NSLocalizedString("analysis", comment: "")
-        analysisDescriptionLAbel.text = NSLocalizedString("analysisDescription", comment: "")
-        medicamentLabel.text = NSLocalizedString("medicaments", comment: "")
-        medicamentDescriptionLsbel.text = NSLocalizedString("medicamentsDescription", comment: "")
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.collectionViewLayout = UICollectionViewFlowLayout()
+        let cellNib = UINib(nibName: "MedicalCardCollectionCell", bundle: nil)
+        collectionView.register(cellNib, forCellWithReuseIdentifier: "MedicalCardCollectionCell")
         
     }
+}
 
-    // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+extension CardTableViewController:UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return collectionStruct.count
     }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MedicalCardCollectionCell", for: indexPath) as! MedicalCardCollectionCell
+        let itemCard = collectionStruct[indexPath.item]
+        cell.setupCell(collectionStruct: itemCard)
+        return cell
+    }
+    
+    
+}
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+extension CardTableViewController: UICollectionViewDelegate{
+    
+}
+
+extension CardTableViewController:UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let frameCV = collectionView.bounds
+        let sideCell = frameCV.width / cellsCount - 4
+        return CGSize(width: sideCell, height: sideCell)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 2
     }
 }
