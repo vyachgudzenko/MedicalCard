@@ -24,9 +24,6 @@ class DiagnosisCell: UITableViewCell {
         let formatedDate = dataFormater.string(from: diagnosis.date!)
         dateLabel.text = formatedDate
         doctorFullNameLabel.text = diagnosis.doctor!.getFullName()
-        dateImageView.image = UIImage(systemName: "clock")
-        doctorImageView.image = UIImage(named: "doctor")?.withRenderingMode(.alwaysTemplate)
-        
     }
     
     override func awakeFromNib() {

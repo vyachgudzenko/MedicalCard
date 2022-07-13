@@ -28,7 +28,6 @@ class AnalysisCell: UITableViewCell {
         dateLabel.text = formatedDate
         doctorFullName.text = analysis.doctor!.getFullName()
         fileNameLabel.text = NSLocalizedString("notFile", comment: "")
-        doctorImageView.image = UIImage(named: "doctor")?.withRenderingMode(.alwaysTemplate)
     }
     
     override func awakeFromNib() {

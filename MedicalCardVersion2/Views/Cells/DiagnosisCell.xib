@@ -31,8 +31,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ka8-WT-5ak">
-                        <rect key="frame" x="20" y="149.5" width="30" height="29"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" translatesAutoresizingMaskIntoConstraints="NO" id="Ka8-WT-5ak">
+                        <rect key="frame" x="20" y="149" width="30" height="30"/>
                         <color key="tintColor" red="0.2845568524" green="0.55176403789999995" blue="0.29239261439999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="aV5-gS-RbA"/>
@@ -48,7 +48,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doctor" translatesAutoresizingMaskIntoConstraints="NO" id="51c-fR-txC">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doctor (1) — копия" translatesAutoresizingMaskIntoConstraints="NO" id="51c-fR-txC">
                         <rect key="frame" x="120" y="149" width="30" height="30"/>
                         <color key="tintColor" red="0.45009553479999997" green="0.224877723" blue="0.55945189610000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -96,7 +96,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="clock" catalog="system" width="128" height="121"/>
-        <image name="doctor" width="32" height="32"/>
+        <image name="calendar" width="128" height="128"/>
+        <image name="doctor (1) — копия" width="128" height="128"/>
     </resources>
 </document>

@@ -22,7 +22,6 @@ class VisitCell: UITableViewCell {
         dateLabel.text = formatedDate
         complaintLAbel.text = visit.complaint
         doctorLabel.text = visit.doctorFullName
-        doctorImageView.image = UIImage(named: "doctor")?.withRenderingMode(.alwaysTemplate)
     }
     
     override func awakeFromNib() {

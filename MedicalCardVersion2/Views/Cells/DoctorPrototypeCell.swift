@@ -26,10 +26,6 @@ class DoctorPrototypeCell: UITableViewCell {
         phoneNumberLabel.text = doctor.phoneNumber
         clininNameLabel.text = doctor.clinic
         professionLabel.text = getStringDescribeOfProfession(profession: doctor.professionEnum)
-        phoneImage.image = UIImage(systemName: "phone")?.withRenderingMode(.alwaysTemplate)
-        workImage.image = UIImage(named: "hospitalImage")?.withRenderingMode(.alwaysTemplate)
-        doctorImage.image = UIImage(named: "doctor")?.withRenderingMode(.alwaysTemplate)
-        
     }
     
     private func getStringDescribeOfProfession(profession:Profession) -> String {

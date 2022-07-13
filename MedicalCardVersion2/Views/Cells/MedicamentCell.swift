@@ -28,6 +28,8 @@ class MedicamentCell: UITableViewCell {
     @IBOutlet weak var typeImageView: UIImageView!
     @IBOutlet weak var doctorImageView: UIImageView!
     
+    @IBOutlet weak var statusImageView: UIImageView!
+    
     func setupCell(medicament:Medicament){
         titleLabel.text = medicament.title
         typeLabel.text = titlesType[medicament.medicamentTypeEnum]!
@@ -38,20 +40,28 @@ class MedicamentCell: UITableViewCell {
         } else{
             statusLabel.text = NSLocalizedString("notTaken_newMedicament", comment: "")
         }
-        typeImageView.image = getCurrentImageForPillsList(medicament: medicament).withRenderingMode(.alwaysTemplate)
-        doctorImageView.image = UIImage(named: "doctor")?.withRenderingMode(.alwaysTemplate)
+        typeImageView.image = getCurrentImageForPillsList(medicament: medicament)
+        statusImageView.image = getStatusImage(medicament: medicament)
     }
     
     func getCurrentImageForPillsList(medicament:Medicament) -> UIImage{
         switch medicament.type{
         case "injection":
-            return UIImage(named: "injection.png")!
+            return UIImage(named: "inject")!
         case "pill":
-            return UIImage(named: "pill (1).png")!
+            return UIImage(named: "pill (1) — копия")!
         case "syrup":
-            return UIImage(named: "cough-syrup.png")!
+            return UIImage(named: "syrup")!
         default:
-            return UIImage(named: "pill (1).png")!
+            return UIImage(named: "pill (1) — копия")!
+        }
+    }
+    
+    func getStatusImage(medicament:Medicament) -> UIImage{
+        if medicament.isTaken{
+            return UIImage(named: "accept")!
+        } else {
+            return UIImage(named: "close")!
         }
     }
     
