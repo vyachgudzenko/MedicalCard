@@ -10,6 +10,7 @@ import UIKit
 class NewAnalysisController: UITableViewController {
     
     var countOfFiles:Int = 0
+    var uploadPopover:UploadFilePopoverController?
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
@@ -32,9 +33,12 @@ class NewAnalysisController: UITableViewController {
     @IBOutlet weak var uploadFileButton: UIButton!
     
     @IBAction func uploadButtonTapped(_ sender: UIButton) {
-        let uploadFileScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UploadFileController") as! UploadFileController
+        uploadPopover = UploadFilePopoverController()
+        uploadPopover?.showPopover(analysisUUID: self.uuid!)
+        
+        /*let uploadFileScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UploadFileController") as! UploadFileController
         uploadFileScreen.analysisUUID = uuid
-        navigationController?.pushViewController(uploadFileScreen, animated: true)
+        navigationController?.pushViewController(uploadFileScreen, animated: true)*/
     }
     
     var navigationTitle:String = NSLocalizedString("navigation_title_NewAnalysis", comment: "")
