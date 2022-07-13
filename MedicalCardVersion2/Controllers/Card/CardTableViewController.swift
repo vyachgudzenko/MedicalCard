@@ -38,6 +38,12 @@ class CardTableViewController: UIViewController {
         collectionView.register(cellNib, forCellWithReuseIdentifier: "MedicalCardCollectionCell")
         
     }
+    
+    //MARK: Other function
+    private func goToSpecifiedController(controllerName:String){
+        let specifiedController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: controllerName)
+        navigationController?.pushViewController(specifiedController, animated: true)
+    }
 }
 
 extension CardTableViewController:UICollectionViewDataSource{
@@ -56,7 +62,10 @@ extension CardTableViewController:UICollectionViewDataSource{
 }
 
 extension CardTableViewController: UICollectionViewDelegate{
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let itemCard = collectionStruct[indexPath.item]
+        goToSpecifiedController(controllerName: itemCard.viewController)
+    }
 }
 
 extension CardTableViewController:UICollectionViewDelegateFlowLayout{
