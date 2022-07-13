@@ -25,6 +25,8 @@ class NewPillController: UITableViewController {
     var medicamentType:TypeOfMedicament = .pill
     var medicamentFrequency:Frequency = .twiceADay
     
+    var navigationTitle:String = NSLocalizedString("navigation_title_NewMedicament", comment: "")
+    
     private var titlesType:[TypeOfMedicament:String] = [
         .pill:"Таблетки",
         .injection:"Уколы",
@@ -81,7 +83,7 @@ class NewPillController: UITableViewController {
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = NSLocalizedString("navigation_title_NewMedicament", comment: "")
+        navigationItem.title = navigationTitle
         medicamentNameTextField.text = medicamentName
         medicamentNameTextField.placeholder = NSLocalizedString("medicamentNamePlaceholder_NewMedicament", comment: "")
         medicamentDosageTextField.text = medicamentDosage

@@ -92,6 +92,7 @@ extension MyMedicamentController:UITableViewDelegate{
             if currentMedicament.isTaken == false{
                 generateCourseOfDay(medicament: currentMedicament)
                 currentMedicament.isTaken = true
+                currentMedicament.isOver = false
                 guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
                 let managedContext = appDelegate.persistentContainer.viewContext
                 do{

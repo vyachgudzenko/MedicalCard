@@ -13,6 +13,7 @@ class NewDiagnosisController: UITableViewController {
     
     var alert:NewMedicalAlert?
     
+    var navigationTitle:String = NSLocalizedString("navigation_title_NewDiagnosis", comment: "")
     var titleFirst:String = ""
     var descriptionFirst:String = ""
     var dateFirst:Date = Date()
@@ -28,7 +29,7 @@ class NewDiagnosisController: UITableViewController {
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = NSLocalizedString("navigation_title_NewDiagnosis", comment: "")
+        navigationItem.title = navigationTitle
         titleTextField.text = titleFirst
         titleTextField.placeholder = NSLocalizedString("newDiagnosis_titlePlaceholder_text", comment: "")
         descriptionTextField.text = descriptionFirst
@@ -72,6 +73,10 @@ class NewDiagnosisController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 4
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return NSLocalizedString("table_Header", comment: "")
     }
 
     

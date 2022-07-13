@@ -142,7 +142,7 @@ extension UIViewController{
     
     func editDiagnosis(diagnosis:Diagnosis){
         let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewDiagnosisController") as! NewDiagnosisController
-        editScreen.navigationItem.title = diagnosis.title
+        editScreen.navigationTitle = diagnosis.title!
         editScreen.titleFirst = diagnosis.title!
         editScreen.descriptionFirst = diagnosis.descriptionOfDiagnosis!
         editScreen.dateFirst = diagnosis.date!
@@ -195,7 +195,7 @@ extension UIViewController{
     }
     
     //MARK: Analizes
-    func saveAnalysis(title:String,descriptionofAnalysis:String,result:String,date:Date,doctor:Doctor,diagnosis:Diagnosis,visitUUID:String?,uuid:UUID){
+    func saveAnalysis(title:String,descriptionofAnalysis:String,result:String,date:Date,doctor:Doctor,diagnosis:Diagnosis?,visitUUID:String?,uuid:UUID){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Analysis", in: managedContext)!
@@ -207,7 +207,7 @@ extension UIViewController{
         newAnalysis.setValue(doctor, forKey: "doctor")
         newAnalysis.setValue(doctor.getFullName(), forKey: "doctorFullName")
         newAnalysis.setValue(diagnosis, forKey: "diagnosis")
-        newAnalysis.setValue(diagnosis.title, forKey: "diagnosisTitle")
+        newAnalysis.setValue(diagnosis?.title, forKey: "diagnosisTitle")
         newAnalysis.setValue(visitUUID, forKey: "visitUUID")
         newAnalysis.setValue(uuid, forKey: "uuid")
         do{
@@ -229,7 +229,7 @@ extension UIViewController{
     
     func editAnalysis(analysis:Analysis){
         let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewAnalysisController") as! NewAnalysisController
-        editScreen.navigationItem.title = analysis.title
+        editScreen.navigationTitle = analysis.title!
         editScreen.uuid = analysis.uuid
         editScreen.titleText = analysis.title!
         editScreen.descriptionText = analysis.descriptionOfAnalysis ?? ""
@@ -248,7 +248,7 @@ extension UIViewController{
             analysis.doctor = doctor
             analysis.diagnosis = diagnosis
             analysis.doctorFullName = doctor.getFullName()
-            analysis.diagnosisTitle = diagnosis.title
+            analysis.diagnosisTitle = diagnosis?.title
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
             let managedContext = appDelegate.persistentContainer.viewContext
             do{
@@ -321,7 +321,7 @@ extension UIViewController{
     
     func editMedicament(medicament:Medicament){
         let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewPillController") as! NewPillController
-        editScreen.navigationItem.title = medicament.title
+        editScreen.navigationTitle = medicament.title!
         editScreen.medicament = medicament
         editScreen.isNewMedicament = false
         editScreen.medicamentName = medicament.title!

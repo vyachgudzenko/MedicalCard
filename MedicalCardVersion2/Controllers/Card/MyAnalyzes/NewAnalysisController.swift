@@ -37,6 +37,7 @@ class NewAnalysisController: UITableViewController {
         navigationController?.pushViewController(uploadFileScreen, animated: true)
     }
     
+    var navigationTitle:String = NSLocalizedString("navigation_title_NewAnalysis", comment: "")
     var titleText:String = ""
     var descriptionText:String = ""
     var resultText:String = ""
@@ -48,7 +49,7 @@ class NewAnalysisController: UITableViewController {
     var doctorLabelText = NSLocalizedString("doctor_Unknown", comment: "")
     var diagnosisLabelText = NSLocalizedString("diagnosis_unknown", comment: "")
     
-    var doAfterCreate:((String,String,String,Date,Doctor,Diagnosis,String?,UUID?) -> Void)?
+    var doAfterCreate:((String,String,String,Date,Doctor,Diagnosis?,String?,UUID?) -> Void)?
     
     var alert:NewMedicalAlert?
     
@@ -56,8 +57,7 @@ class NewAnalysisController: UITableViewController {
     func fieldsIsEmpty() -> Bool {
         if titleTextField.text == "" || descriptionTextField.text == "" ||
             resultTextField.text == "" ||
-            doctor == nil ||
-            diagnosis == nil{
+            doctor == nil {
             return true
         } else {
             return false
@@ -67,6 +67,7 @@ class NewAnalysisController: UITableViewController {
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = navigationTitle
         titleTextField.text = titleText
         titleTextField.placeholder = NSLocalizedString("titleTextField_placeholder_NewAnalysis", comment: "")
         descriptionTextField.text = descriptionText
@@ -102,7 +103,7 @@ class NewAnalysisController: UITableViewController {
             let description = descriptionTextField.text!
             let result = resultTextField.text!
             let date = datePiecker.date
-            doAfterCreate?(title,description,result,date,doctor!,diagnosis!,visitUUID?.uuidString,uuid)
+            doAfterCreate?(title,description,result,date,doctor!,diagnosis,visitUUID?.uuidString,uuid)
             navigationController?.popViewController(animated: true)
         }
         
@@ -115,6 +116,10 @@ class NewAnalysisController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 8
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return NSLocalizedString("table_Header", comment: "")
     }
     
     // MARK: - Navigation
