@@ -16,19 +16,17 @@ class PillsTableViewCell: UITableViewCell {
     func setupCell(medicament:Medicament){
         titleLabel.text = medicament.title
         dosageLabel.text = medicament.dosage
-        pic.image = getCurrentImageForPillsList(medicament: medicament).withRenderingMode(.alwaysTemplate)
+        pic.image = getCurrentImageForPillsList(medicament: medicament)
     }
     
     func getCurrentImageForPillsList(medicament:Medicament) -> UIImage{
-        switch medicament.type{
-        case "injection":
-            return UIImage(named: "injection.png")!
-        case "pill":
-            return UIImage(named: "pill (1).png")!
-        case "syrup":
-            return UIImage(named: "cough-syrup.png")!
-        default:
-            return UIImage(named: "pill (1).png")!
+        switch medicament.medicamentTypeEnum{
+        case .injection:
+            return UIImage(named: "inject")!
+        case .pill:
+            return UIImage(named: "pill (1) — копия")!
+        case .syrup:
+            return UIImage(named: "syrup")!
         }
     }
     

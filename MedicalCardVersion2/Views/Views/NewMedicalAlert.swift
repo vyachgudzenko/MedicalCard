@@ -12,6 +12,8 @@ class NewMedicalAlert: UIViewController {
     var titleText:String = ""
     var messageText:String = ""
     
+    
+    @IBOutlet weak var alertView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var okButton: UIButton!
@@ -47,6 +49,8 @@ class NewMedicalAlert: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        alertView.layer.masksToBounds = true
+        alertView.layer.cornerRadius = 15
         setupAlert()
     }
 

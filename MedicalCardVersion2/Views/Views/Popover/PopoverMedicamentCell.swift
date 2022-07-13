@@ -17,14 +17,16 @@ class PopoverMedicamentCell: UITableViewCell {
         medicamentImageView.image = getCurrentImageForPillsList(type: medicamentType.type)
     }
     
-    private func getCurrentImageForPillsList(type:TypeOfMedicament) -> UIImage{
+    func getCurrentImageForPillsList(type:TypeOfMedicament) -> UIImage{
         switch type{
         case .injection:
-            return UIImage(named: "injection.png")!
+            return UIImage(named: "inject")!
         case .pill:
-            return UIImage(named: "pill (1).png")!
+            return UIImage(named: "pill (1) — копия")!
         case .syrup:
-            return UIImage(named: "cough-syrup.png")!
+            return UIImage(named: "syrup")!
+        default:
+            return UIImage(named: "pill (1) — копия")!
         }
     }
     

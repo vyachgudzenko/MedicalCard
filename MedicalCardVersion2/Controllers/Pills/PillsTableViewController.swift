@@ -182,6 +182,7 @@ class PillsTableViewController: UITableViewController {
         let actionSwipeDelete = UIContextualAction(style: .normal, title: "Забыли выпить") { [self] _, _, _ in
             let currentSection = sectionOfDay[indexPath.section]
             let course = pills[currentSection]?[indexPath.row]
+            headerViewButtons[indexPath.section].setTitle("Выпить все", for: .normal)
             changeItsForgotten(course: course!)
             tableView.reloadSections(IndexSet(arrayLiteral: indexPath.section), with: .automatic)
         }
