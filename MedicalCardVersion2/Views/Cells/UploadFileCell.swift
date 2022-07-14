@@ -12,10 +12,18 @@ class UploadFileCell: UITableViewCell {
     @IBOutlet weak var fileImageView: UIImageView!
     
     func setupCell(uploadFile:UploadFile){
-        guard let image = UIImage(data: uploadFile.file!) else {
-            return
+        switch uploadFile.typeOfFileEnum{
+        case .image:
+            guard let image = UIImage(data: uploadFile.file!) else {
+                return
+            }
+            fileImageView.image = image
+        case .pdf:
+            let image = UIImage(named: "pdf")
+            fileImageView.image = image
         }
-        fileImageView.image = image
+        
+        
     }
     
     override func awakeFromNib() {

@@ -76,7 +76,7 @@ extension AnalyzesLisController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AnalysisCell", for: indexPath) as! AnalysisCell
         let currentAnalysis = sortAnalyzes[indexPath.row] as! Analysis
-        cell.setupCell(analysis: currentAnalysis)
+        cell.setupCell(analysis: currentAnalysis,countOfFile: countOfUploadFiles(uuid: currentAnalysis.uuid!.uuidString))
         return cell
     }
     

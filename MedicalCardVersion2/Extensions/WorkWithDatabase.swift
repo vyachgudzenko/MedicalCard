@@ -551,5 +551,22 @@ extension UIViewController{
             print("Could not save.\(error),\(error.userInfo)")
         }
     }
+    
+    func getCountOfFileHasThisAnalysis(analysisUUID:String) -> Int{
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<Analysis>
+        fetchRequest = Analysis.fetchRequest()
+        fetchRequest.predicate = NSPredicate(
+            format: "analysisUUID LIKE %@", analysisUUID)
+        do{
+            let object = try managedContext.fetch(fetchRequest)
+            let count = object.count
+            return count
+        }
+        catch{
+            fatalError()
+        }
+    }
 }
 

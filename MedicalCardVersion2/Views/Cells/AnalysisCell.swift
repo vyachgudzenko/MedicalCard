@@ -19,7 +19,7 @@ class AnalysisCell: UITableViewCell {
     
     @IBOutlet weak var doctorImageView: UIImageView!
     
-    func setupCell(analysis:Analysis){
+    func setupCell(analysis:Analysis,countOfFile:Int){
         titleLabel.text = analysis.title
         resultLabel.text = analysis.result
         let dataFormater = DateFormatter()
@@ -28,6 +28,7 @@ class AnalysisCell: UITableViewCell {
         dateLabel.text = formatedDate
         doctorFullName.text = analysis.doctor!.getFullName()
         fileNameLabel.text = NSLocalizedString("notFile", comment: "")
+        fileNameLabel.text = "Загружено " + String(countOfFile) + " файлов"
     }
     
     override func awakeFromNib() {

@@ -74,8 +74,8 @@ extension MyAnalyzesController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AnalysisCell", for: indexPath) as! AnalysisCell
         let currentAnalysis = analyzes[indexPath.row] as! Analysis
-        print(currentAnalysis.visitUUID)
-        cell.setupCell(analysis: currentAnalysis)
+        let count = countOfUploadFiles(uuid: currentAnalysis.uuid!.uuidString)
+        cell.setupCell(analysis: currentAnalysis,countOfFile: count)
         return cell
     }
 }
