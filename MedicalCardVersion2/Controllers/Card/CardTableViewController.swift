@@ -71,12 +71,12 @@ extension CardTableViewController: UICollectionViewDelegate{
 extension CardTableViewController:UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let frameCV = collectionView.bounds
-        let sideCell = frameCV.width / cellsCount - 4
+        let sideCell = frameCV.width / cellsCount - 10
         return CGSize(width: sideCell, height: sideCell)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 2
+        return 15
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

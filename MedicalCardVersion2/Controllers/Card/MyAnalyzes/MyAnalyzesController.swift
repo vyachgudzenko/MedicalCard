@@ -84,8 +84,9 @@ extension MyAnalyzesController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let actionSwipe = UIContextualAction(style: .normal, title: NSLocalizedString("deleteItem", comment: "")) { [self] _, _, _ in
             deleteAnalysis(analysis: analyzes[indexPath.row] as! Analysis)
-            tableView.reloadData()
             analyzes.remove(at: indexPath.row)
+            tableView.reloadData()
+            
         }
         actionSwipe.backgroundColor = .systemGray
         return UISwipeActionsConfiguration(actions: [actionSwipe])

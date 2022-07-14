@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import PDFKit
 
 class UploadFileListController: UIViewController {
     
@@ -56,5 +57,12 @@ extension UploadFileListController:UITableViewDataSource{
 }
 
 extension UploadFileListController:UITableViewDelegate{
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentUploadFile = sortFiles[indexPath.row] as! UploadFile
+        if currentUploadFile.typeOfFileEnum == .pdf{
+            let pdfController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PDFController") as! PDFController
+            pdfController.uploadFile = currentUploadFile
+            navigationController?.pushViewController(pdfController, animated: true)
+        }
+    }
 }

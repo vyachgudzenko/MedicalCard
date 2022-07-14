@@ -84,6 +84,7 @@
 		3EBD4743287E37B50075140B /* MedicalCardCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EBD4741287E37B50075140B /* MedicalCardCollectionCell.xib */; };
 		3EBD4749287F83A30075140B /* UploadFilePopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD4747287F83A30075140B /* UploadFilePopoverController.swift */; };
 		3EBD474A287F83A30075140B /* UploadFilePopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EBD4748287F83A30075140B /* UploadFilePopoverController.xib */; };
+		3EBD474F28807FD40075140B /* PDFController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD474E28807FD40075140B /* PDFController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -172,6 +173,7 @@
 		3EBD4741287E37B50075140B /* MedicalCardCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MedicalCardCollectionCell.xib; sourceTree = "<group>"; };
 		3EBD4747287F83A30075140B /* UploadFilePopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFilePopoverController.swift; sourceTree = "<group>"; };
 		3EBD4748287F83A30075140B /* UploadFilePopoverController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadFilePopoverController.xib; sourceTree = "<group>"; };
+		3EBD474E28807FD40075140B /* PDFController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +387,7 @@
 				3E5044802844387A0095A304 /* NewAnalysisController.swift */,
 				3E504482284448EB0095A304 /* DiagnosesListController.swift */,
 				3E372C87287441A500F4ADC7 /* UploadFileListController.swift */,
+				3EBD474E28807FD40075140B /* PDFController.swift */,
 			);
 			path = MyAnalyzes;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				3E43DA6628414F7C00B73761 /* MyAnalyzesController.swift in Sources */,
 				3E1EA662282894FB00818056 /* DoctorsProfessionsController.swift in Sources */,
 				3E504483284448EB0095A304 /* DiagnosesListController.swift in Sources */,
+				3EBD474F28807FD40075140B /* PDFController.swift in Sources */,
 				3EBD4749287F83A30075140B /* UploadFilePopoverController.swift in Sources */,
 				3E5F4DCD2869FBC400DDBABE /* VisitCell.swift in Sources */,
 				3E36CBF82841896C009556A1 /* Doctor+CoreDataClass.swift in Sources */,

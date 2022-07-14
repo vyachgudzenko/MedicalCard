@@ -39,7 +39,7 @@ class UploadFilePopoverController: UIViewController {
     }
     
     @IBAction func pdfButtonPressed(_ sender: Any) {
-        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.epub])
+        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.pdf])
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
         self.present(documentPicker, animated: true)
@@ -86,7 +86,7 @@ extension UploadFilePopoverController:UIDocumentPickerDelegate{
             guard let selectedFileURL = urls.first else {
                 return
             }
-            urlString = selectedFileURL.absoluteString
+            urlString = selectedFileURL.path
             saveUploadFile(analysisUUID: self.analysisUUID!.uuidString, file: nil,typeOfFile: .pdf,url: urlString)
         }
         self.dismiss(animated: true)
