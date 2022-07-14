@@ -13,6 +13,7 @@ class UploadFilePopoverController: UIViewController {
     
     var images:[UIImage] = []
     var analysisUUID:UUID?
+    var urlString:String?
 
     @IBOutlet weak var popoverView: UIView!
     @IBOutlet weak var imageButton: UIButton!
@@ -38,6 +39,10 @@ class UploadFilePopoverController: UIViewController {
     }
     
     @IBAction func pdfButtonPressed(_ sender: Any) {
+        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.epub])
+        documentPicker.delegate = self
+        documentPicker.allowsMultipleSelection = false
+        self.present(documentPicker, animated: true)
     }
     
     func showPopover(analysisUUID:UUID){
@@ -67,13 +72,28 @@ extension UploadFilePopoverController:PHPickerViewControllerDelegate{
                     guard let image = reading as? UIImage, error == nil else {
                         return
                     }
-                    saveUploadFile(analysisUUID: self.analysisUUID!.uuidString, file: (image.jpegData(compressionQuality: 1) as? Data)!)
+                    saveUploadFile(analysisUUID: self.analysisUUID!.uuidString, file: (image.jpegData(compressionQuality: 1))!,typeOfFile: .image,url: nil)
                 }
-                
             }
         }
         self.dismiss(animated: true)
     }
-    
-    
 }
+
+extension UploadFilePopoverController:UIDocumentPickerDelegate{
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        DispatchQueue.main.async { [self] in
+            guard let selectedFileURL = urls.first else {
+                return
+            }
+            urlString = selectedFileURL.absoluteString
+            saveUploadFile(analysisUUID: self.analysisUUID!.uuidString, file: nil,typeOfFile: .pdf,url: urlString)
+        }
+        self.dismiss(animated: true)
+    }
+    
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        self.dismiss(animated: true)
+    }
+}
+

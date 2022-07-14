@@ -50,3 +50,8 @@ struct FraquencyCellDescription{
     var title:String
 }
 
+enum TypeOfFile:String{
+    case image = "image"
+    case pdf = "pdf"
+}
+

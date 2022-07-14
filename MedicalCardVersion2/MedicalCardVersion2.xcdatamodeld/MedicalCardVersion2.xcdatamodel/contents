@@ -51,6 +51,8 @@
         <attribute name="analysisUUID" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="file" optional="YES" attributeType="Binary"/>
+        <attribute name="typeOfFile" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
     </entity>
     <entity name="VisitToDoctor" representedClassName="VisitToDoctor" syncable="YES">
         <attribute name="complaint" optional="YES" attributeType="String"/>
@@ -67,7 +69,7 @@
         <element name="Diagnosis" positionX="-36" positionY="54" width="128" height="104"/>
         <element name="Doctor" positionX="-63" positionY="-18" width="128" height="104"/>
         <element name="Medicament" positionX="-54" positionY="27" width="128" height="209"/>
+        <element name="UploadFile" positionX="-36" positionY="108" width="128" height="104"/>
         <element name="VisitToDoctor" positionX="-45" positionY="90" width="128" height="134"/>
-        <element name="UploadFile" positionX="-36" positionY="108" width="128" height="74"/>
     </elements>
 </model>

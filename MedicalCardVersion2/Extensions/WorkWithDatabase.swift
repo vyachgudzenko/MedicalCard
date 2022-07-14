@@ -531,14 +531,20 @@ extension UIViewController{
     }
     
     //MARK: UploadFile
-    func saveUploadFile(analysisUUID:String,file:Data){
+    func saveUploadFile(analysisUUID:String,file:Data?,typeOfFile:TypeOfFile,url:String?){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "UploadFile", in: managedContext)!
         let uploadFile = NSManagedObject(entity: entity, insertInto: managedContext)
         uploadFile.setValue(analysisUUID, forKey: "analysisUUID")
-        uploadFile.setValue(file, forKey: "file")
+        uploadFile.setValue(typeOfFile.rawValue, forKey: "typeOfFile")
         uploadFile.setValue(Date(), forKey: "date")
+        switch typeOfFile {
+        case .image:
+            uploadFile.setValue(file, forKey: "file")
+        case .pdf:
+            uploadFile.setValue(url, forKey: "url")
+        }
         do{
             try managedContext.save()
         } catch let error as NSError{
