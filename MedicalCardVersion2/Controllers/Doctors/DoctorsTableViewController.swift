@@ -20,6 +20,13 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
     @IBAction func addBarButtonTapped(_ sender: Any) {
         createNewDoctorController()
     }
+    
+    
+    @IBAction func filterButtonPressed(_ sender: UIBarButtonItem) {
+        let filter = FilterController()
+        filter.showFilter()
+    }
+    
     var floatButton:RedButton = {
         let button = RedButton()
         return button

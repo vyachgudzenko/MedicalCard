@@ -35,10 +35,6 @@ class NewAnalysisController: UITableViewController {
     @IBAction func uploadButtonTapped(_ sender: UIButton) {
         uploadPopover = UploadFilePopoverController()
         uploadPopover?.showPopover(analysisUUID: self.uuid!)
-        
-        /*let uploadFileScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UploadFileController") as! UploadFileController
-        uploadFileScreen.analysisUUID = uuid
-        navigationController?.pushViewController(uploadFileScreen, animated: true)*/
     }
     
     var navigationTitle:String = NSLocalizedString("navigation_title_NewAnalysis", comment: "")

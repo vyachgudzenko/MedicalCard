@@ -85,6 +85,8 @@
 		3EBD4749287F83A30075140B /* UploadFilePopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD4747287F83A30075140B /* UploadFilePopoverController.swift */; };
 		3EBD474A287F83A30075140B /* UploadFilePopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EBD4748287F83A30075140B /* UploadFilePopoverController.xib */; };
 		3EBD474F28807FD40075140B /* PDFController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD474E28807FD40075140B /* PDFController.swift */; };
+		3ECACEA428809CFA008A6ABB /* FilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECACEA228809CFA008A6ABB /* FilterController.swift */; };
+		3ECACEA528809CFA008A6ABB /* FilterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ECACEA328809CFA008A6ABB /* FilterController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -174,6 +176,8 @@
 		3EBD4747287F83A30075140B /* UploadFilePopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFilePopoverController.swift; sourceTree = "<group>"; };
 		3EBD4748287F83A30075140B /* UploadFilePopoverController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadFilePopoverController.xib; sourceTree = "<group>"; };
 		3EBD474E28807FD40075140B /* PDFController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFController.swift; sourceTree = "<group>"; };
+		3ECACEA228809CFA008A6ABB /* FilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterController.swift; sourceTree = "<group>"; };
+		3ECACEA328809CFA008A6ABB /* FilterController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -406,6 +410,7 @@
 		3E7AC4A12866773C00FF41E5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3EBD475228809CAF0075140B /* Filters */,
 				3EBD4744287F83660075140B /* UploadFilePopOver */,
 				3E4489AD287DADF3009531E4 /* Popover */,
 				3E7AC49F2865FC6B00FF41E5 /* RedButton.swift */,
@@ -431,6 +436,15 @@
 				3EBD4748287F83A30075140B /* UploadFilePopoverController.xib */,
 			);
 			path = UploadFilePopOver;
+			sourceTree = "<group>";
+		};
+		3EBD475228809CAF0075140B /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				3ECACEA228809CFA008A6ABB /* FilterController.swift */,
+				3ECACEA328809CFA008A6ABB /* FilterController.xib */,
+			);
+			path = Filters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -496,6 +510,7 @@
 				3EBD4743287E37B50075140B /* MedicalCardCollectionCell.xib in Resources */,
 				3E43DAA728416DCD00B73761 /* DoctorPrototypeCell.xib in Resources */,
 				3E6905CA28787739007E73EA /* Localizable.strings in Resources */,
+				3ECACEA528809CFA008A6ABB /* FilterController.xib in Resources */,
 				3EBD473F287E24F40075140B /* PopOverFraquencyCell.xib in Resources */,
 				3E9F83852873255D00FB5BE5 /* NotDataCell.xib in Resources */,
 				3E1E06C92822D24200B5A9D3 /* LaunchScreen.storyboard in Resources */,
@@ -533,6 +548,7 @@
 				3E3F1855286B30D600C00A45 /* AnalyzesLisController.swift in Sources */,
 				3E3123BB2831498900C58A00 /* PillsHelper.swift in Sources */,
 				3E4489AB287CD461009531E4 /* NewMedicalAlert.swift in Sources */,
+				3ECACEA428809CFA008A6ABB /* FilterController.swift in Sources */,
 				3E8A4C0628692C3C00440F11 /* WorkWithDatabase.swift in Sources */,
 				3E372C8B28744A2B00F4ADC7 /* UploadFileCell.swift in Sources */,
 				3E1E06DF2822D77900B5A9D3 /* PillsTableViewController.swift in Sources */,
