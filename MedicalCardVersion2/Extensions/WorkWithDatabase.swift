@@ -391,21 +391,26 @@ extension UIViewController{
             print("Could not save.\(error),\(error.userInfo)")
         }
     }
-    
+     
     func editVisit(visit:VisitToDoctor){
         let editScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewVisitController") as! NewVisitController
-        editScreen.navigationItem.title = visit.doctorFullName
+        let dataFormater = DateFormatter()
+        dataFormater.dateFormat = "yyyy-MM-dd"
+        let formatedDate = dataFormater.string(from: visit.date!)
+        editScreen.navigationTitle = formatedDate
         editScreen.complaint = visit.complaint
         editScreen.date = visit.date!
         editScreen.diagnosis = visit.diagnosis
         editScreen.doctor = visit.doctor
         editScreen.uuid = visit.uuid
-        editScreen.doAfterCreate = {[self] complaint,date,doctor,diagnosis,uuid in
+        editScreen.doAfterCreate = { [self] complaint,date,doctor,diagnosis,uuid in
             visit.complaint = complaint
             visit.date = date
             visit.diagnosis = diagnosis
+            visit.diagnosisTitle = diagnosis?.title
             visit.doctor = doctor
             visit.uuid = uuid
+            visit.doctorFullName = doctor?.getFullName()
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
             let managedContext = appDelegate.persistentContainer.viewContext
             do{
@@ -448,6 +453,17 @@ extension UIViewController{
         }
         catch{
             fatalError()
+        }
+    }
+    
+    func deleteVisit(visit:VisitToDoctor){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        let managedContext = appDelegate.persistentContainer.viewContext
+        managedContext.delete(visit)
+        do{
+            try managedContext.save()
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
         }
     }
     

@@ -20,7 +20,9 @@ class NewDiagnosisController: UITableViewController {
     var doctorLabelText = NSLocalizedString("doctor_Unknown", comment: "")
     
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var descriptionTextField: UITextField!
+    
+    @IBOutlet weak var textViewLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var datePiecker: UIDatePicker!
     @IBOutlet weak var doctorLabel: UILabel!
     
@@ -29,11 +31,12 @@ class NewDiagnosisController: UITableViewController {
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTextView(textView: descriptionTextView)
         navigationItem.title = navigationTitle
         titleTextField.text = titleFirst
         titleTextField.placeholder = NSLocalizedString("newDiagnosis_titlePlaceholder_text", comment: "")
-        descriptionTextField.text = descriptionFirst
-        descriptionTextField.placeholder = NSLocalizedString("newDiagnosis_descriptionPlaceholder_text", comment: "")
+        textViewLabel.text = NSLocalizedString("newDiagnosis_descriptionPlaceholder_text", comment: "")
+        descriptionTextView.text = descriptionFirst
         datePiecker.date = dateFirst
         doctorLabel.text = doctorLabelText
         saveButton.title = NSLocalizedString("saveButton_NewDiagnosis", comment: "")
@@ -43,11 +46,16 @@ class NewDiagnosisController: UITableViewController {
     
     //MARK: Other function
     func fieldIsEmpty() -> Bool{
-        if titleTextField.text == "" || descriptionTextField.text == "" || doctor == nil{
+        if titleTextField.text == "" || descriptionTextView.text == "" || doctor == nil{
             return true
         } else {
             return false
         }
+    }
+    
+    func setupTextView(textView:UITextView){
+        textView.layer.borderColor = UIColor.systemGray6.cgColor
+        textView.layer.borderWidth = 1
     }
     
     //MARK: IBAction function
@@ -56,7 +64,7 @@ class NewDiagnosisController: UITableViewController {
             showAlertFieldISEmpty()
         } else{
             let titleDiagnosis:String = titleTextField.text!
-            let descriptionDiagnosis:String = descriptionTextField.text!
+            let descriptionDiagnosis:String = descriptionTextView.text!
             let dateDiagnosis:Date = datePiecker.date
             doAfterCreate?(titleDiagnosis,descriptionDiagnosis,dateDiagnosis,doctor!)
             navigationController?.popViewController(animated: true)

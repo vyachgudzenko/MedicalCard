@@ -13,8 +13,14 @@ class NewAnalysisController: UITableViewController {
     var uploadPopover:UploadFilePopoverController?
     
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var descriptionTextField: UITextField!
-    @IBOutlet weak var resultTextField: UITextField!
+    
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    @IBOutlet weak var descriptionTextView: UITextView!
+    
+    @IBOutlet weak var resultLabel: UILabel!
+    
+    @IBOutlet weak var resultTextView: UITextView!
     @IBOutlet weak var datePiecker: UIDatePicker!
     @IBOutlet weak var doctorLabel: UILabel!
     @IBOutlet weak var diagnosisLabel: UILabel!
@@ -55,8 +61,8 @@ class NewAnalysisController: UITableViewController {
     
     //MARK: Other function
     func fieldsIsEmpty() -> Bool {
-        if titleTextField.text == "" || descriptionTextField.text == "" ||
-            resultTextField.text == "" ||
+        if titleTextField.text == "" || descriptionTextView.text == "" ||
+            resultTextView.text == "" ||
             doctor == nil {
             return true
         } else {
@@ -64,16 +70,23 @@ class NewAnalysisController: UITableViewController {
         }
     }
     
+    func setupTextView(textView:UITextView){
+        textView.layer.borderColor = UIColor.systemGray6.cgColor
+        textView.layer.borderWidth = 1
+    }
+    
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTextView(textView: descriptionTextView)
+        setupTextView(textView: resultTextView)
         navigationItem.title = navigationTitle
         titleTextField.text = titleText
         titleTextField.placeholder = NSLocalizedString("titleTextField_placeholder_NewAnalysis", comment: "")
-        descriptionTextField.text = descriptionText
-        descriptionTextField.placeholder = NSLocalizedString("descriptionTextField_placeholder_NewAnalysis", comment: "")
-        resultTextField.text = resultText
-        resultTextField.placeholder = NSLocalizedString("resultTextField_placeholder_NewAnalysis", comment: "")
+        descriptionTextView.text = descriptionText
+        descriptionLabel.text = NSLocalizedString("descriptionTextField_placeholder_NewAnalysis", comment: "")
+        resultTextView.text = resultText
+        resultLabel.text = NSLocalizedString("resultTextField_placeholder_NewAnalysis", comment: "")
         dateLocalization.text = NSLocalizedString("date_NewAnalysis", comment: "")
         doctorLocalization.text = NSLocalizedString("doctorLocalization", comment: "")
         diagnosisLocalization.text = NSLocalizedString("diagnosis_NewVisit", comment: "")
@@ -100,8 +113,8 @@ class NewAnalysisController: UITableViewController {
             showAlertFieldISEmpty()
         } else {
             let title = titleTextField.text!
-            let description = descriptionTextField.text!
-            let result = resultTextField.text!
+            let description = descriptionTextView.text!
+            let result = resultTextView.text!
             let date = datePiecker.date
             doAfterCreate?(title,description,result,date,doctor!,diagnosis,visitUUID?.uuidString,uuid)
             navigationController?.popViewController(animated: true)

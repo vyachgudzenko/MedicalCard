@@ -168,7 +168,8 @@ extension MyVisitsToDoctorController:UITableViewDataSource{
 //MARK: TableViewDelegate
 extension MyVisitsToDoctorController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentVisit = visits[indexPath.row] as! VisitToDoctor
+        let section = sections[indexPath.section]
+        let currentVisit = sortedVisits[section]![indexPath.row] as! VisitToDoctor
         editVisit(visit: currentVisit)
     }
 }

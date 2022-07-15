@@ -14,12 +14,15 @@ class NewVisitController: UITableViewController {
     var doctor:Doctor?
     var diagnosis:Diagnosis?
     var uuid:UUID?
+    var navigationTitle:String = NSLocalizedString("navigation_title_NewVisit", comment: "")
     
     
     var doAfterCreate:((String?,Date?,Doctor?,Diagnosis?,UUID) -> Void)?
     
     
-    @IBOutlet weak var complaintTextField: UITextField!
+    @IBOutlet weak var complaintLabel: UILabel!
+    
+    @IBOutlet weak var complaintTextView: UITextView!
     @IBOutlet weak var datePiecker: UIDatePicker!
     @IBOutlet weak var doctorLabel: UILabel!
     @IBOutlet weak var diagnosisLabel: UILabel!
@@ -34,7 +37,7 @@ class NewVisitController: UITableViewController {
     @IBOutlet weak var medicamentLabelLocalization: UILabel!
     
     @IBAction func saveButtonTapped(_ sender:UIBarButtonItem){
-        complaint = complaintTextField.text ?? ""
+        complaint = complaintTextView.text ?? ""
         date = datePiecker.date
         doAfterCreate?(complaint,date,doctor,diagnosis,uuid!)
         navigationController?.popViewController(animated: true)
@@ -42,9 +45,10 @@ class NewVisitController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = NSLocalizedString("navigation_title_NewVisit", comment: "")
-        complaintTextField.text = complaint
-        complaintTextField.placeholder = NSLocalizedString("complaintPlaceholder_NewVisit", comment: "")
+        setupTextView(textView: complaintTextView)
+        navigationItem.title = navigationTitle
+        complaintTextView.text = complaint
+        complaintLabel.text = NSLocalizedString("complaintPlaceholder_NewVisit", comment: "")
         dateLabelLocaliztion.text = NSLocalizedString("date_NewVisit", comment: "")
         dateLabelLocaliztion.text = NSLocalizedString("doctor_NewVisit", comment: "")
         doctorLabel.text = doctor?.getFullName() ?? NSLocalizedString("doctor_Unknown", comment: "")
@@ -62,6 +66,11 @@ class NewVisitController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         countOfAnalysisLAbel.text = "\(countAnalysisHasThisVisit(uuid: uuid!.uuidString))"
         countOfMedicamentLabel.text = "\(countMedicamentHasThisVisit(uuid: uuid!.uuidString))"
+    }
+    //MARK: Other function
+    func setupTextView(textView:UITextView){
+        textView.layer.borderColor = UIColor.systemGray6.cgColor
+        textView.layer.borderWidth = 1
     }
 
     // MARK: - Table view data source

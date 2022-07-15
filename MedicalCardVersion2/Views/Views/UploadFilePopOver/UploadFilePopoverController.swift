@@ -58,7 +58,15 @@ class UploadFilePopoverController: UIViewController {
         super.viewDidLoad()
         popoverView.layer.masksToBounds = true
         popoverView.layer.cornerRadius = 15
+        let hideSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(popoverSwipped))
+        hideSwipeGesture.direction = .down
+        popoverView.addGestureRecognizer(hideSwipeGesture)
         
+    }
+    
+    @objc
+    func popoverSwipped(){
+        self.dismiss(animated: true)
     }
 }
 

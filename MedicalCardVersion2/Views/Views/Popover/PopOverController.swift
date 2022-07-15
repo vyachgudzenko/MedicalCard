@@ -67,6 +67,13 @@ class PopOverController: UIViewController {
     
     func setupPopOver(cellType:PopOverCellType){
         self.cellType = cellType
+        
+        
+    }
+    
+    @objc
+    func popoverSwipped(){
+        self.dismiss(animated: true)
     }
     
     override func viewDidLoad() {
@@ -86,6 +93,9 @@ class PopOverController: UIViewController {
         
         popoverView.layer.masksToBounds = true
         popoverView.layer.cornerRadius = 15
+        let hideSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(popoverSwipped))
+        hideSwipeGesture.direction = .down
+        popoverView.addGestureRecognizer(hideSwipeGesture)
     }
 }
 
