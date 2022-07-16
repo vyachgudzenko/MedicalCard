@@ -19,9 +19,9 @@ class NewVisitController: UITableViewController {
     
     var doAfterCreate:((String?,Date?,Doctor?,Diagnosis?,UUID) -> Void)?
     
+    var alert:NewMedicalAlert?
     
     @IBOutlet weak var complaintLabel: UILabel!
-    
     @IBOutlet weak var complaintTextView: UITextView!
     @IBOutlet weak var datePiecker: UIDatePicker!
     @IBOutlet weak var doctorLabel: UILabel!
@@ -37,10 +37,14 @@ class NewVisitController: UITableViewController {
     @IBOutlet weak var medicamentLabelLocalization: UILabel!
     
     @IBAction func saveButtonTapped(_ sender:UIBarButtonItem){
-        complaint = complaintTextView.text ?? ""
-        date = datePiecker.date
-        doAfterCreate?(complaint,date,doctor,diagnosis,uuid!)
-        navigationController?.popViewController(animated: true)
+        if fieldIsEmpty(){
+            showAlertFieldISEmpty()
+        } else {
+            complaint = complaintTextView.text!
+            date = datePiecker.date
+            doAfterCreate?(complaint,date,doctor,diagnosis,uuid!)
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     override func viewDidLoad() {
@@ -50,7 +54,7 @@ class NewVisitController: UITableViewController {
         complaintTextView.text = complaint
         complaintLabel.text = NSLocalizedString("complaintPlaceholder_NewVisit", comment: "")
         dateLabelLocaliztion.text = NSLocalizedString("date_NewVisit", comment: "")
-        dateLabelLocaliztion.text = NSLocalizedString("doctor_NewVisit", comment: "")
+        doctorLabelLocalization.text = NSLocalizedString("doctor_NewVisit", comment: "")
         doctorLabel.text = doctor?.getFullName() ?? NSLocalizedString("doctor_Unknown", comment: "")
         diagnosisLabelLocalization.text = NSLocalizedString("diagnosis_NewVisit", comment: "")
         diagnosisLabel.text = diagnosis?.title ?? NSLocalizedString("diagnosis_unknown", comment: "")
@@ -68,9 +72,23 @@ class NewVisitController: UITableViewController {
         countOfMedicamentLabel.text = "\(countMedicamentHasThisVisit(uuid: uuid!.uuidString))"
     }
     //MARK: Other function
-    func setupTextView(textView:UITextView){
+    private func fieldIsEmpty() -> Bool{
+        if complaintTextView.text == "" || doctor == nil {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    private func setupTextView(textView:UITextView){
         textView.layer.borderColor = UIColor.systemGray6.cgColor
         textView.layer.borderWidth = 1
+    }
+    
+    //MARK: Alert
+    func showAlertFieldISEmpty(){
+        alert = NewMedicalAlert()
+        alert?.showAlert(title: "Не заполнены поля", message: "Заполните пожалуйста все поля, что бы можно было корректно сохранить информацию")
     }
 
     // MARK: - Table view data source

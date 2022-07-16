@@ -22,6 +22,7 @@ class NewPillController: UITableViewController {
     var isOver:Bool = false
     var medicamentName = ""
     var medicamentDosage:String = "0"
+    var amountOfDay:Int64 = 5
     var medicamentType:TypeOfMedicament = .pill
     var medicamentFrequency:Frequency = .twiceADay
     
@@ -37,7 +38,7 @@ class NewPillController: UITableViewController {
         .twiceADay:"Дважды",
         .threeTimeADay:"Трижды"]
     
-    var doAfterEdit:((String,String,String,String,Doctor?,String?,Bool,Bool) -> Void)?
+    var doAfterEdit:((String,String,String,Int64,Doctor?,String?,Bool,Bool,Int64) -> Void)?
     
     @IBOutlet weak var medicamentNameTextField: UITextField!
     @IBOutlet weak var medicamentDosageTextField: UITextField!
@@ -48,6 +49,7 @@ class NewPillController: UITableViewController {
     @IBOutlet weak var isOverSwitch: UISwitch!
     @IBOutlet weak var countOfDayTextField: UITextField!
     
+    
     @IBOutlet weak var countOfDayLabel: UILabel!
     @IBOutlet weak var freguencyLocalization: UILabel!
     @IBOutlet weak var startDateLocalization: UILabel!
@@ -55,6 +57,7 @@ class NewPillController: UITableViewController {
     @IBOutlet weak var typeMedicamentLocalization: UILabel!
     @IBOutlet weak var courseIsOverLabel: UILabel!
     
+    //MARK: @IBAction
     @IBAction func isOverChanged(_ sender: UISwitch) {
         if isNewMedicament{
             alert = NewMedicalAlert()
@@ -75,10 +78,18 @@ class NewPillController: UITableViewController {
         }
     }
     
-    //MARK: @IBAction
     @IBAction func saveNewMedicament(_ sender:UIBarButtonItem){
-        saveThisMedicament()
-        navigationController?.popViewController(animated: true)
+        if fieldIsEmpty(){
+            showAlertFieldISEmpty()
+        } else{
+            guard let newAmount = Int64(countOfDayTextField.text!) else{
+                showAlertUncorrectAmountOfDay()
+                return
+            }
+            amountOfDay = newAmount
+            saveThisMedicament()
+            navigationController?.popViewController(animated: true)
+        }
     }
     //MARK: Life cycle
     override func viewDidLoad() {
@@ -98,17 +109,35 @@ class NewPillController: UITableViewController {
         doctorLocalization.text = NSLocalizedString("doctor_NewMedicament", comment: "")
         startDateLocalization.text = NSLocalizedString("startDate_NewMedicament", comment: "")
         courseIsOverLabel.text = NSLocalizedString("courseIsOver_NewMedicament", comment: "")
-        
+        countOfDayTextField.text = String(amountOfDay)
         
     }
     
     //MARK: Other function
     private func saveThisMedicament(){
-        let title = medicamentNameTextField.text ?? ""
-        let dosage = medicamentDosageTextField.text ?? "0"
+        let title = medicamentNameTextField.text!
+        let dosage = medicamentDosageTextField.text!
         let type = medicamentType
         let frequency = medicamentFrequency
-        doAfterEdit?(title,dosage,type.rawValue,frequency.rawValue,doctor,visitUUID,isTaken,isOver)
+        doAfterEdit?(title,dosage,type.rawValue,frequency.rawValue,doctor,visitUUID,isTaken,isOver,amountOfDay)
+    }
+    
+    private func fieldIsEmpty() -> Bool{
+        if medicamentNameTextField.text == "" || medicamentDosageTextField.text == "" || countOfDayTextField.text == "" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func showAlertFieldISEmpty(){
+        alert = NewMedicalAlert()
+        alert?.showAlert(title: "Не заполнены поля", message: "Заполните пожалуйста все поля, что бы можно было корректно сохранить информацию")
+    }
+    
+    func showAlertUncorrectAmountOfDay(){
+        alert = NewMedicalAlert()
+        alert?.showAlert(title: "Не корректно введены данные", message: "Пожалуйста введите количество дней приема")
     }
     
     // MARK: - Table view data source

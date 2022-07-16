@@ -289,7 +289,7 @@ extension UIViewController{
     }
     
     //MARK: Medicament
-    func saveNewMedicament(title:String,dosage:String,type:String,frequency:String,doctor:Doctor?,visitUUID:String?,isTaken:Bool,isOver:Bool){
+    func saveNewMedicament(title:String,dosage:String,type:String,frequency:Int64,doctor:Doctor?,visitUUID:String?,isTaken:Bool,isOver:Bool,amountOfDay:Int64){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Medicament", in: managedContext)!
@@ -302,6 +302,9 @@ extension UIViewController{
         newMedicament.setValue(visitUUID, forKey: "visitUUID")
         newMedicament.setValue(isTaken, forKey: "isTaken")
         newMedicament.setValue(isOver, forKey: "isOver")
+        newMedicament.setValue(amountOfDay, forKey: "amountDay")
+        let amountLeft = amountOfDay * frequency
+        newMedicament.setValue(amountLeft, forKey: "amountLeftInCourse")
         do{
             try managedContext.save()
         } catch let error as NSError{
@@ -313,8 +316,8 @@ extension UIViewController{
         let newMedicament = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewPillController") as! NewPillController
         newMedicament.visitUUID = visitUUID
         newMedicament.doAfterEdit = {
-            [self] title,dosage,type,frequency,doctor,visitUUID,isTaken,isOver in
-            saveNewMedicament(title: title, dosage: dosage, type: type, frequency: frequency, doctor: doctor,visitUUID:visitUUID, isTaken: isTaken, isOver: isOver)
+            [self] title,dosage,type,frequency,doctor,visitUUID,isTaken,isOver,amountOfDay in
+            saveNewMedicament(title: title, dosage: dosage, type: type, frequency: frequency, doctor: doctor,visitUUID:visitUUID, isTaken: isTaken, isOver: isOver, amountOfDay: amountOfDay)
             }
         navigationController?.pushViewController(newMedicament, animated: true)
     }
@@ -331,7 +334,8 @@ extension UIViewController{
         editScreen.isTaken = medicament.isTaken
         editScreen.isOver = medicament.isOver
         editScreen.visitUUID = medicament.visitUUID
-        editScreen.doAfterEdit = { [self] title,dosage,type,frequency,doctor,visitUUID,isTaken,isOver in
+        editScreen.amountOfDay = medicament.amountDay
+        editScreen.doAfterEdit = { [self] title,dosage,type,frequency,doctor,visitUUID,isTaken,isOver,amountOfDay in
             
             medicament.setValue(title, forKey: "title")
             medicament.setValue(dosage, forKey: "dosage")
@@ -342,6 +346,7 @@ extension UIViewController{
             medicament.setValue(visitUUID, forKey: "visitUUID")
             medicament.setValue(isTaken, forKey: "isTaken")
             medicament.setValue(isOver, forKey: "isOver")
+            medicament.setValue(amountOfDay, forKey: "amountDay")
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
             let managedContext = appDelegate.persistentContainer.viewContext
             do{

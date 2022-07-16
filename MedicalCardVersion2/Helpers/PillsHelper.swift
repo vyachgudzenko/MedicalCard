@@ -13,10 +13,10 @@ enum PeriodOfTheDay:String{
     case evening = "evening"
 }
 
-enum Frequency:String{
-    case onceADay = "Один раз в день"
-    case twiceADay = "Дважды в день"
-    case threeTimeADay = "Трижды в день"
+enum Frequency:Int64{
+    case onceADay = 1
+    case twiceADay = 2
+    case threeTimeADay = 3
 }
 
 enum TypeOfMedicament:String {
