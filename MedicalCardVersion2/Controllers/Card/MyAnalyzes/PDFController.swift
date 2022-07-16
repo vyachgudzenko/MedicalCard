@@ -26,9 +26,7 @@ class PDFController: UIViewController {
         let pdfView = PDFView()
         pdfView.frame = baseView.bounds
         let url = URL(fileURLWithPath: uploadFile!.url!)
-        print(url)
         guard let pdfDocument = PDFDocument(url: url) else {
-            print("Не получилось создать")
             return
         }
         pdfView.document = pdfDocument

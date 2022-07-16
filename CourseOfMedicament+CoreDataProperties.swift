@@ -24,12 +24,12 @@ extension CourseOfMedicament {
 }
 
 extension CourseOfMedicament : Identifiable {
-    var statusEnum:AcceptanceStatus {
+    var statusEnum:AcceptanceStatus? {
         get{
-            return AcceptanceStatus(rawValue: self.status!)!
+            return AcceptanceStatus(rawValue: self.status ?? "expect")
         }
         set{
-            self.status = newValue.rawValue
+            self.status = newValue?.rawValue
         }
     }
     

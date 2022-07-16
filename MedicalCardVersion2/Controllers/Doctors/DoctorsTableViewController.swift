@@ -101,7 +101,6 @@ extension DoctorsTableViewController:UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "DoctorPrototypeCell", for: indexPath) as! DoctorPrototypeCell
         let currentDoctor = doctors[indexPath.row] as! Doctor
         cell.setupCell(doctor: currentDoctor)
-        print(cell.frame.height)
         return cell
     }
 

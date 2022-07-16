@@ -491,15 +491,36 @@ extension UIViewController{
         }
     }
     
-    func changeItsDrunk(course:CourseOfMedicament){
+    func getArrayOfCourses() -> [NSManagedObject]{
+        var array:[NSManagedObject] = []
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return array
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CourseOfMedicament")
+        do{
+            array = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
+        }
+        return array
+    }
+    
+    func changeItsDrunkWithFlag(course:CourseOfMedicament) -> Bool{
         course.statusEnum = .itsDrunk
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        course.medicament!.amountLeftInCourse = course.medicament!.amountLeftInCourse - 1
+        print("Drink\(course.medicament?.title)  \(course.medicament?.amountLeftInCourse)")
+        if course.medicament!.amountLeftInCourse == 0{
+            return true
+        }
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return false}
         let managedContext = appDelegate.persistentContainer.viewContext
         do{
             try managedContext.save()
         } catch let error as NSError{
             print("Could not save.\(error),\(error.userInfo)")
         }
+        return false
     }
     
     func changeItsForgotten(course:CourseOfMedicament){
@@ -587,6 +608,16 @@ extension UIViewController{
         }
         catch{
             fatalError()
+        }
+    }
+    
+    func saveChange(){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        let managedContext = appDelegate.persistentContainer.viewContext
+        do{
+            try managedContext.save()
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
         }
     }
 }

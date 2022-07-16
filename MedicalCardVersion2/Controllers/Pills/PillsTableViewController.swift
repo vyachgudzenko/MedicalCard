@@ -34,18 +34,8 @@ class PillsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CourseOfMedicament")
-        do{
-            coursesOfMedicament = try managedContext.fetch(fetchRequest)
-            pills = sortForSectionOfDay(arrayOfMedicament: coursesOfMedicament)
-            tableView.reloadData()
-        } catch let error as NSError{
-            print("Could not save.\(error),\(error.userInfo)")
-        }
+        coursesOfMedicament = getArrayOfCourses()
+        tableView.reloadData()
     }
     
     //MARK: Other function
@@ -86,7 +76,7 @@ class PillsTableViewController: UITableViewController {
     
     private func drinkAllMedicamentnInSection(courses:[CourseOfMedicament]){
         for course in courses {
-            changeItsDrunk(course: course)
+            changeItsDrunkWithFlag(course: course)
         }
         
     }
@@ -123,6 +113,7 @@ class PillsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PillsCell") as! PillsTableViewCell
         
         let courseOfMedicament = pills[fragmentDay]?[indexPath.row]
+        print("\(courseOfMedicament?.medicament?.title)  \(courseOfMedicament?.medicament?.amountLeftInCourse)")
         if courseOfMedicament!.statusEnum == .itsDrunk{
             let imageView = UIImageView(image: UIImage(systemName: "checkmark"))
             imageView.tintColor = .systemGreen
@@ -171,8 +162,21 @@ class PillsTableViewController: UITableViewController {
         let actionSwipeEdit = UIContextualAction(style: .normal, title: "Принято") { [self] _, _, _ in
             let selectSectionDay = sectionOfDay[indexPath.section]
             let course = pills[selectSectionDay]?[indexPath.row]
-            changeItsDrunk(course: course!)
-            tableView.reloadSections(IndexSet(arrayLiteral: indexPath.section), with: .automatic)
+            if changeItsDrunkWithFlag(course: course!){
+                let medicamentTitle = (course?.medicament?.title)! as String
+                let medicament = (course?.medicament)! as Medicament
+                deleteAllCoursesThatHaveThisMedicament(medicament: course!.medicament!)
+                medicament.isTaken = false
+                medicament.isOver = true
+                saveChange()
+                let alert = NewMedicalAlert()
+                alert.showAlert(title: "Вы закончили курс", message: "Вы закончили курс препарата \(medicamentTitle)")
+                coursesOfMedicament = getArrayOfCourses()
+                tableView.reloadData()
+            } else {
+                tableView.reloadSections(IndexSet(arrayLiteral: indexPath.section), with: .automatic)
+            }
+            
         }
         actionSwipeEdit.backgroundColor = .systemIndigo
         return UISwipeActionsConfiguration(actions: [actionSwipeEdit])

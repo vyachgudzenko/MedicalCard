@@ -49,7 +49,6 @@ class MyMedicamentController: UIViewController {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Medicament")
         do{
             medicaments = try managedContext.fetch(fetchRequest)
-            print(medicaments.count)
             tableView.reloadData()
         } catch let error as NSError{
             print("Could not save.\(error),\(error.userInfo)")
@@ -93,13 +92,8 @@ extension MyMedicamentController:UITableViewDelegate{
                 generateCourseOfDay(medicament: currentMedicament)
                 currentMedicament.isTaken = true
                 currentMedicament.isOver = false
-                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-                let managedContext = appDelegate.persistentContainer.viewContext
-                do{
-                    try managedContext.save()
-                } catch let error as NSError{
-                    print("Could not save.\(error),\(error.userInfo)")
-                }
+                currentMedicament.amountLeftInCourse = currentMedicament.amountDay * currentMedicament.frequency
+                saveChange()
                 tableView.reloadData()
                 alert = NewMedicalAlert()
                 alert?.showAlert(title: NSLocalizedString("alert_title_Add_MyMedicament", comment: ""), message: NSLocalizedString("alert_message_Add_MyMedicament", comment: ""))
