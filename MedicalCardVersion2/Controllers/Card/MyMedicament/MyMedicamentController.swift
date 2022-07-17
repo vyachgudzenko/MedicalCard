@@ -10,8 +10,14 @@ import CoreData
 
 class MyMedicamentController: UIViewController {
     
-    var medicaments:[NSManagedObject] = []
+    var medicaments:[NSManagedObject] = [] {
+        didSet{
+            tableView.reloadData()
+        }
+    }
     var alert:NewMedicalAlert?
+    
+    var searchData:String?
     
     var floatButton:RedButton = {
         let button = RedButton()
@@ -19,6 +25,7 @@ class MyMedicamentController: UIViewController {
     }()
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
         createNewMedicament(visitUUID: nil  )
@@ -31,6 +38,8 @@ class MyMedicamentController: UIViewController {
     //MARK: Life cicle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupSearchBar(searchBar: searchBar)
+        searchBar.delegate = self
         navigationItem.title = NSLocalizedString("navigation_title_MyMedicament", comment: "")
         tableView.dataSource = self
         tableView.delegate = self
@@ -42,17 +51,7 @@ class MyMedicamentController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Medicament")
-        do{
-            medicaments = try managedContext.fetch(fetchRequest)
-            tableView.reloadData()
-        } catch let error as NSError{
-            print("Could not save.\(error),\(error.userInfo)")
-        }
+        medicaments = getMedicaments()
     }
     
     override func viewDidLayoutSubviews() {
@@ -64,6 +63,13 @@ class MyMedicamentController: UIViewController {
     @objc
     func floatButtonTapped(){
         createNewMedicament(visitUUID: nil)
+    }
+    
+    private func setupSearchBar(searchBar:UISearchBar){
+        searchBar.layer.masksToBounds = true
+        searchBar.layer.cornerRadius = 15
+        searchBar.searchBarStyle = .default
+        
     }
 }
 
@@ -125,5 +131,18 @@ extension MyMedicamentController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentMedicament = medicaments[indexPath.row] as! Medicament
         editMedicament(medicament: currentMedicament)
+    }
+}
+
+extension MyMedicamentController:UISearchBarDelegate{
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchData = searchText
+        if searchData == ""{
+            medicaments = getMedicaments()
+        } else {
+            medicaments = getSearchResultMedicaments(searchText: searchData!)
+        }
+        
     }
 }

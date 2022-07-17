@@ -113,7 +113,6 @@ class PillsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PillsCell") as! PillsTableViewCell
         
         let courseOfMedicament = pills[fragmentDay]?[indexPath.row]
-        print("\(courseOfMedicament?.medicament?.title)  \(courseOfMedicament?.medicament?.amountLeftInCourse)")
         if courseOfMedicament!.statusEnum == .itsDrunk{
             let imageView = UIImageView(image: UIImage(systemName: "checkmark"))
             imageView.tintColor = .systemGreen

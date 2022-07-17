@@ -10,7 +10,13 @@ import CoreData
 
 class MyAnalyzesController: UIViewController {
 
-    var analyzes:[NSManagedObject] = []
+    var analyzes:[NSManagedObject] = []{
+        didSet{
+            tableView.reloadData()
+        }
+    }
+    
+    var searchData:String?
     
     var floatButton:RedButton! = {
         let button = RedButton()
@@ -19,6 +25,7 @@ class MyAnalyzesController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBAction func addBarButtonTapped(_ sender: UIBarButtonItem) {
         createNewAnalisys(uuid: nil)
     }
@@ -26,6 +33,8 @@ class MyAnalyzesController: UIViewController {
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupSearchBar(searchBar: searchBar)
+        searchBar.delegate = self
         navigationItem.title = NSLocalizedString("navigation_title_MyAnalyzes", comment: "")
         tableView.dataSource = self
         tableView.delegate = self
@@ -37,17 +46,8 @@ class MyAnalyzesController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Analysis")
-        do{
-            analyzes = try managedContext.fetch(fetchRequest)
-            tableView.reloadData()
-        } catch let error as NSError{
-            print("Could not save.\(error),\(error.userInfo)")
-        }
+        analyzes = getAnalyzes()
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -57,6 +57,13 @@ class MyAnalyzesController: UIViewController {
     @objc
     func floatButtonTapped(){
         createNewAnalisys(uuid: nil)
+    }
+    
+    private func setupSearchBar(searchBar:UISearchBar){
+        searchBar.layer.masksToBounds = true
+        searchBar.layer.cornerRadius = 15
+        searchBar.searchBarStyle = .default
+        
     }
 }
 //MARK: TableView DataSource
@@ -97,4 +104,16 @@ extension MyAnalyzesController:UITableViewDelegate{
         editAnalysis(analysis: currentAnalysis)
     }
 
+}
+
+extension MyAnalyzesController:UISearchBarDelegate{
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchData = searchText
+        if searchData == ""{
+            analyzes = getAnalyzes()
+        } else {
+            analyzes = getSearchResultAnalyzes(searchText: searchData!)
+        }
+    }
 }

@@ -63,7 +63,7 @@ class NewAnalysisController: UITableViewController {
     func fieldsIsEmpty() -> Bool {
         if titleTextField.text == "" || descriptionTextView.text == "" ||
             resultTextView.text == "" ||
-            doctor == nil {
+            doctor == nil || diagnosis == nil {
             return true
         } else {
             return false

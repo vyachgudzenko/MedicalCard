@@ -9,10 +9,20 @@ import UIKit
 import CoreData
 
 class MyDiagnosesController: UIViewController {
-    var diagnoses:[NSManagedObject] = []
+    
+    var searchData:String?
+    
+    var diagnoses:[NSManagedObject] = [] {
+        didSet{
+            tableView.reloadData()
+        }
+    }
     var alert:NewMedicalAlert?
     
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var floatButton:RedButton! = {
         let button = RedButton()
         return button
@@ -26,6 +36,8 @@ class MyDiagnosesController: UIViewController {
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
+        setupSearchBar(searchBar: searchBar)
         navigationItem.title = NSLocalizedString("navigation_title_MyDiagnosis", comment: "")
         tableView.dataSource = self
         tableView.delegate = self
@@ -37,17 +49,7 @@ class MyDiagnosesController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Diagnosis")
-        do{
-            diagnoses = try managedContext.fetch(fetchRequest)
-            tableView.reloadData()
-        } catch let error as NSError{
-            print("Could not save.\(error),\(error.userInfo)")
-        }
+        diagnoses = getDiagnoses()
     }
     
     override func viewDidLayoutSubviews() {
@@ -59,6 +61,13 @@ class MyDiagnosesController: UIViewController {
     @objc
     func floatButtonTapped(){
         createNewDiagnosisController()
+    }
+    
+    private func setupSearchBar(searchBar:UISearchBar){
+        searchBar.layer.masksToBounds = true
+        searchBar.layer.cornerRadius = 15
+        searchBar.searchBarStyle = .default
+        
     }
     
     
@@ -116,5 +125,18 @@ extension MyDiagnosesController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentDiagnosis = diagnoses[indexPath.row] as! Diagnosis
         editDiagnosis(diagnosis: currentDiagnosis)
+    }
+}
+
+extension MyDiagnosesController:UISearchBarDelegate{
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchData = searchText
+        if searchData == ""{
+            diagnoses = getDiagnoses()
+        } else {
+            diagnoses = getSearchResultDiagnosis(searchText: searchData!)
+        }
+        
     }
 }

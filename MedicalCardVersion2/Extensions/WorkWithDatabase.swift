@@ -29,6 +29,36 @@ extension UIViewController{
         }
     }
     
+    func getDoctors() -> [NSManagedObject]{
+        var doctors:[NSManagedObject] = []
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return doctors
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Doctor")
+        do{
+            doctors = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
+        }
+        return doctors
+    }
+    
+    func getSearchResultDoctors(searchText:String) -> [NSManagedObject]{
+        var arrayResult:[NSManagedObject] = []
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<Doctor>
+        fetchRequest = Doctor.fetchRequest()
+        fetchRequest.predicate = NSPredicate(
+            format: "firstName CONTAINS %@ OR lastName CONTAINS %@ OR clinic CONTAINS %@ OR phoneNumber CONTAINS %@", searchText,searchText,searchText,searchText)
+        do{
+            arrayResult = try managedContext.fetch(fetchRequest)
+        }catch{
+            fatalError()
+        }
+        return arrayResult
+    }
     func hasDiagnosisThisDoctor(doctor:String) -> Bool{
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -165,6 +195,37 @@ extension UIViewController{
         navigationController?.pushViewController(editScreen, animated: true)
     }
     
+    func getDiagnoses() -> [NSManagedObject]{
+        var diagnoses:[NSManagedObject] = []
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return diagnoses
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Diagnosis")
+        do{
+            diagnoses = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
+        }
+        return diagnoses
+    }
+    
+    func getSearchResultDiagnosis(searchText:String) -> [NSManagedObject]{
+        var arrayResult:[NSManagedObject] = []
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<Diagnosis>
+        fetchRequest = Diagnosis.fetchRequest()
+        fetchRequest.predicate = NSPredicate(
+            format: "title CONTAINS %@ OR descriptionOfDiagnosis CONTAINS %@", searchText,searchText)
+        do{
+            arrayResult = try managedContext.fetch(fetchRequest)
+        }catch{
+            fatalError()
+        }
+        return arrayResult
+    }
+    
     func deleteDiagnosis(diagnosis:Diagnosis, index:Int){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -225,6 +286,37 @@ extension UIViewController{
             saveAnalysis(title: titleOfAnalysis, descriptionofAnalysis: descriptionOfAnalysis, result: result, date: date, doctor: doctor, diagnosis: diagnosis,visitUUID: visitUUID,uuid: uuid!)
         }
         navigationController?.pushViewController(newAnalisys, animated: true)
+    }
+    
+    func getAnalyzes() -> [NSManagedObject]{
+        var arrayAnalyzes:[NSManagedObject] = []
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return arrayAnalyzes
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Analysis")
+        do{
+            arrayAnalyzes = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
+        }
+        return arrayAnalyzes
+    }
+    
+    func getSearchResultAnalyzes(searchText:String) -> [NSManagedObject]{
+        var arrayResult:[NSManagedObject] = []
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<Analysis>
+        fetchRequest = Analysis.fetchRequest()
+        fetchRequest.predicate = NSPredicate(
+            format: "title CONTAINS %@ OR descriptionOfAnalysis CONTAINS %@ OR result CONTAINS %@", searchText,searchText,searchText)
+        do{
+            arrayResult = try managedContext.fetch(fetchRequest)
+        }catch{
+            fatalError()
+        }
+        return arrayResult
     }
     
     func editAnalysis(analysis:Analysis){
@@ -320,6 +412,37 @@ extension UIViewController{
             saveNewMedicament(title: title, dosage: dosage, type: type, frequency: frequency, doctor: doctor,visitUUID:visitUUID, isTaken: isTaken, isOver: isOver, amountOfDay: amountOfDay)
             }
         navigationController?.pushViewController(newMedicament, animated: true)
+    }
+    
+    func getMedicaments() -> [NSManagedObject]{
+        var arrayMedicamnets:[NSManagedObject] = []
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return arrayMedicamnets
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Medicament")
+        do{
+            arrayMedicamnets = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError{
+            print("Could not save.\(error),\(error.userInfo)")
+        }
+        return arrayMedicamnets
+    }
+    
+    func getSearchResultMedicaments(searchText:String) -> [NSManagedObject]{
+        var arrayResult:[NSManagedObject] = []
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { fatalError() }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<Medicament>
+        fetchRequest = Medicament.fetchRequest()
+        fetchRequest.predicate = NSPredicate(
+            format: "title CONTAINS %@", searchText)
+        do{
+            arrayResult = try managedContext.fetch(fetchRequest)
+        }catch{
+            fatalError()
+        }
+        return arrayResult
     }
     
     func editMedicament(medicament:Medicament){
@@ -509,29 +632,16 @@ extension UIViewController{
     func changeItsDrunkWithFlag(course:CourseOfMedicament) -> Bool{
         course.statusEnum = .itsDrunk
         course.medicament!.amountLeftInCourse = course.medicament!.amountLeftInCourse - 1
-        print("Drink\(course.medicament?.title)  \(course.medicament?.amountLeftInCourse)")
         if course.medicament!.amountLeftInCourse == 0{
             return true
         }
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return false}
-        let managedContext = appDelegate.persistentContainer.viewContext
-        do{
-            try managedContext.save()
-        } catch let error as NSError{
-            print("Could not save.\(error),\(error.userInfo)")
-        }
+        saveChange()
         return false
     }
     
     func changeItsForgotten(course:CourseOfMedicament){
         course.statusEnum = .forgotten
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-        let managedContext = appDelegate.persistentContainer.viewContext
-        do{
-            try managedContext.save()
-        } catch let error as NSError{
-            print("Could not save.\(error),\(error.userInfo)")
-        }
+        saveChange()
     }
     
     func deleteAllCoursesThatHaveThisMedicament(medicament:Medicament){

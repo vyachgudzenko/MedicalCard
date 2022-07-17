@@ -11,11 +11,20 @@ import CoreData
 
 class DoctorsTableViewController: UIViewController, CNContactViewControllerDelegate{
     
-    var doctors:[NSManagedObject] = []
+    var searchData:String?
+    
+    var doctors:[NSManagedObject] = []{
+        didSet{
+            tableView.reloadData()
+        }
+    }
     var cellSpacing:CGFloat = 0
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addBurButton: UIBarButtonItem!
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+   
     
     @IBAction func addBarButtonTapped(_ sender: Any) {
         createNewDoctorController()
@@ -33,10 +42,12 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
     }()
     
     var medicalAlert:NewMedicalAlert!
-
+    
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
+        setupSearchBar(searchBar: searchBar)
         tableView.dataSource = self
         tableView.delegate = self
         let cellNib = UINib(nibName: "DoctorPrototypeCell", bundle: nil)
@@ -48,17 +59,7 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Doctor")
-        do{
-            doctors = try managedContext.fetch(fetchRequest)
-            tableView.reloadData()
-        } catch let error as NSError{
-            print("Could not save.\(error),\(error.userInfo)")
-        }
+        doctors = getDoctors()
     }
     
     override func viewDidLayoutSubviews() {
@@ -79,6 +80,13 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
     @objc
     func addButtonTapped(){
         createNewDoctorController()
+    }
+    
+    private func setupSearchBar(searchBar:UISearchBar){
+        searchBar.layer.masksToBounds = true
+        searchBar.layer.cornerRadius = 15
+        searchBar.searchBarStyle = .default
+        
     }
     
     //MARK: AlertControllers
@@ -146,4 +154,17 @@ extension DoctorsTableViewController:UITableViewDelegate{
         editDoctor(doctor: currentDoctor)
     }
 
+}
+
+extension DoctorsTableViewController:UISearchBarDelegate{
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchData = searchText
+        if searchData == ""{
+            doctors = getDoctors()
+        } else {
+            doctors = getSearchResultDoctors(searchText: searchData!)
+        }
+        
+    }
 }
