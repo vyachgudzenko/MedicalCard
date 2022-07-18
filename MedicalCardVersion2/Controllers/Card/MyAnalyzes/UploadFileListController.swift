@@ -52,8 +52,6 @@ extension UploadFileListController:UITableViewDataSource{
         cell.setupCell(uploadFile: sortFiles[indexPath.row] as! UploadFile)
         return cell
     }
-    
-    
 }
 
 extension UploadFileListController:UITableViewDelegate{
@@ -64,5 +62,16 @@ extension UploadFileListController:UITableViewDelegate{
             pdfController.uploadFile = currentUploadFile
             navigationController?.pushViewController(pdfController, animated: true)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let swipeAction = UIContextualAction(style: .normal, title: NSLocalizedString("deleteItem", comment: "")) { [self] _, _, _ in
+            let currentFile = sortFiles[indexPath.row] as! UploadFile
+            deleteUploadFile(file: currentFile)
+            sortFiles.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+        swipeAction.backgroundColor = .systemGray
+        return UISwipeActionsConfiguration(actions: [swipeAction])
     }
 }
