@@ -75,6 +75,7 @@ class MyMedicamentController: UIViewController {
 
 //MARK: TableView DataSource
 extension MyMedicamentController:UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return medicaments.count
     }
@@ -85,8 +86,6 @@ extension MyMedicamentController:UITableViewDataSource{
         cell.setupCell(medicament: medicament)
         return cell
     }
-    
-    
 }
 
 //MARK: TableView Delegate
@@ -143,6 +142,5 @@ extension MyMedicamentController:UISearchBarDelegate{
         } else {
             medicaments = getSearchResultMedicaments(searchText: searchData!)
         }
-        
     }
 }

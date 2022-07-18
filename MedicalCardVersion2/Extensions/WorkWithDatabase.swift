@@ -22,6 +22,8 @@ extension UIViewController{
         doctor.setValue(clinic, forKey: "clinic")
         doctor.setValue(phoneNumber, forKey: "phoneNumber")
         doctor.setValue(profession, forKey: "profession")
+        let createDate = Date()
+        doctor.setValue(createDate, forKey: "dateCreate")
         do{
             try managedContext.save()
         } catch let error as NSError{

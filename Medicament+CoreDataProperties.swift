@@ -2,7 +2,7 @@
 //  Medicament+CoreDataProperties.swift
 //  MedicalCardVersion2
 //
-//  Created by Вячеслав Гудзенко on 16.07.2022.
+//  Created by Вячеслав Гудзенко on 19.07.2022.
 //
 //
 
@@ -17,17 +17,15 @@ extension Medicament {
     }
 
     @NSManaged public var amountDay: Int64
+    @NSManaged public var amountLeftInCourse: Int64
     @NSManaged public var dosage: String?
-    @NSManaged public var endDate: Date?
     @NSManaged public var frequency: Int64
     @NSManaged public var isOver: Bool
     @NSManaged public var isTaken: Bool
-    @NSManaged public var startDate: Date?
     @NSManaged public var status: String?
     @NSManaged public var title: String?
     @NSManaged public var type: String?
     @NSManaged public var visitUUID: String?
-    @NSManaged public var amountLeftInCourse: Int64
     @NSManaged public var doctor: Doctor?
 
 }
