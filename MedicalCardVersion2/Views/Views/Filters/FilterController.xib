@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterController" customModule="MedicalCardVersion2" customModuleProvider="target">
             <connections>
                 <outlet property="baseView" destination="uzA-kc-8vz" id="76u-bm-4VI"/>
+                <outlet property="stackView" destination="ItJ-kw-HoO" id="lbZ-qA-2XA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,9 +25,29 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uzA-kc-8vz">
                     <rect key="frame" x="0.0" y="472" width="414" height="400"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jb3-YE-bX6">
+                            <rect key="frame" x="182" y="10" width="50" height="24"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ItJ-kw-HoO">
+                            <rect key="frame" x="30" y="54" width="354" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="70" id="IVv-kp-C9x"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="ItJ-kw-HoO" firstAttribute="leading" secondItem="uzA-kc-8vz" secondAttribute="leading" constant="30" id="FEn-xn-z49"/>
+                        <constraint firstItem="ItJ-kw-HoO" firstAttribute="top" secondItem="jb3-YE-bX6" secondAttribute="bottom" constant="20" id="NvF-kP-Yeh"/>
+                        <constraint firstAttribute="trailing" secondItem="ItJ-kw-HoO" secondAttribute="trailing" constant="30" id="RSN-NA-iye"/>
+                        <constraint firstItem="jb3-YE-bX6" firstAttribute="centerX" secondItem="uzA-kc-8vz" secondAttribute="centerX" id="Z5i-1Y-3gT"/>
+                        <constraint firstItem="jb3-YE-bX6" firstAttribute="top" secondItem="uzA-kc-8vz" secondAttribute="top" constant="10" id="idu-CP-pxQ"/>
                         <constraint firstAttribute="height" constant="400" id="mIU-JL-RhN"/>
+                        <constraint firstItem="ItJ-kw-HoO" firstAttribute="centerX" secondItem="uzA-kc-8vz" secondAttribute="centerX" id="zKH-Wd-AKG"/>
                     </constraints>
                 </view>
             </subviews>
