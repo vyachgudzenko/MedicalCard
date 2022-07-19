@@ -171,7 +171,7 @@ class NewPillController: UITableViewController {
         case 3:
             popOver = PopOverController()
             popOver?.delegate = self
-            popOver?.setupPopOver(cellType: .medicamentFraquency)
+            popOver?.setupPopOver(cellType: .medicamentFraquency)  
             popOver?.showPopOver(fraquency: medicamentFrequency)
             didCellSelected(popOver!)
         case 4:

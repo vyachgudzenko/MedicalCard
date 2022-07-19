@@ -7,41 +7,62 @@
 
 import UIKit
 
+protocol FilterControllerDelegate{
+    func okButtonPressed(_ filter:FilterController)
+}
+
 class FilterController: UIViewController {
     
+    var valueForSort:SortByTypes = .date
+    var delegate:FilterControllerDelegate?
     
     @IBOutlet weak var baseView: UIView!
-    
     @IBOutlet weak var stackView: UIStackView!
-    
-    
-    /*@IBOutlet weak var dateButton: FilterButton!
-    
-    @IBOutlet weak var alphabetButton: FilterButton!
-    
-    
-    @IBAction func dateButtonTapped(_ sender: UIButton) {
-        dateButton.flag = !dateButton.flag
-        if dateButton.flag{
-            alphabetButton.flag = false
-        }
-    }
-    @IBAction func alphabetButtonTapped(_ sender: Any) {
-        alphabetButton.flag = !alphabetButton.flag
-        if alphabetButton.flag{
-            dateButton.flag = false
-        }
-    }*/
+    @IBOutlet weak var stackViewForItems: UIStackView!
+    @IBOutlet weak var okStackView: UIStackView!
     
     var dateCreateButton:FilterButton! = {
         let button = FilterButton()
         button.setTitle("Date", for: .normal)
+        button.flag = true
         return button
     }()
     
     var alphabetButton:FilterButton! = {
         let button = FilterButton()
         button.setTitle("Alphabet", for: .normal)
+        return button
+    }()
+    
+    var fromSmallestButton:FilterButton! = {
+        let button = FilterButton()
+        button.flag = true
+        button.setTitle("От меньшего к большему", for: .normal)
+        button.selectedColor = .systemIndigo
+        button.titleLabel?.numberOfLines = 2
+        return button
+    }()
+    
+    var fromBiggestButton:FilterButton! = {
+        let button = FilterButton()
+        button.setTitle("От большего к меньшему", for: .normal)
+        button.selectedColor = .systemIndigo
+        button.titleLabel?.numberOfLines = 2
+        return button
+    }()
+    
+    var okButton:FilterButton! = {
+        let button = FilterButton()
+        button.setTitle("OK", for: .normal)
+        button.selectedColor = .systemGreen
+        button.flag = true
+        return button
+    }()
+    
+    var cancelButton:FilterButton! = {
+        let button = FilterButton()
+        button.setTitle("Cancel", for: .normal)
+        button.selectedColor = .systemGray
         return button
     }()
     
@@ -57,21 +78,51 @@ class FilterController: UIViewController {
     
     @objc
     func dateCreateButtonTapped(){
-        dateCreateButton.flag = !dateCreateButton.flag
-        if dateCreateButton.flag{
+        if dateCreateButton.flag != true{
+            dateCreateButton.flag = !dateCreateButton.flag
             alphabetButton.flag = false
+            valueForSort = .date
         }
+       
     }
     
     @objc
     func alphabetButtonTapped(){
-        alphabetButton.flag = !alphabetButton.flag
-        if alphabetButton.flag{
+        if alphabetButton.flag != true{
+            alphabetButton.flag = !alphabetButton.flag
             dateCreateButton.flag = false
+            valueForSort = .alphbet
+        }
+        
+    }
+    
+    @objc
+    func fromSmallestButtonTapped(){
+        if fromSmallestButton.flag != true{
+            fromSmallestButton.flag = !fromSmallestButton.flag
+            fromBiggestButton.flag = false
+        }
+        
+    }
+    
+    @objc
+    func fromBiggestButtonTapped(){
+        if fromBiggestButton.flag != true{
+            fromBiggestButton.flag = !fromBiggestButton.flag
+            fromSmallestButton.flag = false
         }
     }
     
+    @objc
+    func okButtonTapped(){
+        self.dismiss(animated: true)
+        self.delegate?.okButtonPressed(self)
+    }
     
+    @objc
+    func cancelButtonTapped(){
+        self.dismiss(animated: true)
+    }
     
     func showFilter(){
         if #available(iOS 13, *) {
@@ -85,9 +136,15 @@ class FilterController: UIViewController {
         super.viewDidLoad()
         setupBaseView()
         setupStackView()
+        setupStackViewSelectedItem()
+        setupOkStackView()
         dateCreateButton.addTarget(self, action: #selector(dateCreateButtonTapped), for: .touchUpInside)
         alphabetButton.addTarget(self, action: #selector(alphabetButtonTapped), for: .touchUpInside)
-        dateCreateButton.flag = true
+        fromSmallestButton.addTarget(self, action: #selector(fromSmallestButtonTapped), for: .touchUpInside)
+        fromBiggestButton.addTarget(self, action: #selector(fromBiggestButtonTapped), for: .touchUpInside)
+        okButton.addTarget(self, action: #selector(okButtonTapped), for: .touchUpInside)
+        cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+        
     }
     
     private func setupBaseView(){
@@ -98,6 +155,17 @@ class FilterController: UIViewController {
     private func setupStackView(){
         stackView.addArrangedSubview(dateCreateButton)
         stackView.addArrangedSubview(alphabetButton)
+    }
+    
+    private func setupStackViewSelectedItem(){
+        stackViewForItems.addArrangedSubview(fromSmallestButton)
+        stackViewForItems.addArrangedSubview(fromBiggestButton)
+    }
+    
+    private func setupOkStackView(){
+        okStackView.addArrangedSubview(cancelButton)
+        okStackView.addArrangedSubview(okButton)
+       
     }
     
 

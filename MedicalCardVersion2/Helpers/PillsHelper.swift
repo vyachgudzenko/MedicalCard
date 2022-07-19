@@ -55,3 +55,10 @@ enum TypeOfFile:String{
     case pdf = "pdf"
 }
 
+enum SortByTypes{
+    case date
+    case alphbet
+    case doctor
+}
+
+

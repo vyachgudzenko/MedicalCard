@@ -12,6 +12,7 @@ import CoreData
 class DoctorsTableViewController: UIViewController, CNContactViewControllerDelegate{
     
     var searchData:String?
+    var typeToSort:SortByTypes?
     
     var doctors:[NSManagedObject] = []{
         didSet{
@@ -33,6 +34,7 @@ class DoctorsTableViewController: UIViewController, CNContactViewControllerDeleg
     
     @IBAction func filterButtonPressed(_ sender: UIBarButtonItem) {
         let filter = FilterController()
+        filter.delegate = self
         filter.showFilter()
     }
     
@@ -168,3 +170,14 @@ extension DoctorsTableViewController:UISearchBarDelegate{
         
     }
 }
+
+extension DoctorsTableViewController:FilterControllerDelegate{
+    
+    func okButtonPressed(_ filter: FilterController) {
+        typeToSort = filter.valueForSort
+    }
+    
+    
+}
+
+
